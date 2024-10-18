@@ -46,7 +46,7 @@ public class InputHandler implements InputProcessor {
 
 	public boolean scrolled (float amountX, float amountY) {
 		float oldZoom = zoom;
-		zoom += amountY / 10;
+		zoom -= amountY / 5; // 5 is the zoom scale factor
 		camera.x = Math.round(camera.x * (oldZoom / zoom));
 		camera.y = Math.round(camera.y * (oldZoom / zoom));
 		return true;

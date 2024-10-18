@@ -37,13 +37,13 @@ public class GameScreen implements Screen {
 			//(^if rendering performance becomes an issue)
 		
 		Gdx.graphics.setTitle("Campus Tycoon");
-		Gdx.graphics.setResizable(false);
+		Gdx.graphics.setResizable(true);
 		
 		DisplayMode dm = Gdx.graphics.getDisplayMode();
 		System.out.println(dm.width + "x" + dm.height + ": " + dm.bitsPerPixel + "bpp");
 		
-		//Gdx.graphics.setWindowedMode(1080, 720);
-		Gdx.graphics.setFullscreenMode(dm);
+		Gdx.graphics.setWindowedMode(1080, 720);
+		//Gdx.graphics.setFullscreenMode(dm);
 		dm = Gdx.graphics.getDisplayMode();
 		System.out.println(dm.width + "x" + dm.height + ": " + dm.bitsPerPixel + "bpp");
 		
@@ -66,6 +66,11 @@ public class GameScreen implements Screen {
 		batch.end();
     }
 	
+	/**
+	 * Draws the map on the screen.
+	 *
+	 * @param map The map to be drawn, which contains a grid of tiles.
+	 */
 	public void drawMap(Map map) {
 		for (int i = 0; i < mapSize; i++) {
 			ArrayList<Tile> mapRow = map.grid.get(i);
@@ -75,8 +80,8 @@ public class GameScreen implements Screen {
 				tileTexture = new TextureRegion(texture, start.x, start.y, 
 					Tile.SpriteSize, Tile.SpriteSize);
 				batch.draw(tileTexture, 
-					(i * 66 - InputHandler.camera.x) * InputHandler.zoom, 
-					(j * 66 + InputHandler.camera.y) * InputHandler.zoom, 
+					(i * 64 - InputHandler.camera.x) * InputHandler.zoom, //64 is the defualt tile size - changing the value here will add a border pixel in the colour of the background.
+					(j * 64 + InputHandler.camera.y) * InputHandler.zoom, //64 is the defualt tile size - changing the value here will add a border pixel in the colour of the background.
 					64 * InputHandler.zoom, 64 * InputHandler.zoom);
 			}
 		}
