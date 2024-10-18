@@ -34,8 +34,8 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean touchDragged (int x, int y, int pointer) {
-		camera.x += (x - mouseDragPos.x) / zoom;
-		camera.y += (y - mouseDragPos.y) / zoom;
+		camera.x -= (x - mouseDragPos.x) / zoom;
+		camera.y -= (y - mouseDragPos.y) / zoom;
 		mouseDragPos = new Coordinate(x, y);
 		return false;
 	}

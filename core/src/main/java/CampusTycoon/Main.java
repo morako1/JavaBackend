@@ -9,7 +9,7 @@ import CampusTycoon.GameLogic.Map;
 public class Main extends Game {
     @Override
     public void create() {
-        setScreen(new GameScreen(new Map(8)));
+        setScreen(new GameScreen(new Map(12)));
 		// Research global variables and static types as a way to share Map between classes
 				
 		InputHandler ip = new InputHandler();

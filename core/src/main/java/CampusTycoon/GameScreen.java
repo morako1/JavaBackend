@@ -21,10 +21,11 @@ public class GameScreen implements Screen {
 	private Texture texture; // For testing
 	private TextureRegion tileTexture;
 	private Map map;
-	private int mapSize = 8;
+	private int mapSize;
 	
 	public GameScreen(Map Map) {
 		map = Map;
+		mapSize = map.grid.size();
 	}
 	
     @Override
@@ -51,6 +52,11 @@ public class GameScreen implements Screen {
 		texture = new Texture(Gdx.files.internal("Tiles\\SpriteMap.png"));
     }
 
+	/**
+	 * Renders the game screen.
+	 *
+	 * @param delta The time in seconds since the last render.
+	 */
     @Override
     public void render(float delta) {
         // Draw your screen here. "delta" is the time since last render in seconds.
