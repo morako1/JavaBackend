@@ -1,8 +1,15 @@
-# CampusTycoon
+# Campus Tycoon
 
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 
-This project was generated with a template including simple application launchers and a main class extending `Game` that sets the first screen.
+## Functionality
+
+This branch currently covers the following functionalities:
+- `Tiles`: Framework for a tile system which can be used to create map terrain.
+- `Map`: An ordered collection of tiles which can be displayed and modified to create an interactable map.
+- `Camera`: Allows for the user to move, and zoom in/out, on different parts of the map.
+</br>
+</br>
 
 ## Platforms
 
