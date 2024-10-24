@@ -58,7 +58,7 @@ configure(subprojects) {
 
 subprojects {
   version = '$projectVersion'
-  ext.appName = 'Input Testing'
+  ext.appName = 'CampusTycoon'
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
@@ -70,4 +70,4 @@ subprojects {
   }
 }
 
-eclipse.project.name = 'Input Testing' + '-parent'
+eclipse.project.name = 'CampusTycoon' + '-parent'

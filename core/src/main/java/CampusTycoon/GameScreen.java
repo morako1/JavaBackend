@@ -14,6 +14,10 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.Tiles.*;
+import CampusTycoon.UI.Drawer;
+import CampusTycoon.UI.Window;
+import CampusTycoon.UI.Component.Anchor;
+import CampusTycoon.UI.Components.Button;
 
 /** First screen of the application. Displayed after the application is created. */
 public class GameScreen implements Screen {
@@ -25,74 +29,44 @@ public class GameScreen implements Screen {
 	
 	public GameScreen(Map Map) {
 		map = Map;
-		mapSize = map.grid.size();
 	}
 	
-    @Override
-    public void show() {
-        // Prepare your screen here.
-		
+	@Override
+	public void show() {
 		//Gdx.graphics.setForegroundFPS(60); // Useful function for settings menu later
 		//Gdx.graphics.setContinuousRendering(false); // Interesting function to explore later 
 			//(^if rendering performance becomes an issue)
 		
 		Gdx.graphics.setTitle("Campus Tycoon");
-		Gdx.graphics.setResizable(true);
+		//Gdx.graphics.setResizable(false);
+		//Gdx.graphics.setWindowedMode(1080, 720); // This breaks things
 		
-		DisplayMode dm = Gdx.graphics.getDisplayMode();
-		System.out.println(dm.width + "x" + dm.height + ": " + dm.bitsPerPixel + "bpp");
+		//DisplayMode dm = Gdx.graphics.getDisplayMode();
+		//Gdx.graphics.setFullscreenMode(dm); // I don't like how this seems to also break things
 		
-		Gdx.graphics.setWindowedMode(1080, 720);
-		//Gdx.graphics.setFullscreenMode(dm);
-		dm = Gdx.graphics.getDisplayMode();
-		System.out.println(dm.width + "x" + dm.height + ": " + dm.bitsPerPixel + "bpp");
+		Button button1 = new Button("TestButton.png", 0, 0, 378, 63);
+		Drawer.add(1, button1);
+		
+		Button button2 = new Button("TestButton.png", 0, 0, 378, 63);
+		button2.setAnchor(Anchor.Centre);
+		Drawer.add(1, button2);
 		
 		map = new Map(mapSize);
 		batch = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("Tiles\\SpriteMap.png"));
     }
 
-	/**
-	 * Renders the game screen.
-	 *
-	 * @param delta The time in seconds since the last render.
-	 */
-    @Override
-    public void render(float delta) {
-        // Draw your screen here. "delta" is the time since last render in seconds.
+	@Override
+	public void render(float delta) {
 		ScreenUtils.clear(Color.BLACK);
-		batch.begin();
-		drawMap(map);
-		batch.end();
-    }
-	
-	/**
-	 * Draws the map on the screen.
-	 *
-	 * @param map The map to be drawn, which contains a grid of tiles.
-	 */
-	public void drawMap(Map map) {
-		for (int i = 0; i < mapSize; i++) {
-			ArrayList<Tile> mapRow = map.grid.get(i);
-			for (int j = 0; j < mapSize; j++) {
-				Tile tile = mapRow.get(j);
-				Coordinate start = tile.getSpriteCoords();
-				tileTexture = new TextureRegion(texture, start.x, start.y, 
-					Tile.SpriteSize, Tile.SpriteSize);
-				batch.draw(tileTexture, 
-					(i * 64 - InputHandler.camera.x) * InputHandler.zoom, //64 is the defualt tile size - changing the value here will add a border pixel in the colour of the background.
-					(j * 64 + InputHandler.camera.y) * InputHandler.zoom, //64 is the defualt tile size - changing the value here will add a border pixel in the colour of the background.
-					64 * InputHandler.zoom, 64 * InputHandler.zoom);
-			}
-		}
+		Drawer.drawAll();
 	}
-
-    @Override
-    public void resize(int width, int height) {
-        // Resize your screen here. The parameters represent the new window size.
-		DisplayMode dm = Gdx.graphics.getDisplayMode();
-		System.out.println(dm.width + "x" + dm.height + ": " + dm.bitsPerPixel + "bpp");
-    }
+	
+	@Override
+	public void resize(int width, int height) {
+		Window.updateResolution(width, height);
+		Drawer.updateAll();
+	}
 
     @Override
     public void pause() {

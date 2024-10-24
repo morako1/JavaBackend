@@ -5,8 +5,8 @@ import com.badlogic.gdx.InputProcessor;
 import CampusTycoon.GameLogic.Coordinate;
 
 public class InputHandler implements InputProcessor {
-	static Coordinate camera = new Coordinate();
-	static float zoom = 1;
+	public static Coordinate camera = new Coordinate();
+	public static float zoom = 1;
 	private Coordinate mouseDragPos;
 	
 	public InputHandler() {
@@ -34,8 +34,8 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean touchDragged (int x, int y, int pointer) {
-		camera.x -= (x - mouseDragPos.x) / zoom;
-		camera.y -= (y - mouseDragPos.y) / zoom;
+		camera.x += (x - mouseDragPos.x) / zoom;
+		camera.y += (y - mouseDragPos.y) / zoom;
 		mouseDragPos = new Coordinate(x, y);
 		return false;
 	}
@@ -46,7 +46,7 @@ public class InputHandler implements InputProcessor {
 
 	public boolean scrolled (float amountX, float amountY) {
 		float oldZoom = zoom;
-		zoom -= amountY / 5; // 5 is the zoom scale factor
+		zoom += amountY / 10;
 		camera.x = Math.round(camera.x * (oldZoom / zoom));
 		camera.y = Math.round(camera.y * (oldZoom / zoom));
 		return true;
