@@ -26,7 +26,8 @@ public class Drawer {
 	public static void drawAll() {
 		spriteBatch.begin();
 		for (int i = 0; i < drawQueue.size(); i++) {
-			// drawQueue is pre-sorted, so this draws in order of layer (ascending) -> time added
+			// drawQueue is pre-sorted, so this draws primarily in order of layer (ascending)
+			// Then inside each layer is sorted by the time the component was added to the queue
 			draw(drawQueue.get(i).component);
 		}
 		spriteBatch.end();
