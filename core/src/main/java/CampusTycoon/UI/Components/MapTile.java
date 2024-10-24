@@ -4,14 +4,15 @@ import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.Tiles.Tile;
 import CampusTycoon.UI.Component;
+import CampusTycoon.UI.SpriteSheet;
 
 public class MapTile extends Component {
 
-	public MapTile(String TilePath, float X, float Y, float Width, float Height) {
-		super(TilePath, X, Y, Width, Height);
+	public MapTile(SpriteSheet SpriteSheet, int TileID, float X, float Y, float Width, float Height) {
+		super(SpriteSheet, TileID, X, Y, Width, Height);
+	}
+	public MapTile(SpriteSheet SpriteSheet, int TileID, float X, float Y) {
+		super(SpriteSheet, TileID, X, Y, SpriteSheet.spriteWidth, SpriteSheet.spriteHeight);
 	}
 	
-	public abstract class Tiles {
-		public static final String Grass = "aaaaa"; // TODO: Figure out what the hell I want to do here and how to implement spritemaps to the main Drawer class
-	}
 }

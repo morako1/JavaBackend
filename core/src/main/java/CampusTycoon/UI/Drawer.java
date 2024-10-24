@@ -1,5 +1,6 @@
 package CampusTycoon.UI;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,11 +8,15 @@ import java.util.Map;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import CampusTycoon.GameLogic.Coordinate;
 
 public class Drawer {
 	private static List<DrawInfo> drawQueue = new LinkedList<>();
 	private static SpriteBatch spriteBatch = new SpriteBatch();
 	private static Map<String, Texture> textures = new HashMap(); // Note: this exists because I learned that generating hundreds of new textures every second is NOT a good idea
+	private static Map<Texture, Map<Integer, TextureRegion>> textureRegions = new HashMap();
 	
 	private static class DrawInfo { // Cursed static class with non-static members
 		private int layer; // Used to determine draw order
@@ -27,20 +32,68 @@ public class Drawer {
 		spriteBatch.begin();
 		for (int i = 0; i < drawQueue.size(); i++) {
 			// drawQueue is pre-sorted, so this draws primarily in order of layer (ascending)
-			// Then inside each layer is sorted by the time the component was added to the queue
-			draw(drawQueue.get(i).component);
+			// Followed by the time the component was added to the queue (within each layer)
+			
+			Component component = drawQueue.get(i).component;
+			if (component.sprite.usesSpriteSheet) {
+				drawRegion(component);
+			}
+			else {
+				draw(component);
+			}
 		}
 		spriteBatch.end();
 	}
 	
 	private static void draw(Component component) {
 		Sprite sprite = component.sprite;
+		sprite.stepAnimation();
+		// Important to note that the animation is stepped and then immediately retrieved for drawing
+		// This is to prevent the 1 frame of visual delay that would be caused by stepping after returning the image
+		
 		String imagePath = sprite.getImagePath();
 		Texture image = getTexture(imagePath);
 		spriteBatch.draw(
 			image, // Image texture to draw
 			component.x, component.y, // Coordinates to draw at
 			component.width, component.height); // Size of the image
+	}
+	
+	private static void drawRegion(Component component) {
+		Sprite sprite = component.sprite;
+		sprite.stepAnimation();
+		
+		String sheetPath = sprite.getImagePath();
+		Texture sheet = getTexture(sheetPath);
+		TextureRegion image = getTextureRegion(sheet, sprite);
+		spriteBatch.draw(
+			image, // Image texture (region) to draw
+			component.x, component.y, // Coordinates to draw at
+			component.width, component.height); // Size of the image
+	}
+	
+	private static TextureRegion getTextureRegion(Texture sheet, Sprite sprite) {
+		int spriteID = sprite.getID();
+		
+		// If a mapping of the spriteSheet does not exist -> creates new mapping
+		if (!textureRegions.containsKey(sheet)) {
+			Map<Integer, TextureRegion> regions = new HashMap<Integer, TextureRegion>();
+			textureRegions.put(sheet, regions);
+		}
+		
+		Map<Integer, TextureRegion> sheetRegions = textureRegions.get(sheet);
+		
+		// If a mapping of the spriteID to a TextureRegion does not exist -> adds that mapping
+		if (!sheetRegions.containsKey(spriteID)) {
+			Coordinate spriteCoords = sprite.spriteSheet.getRegionCoords(spriteID);
+			
+			sheetRegions.put(spriteID, new TextureRegion(
+				sheet, // Spritesheet to get sprite from
+				spriteCoords.x, spriteCoords.y, // Coordinates of the sprite within the spritesheet
+				sprite.spriteSheet.spriteWidth, sprite.spriteSheet.spriteHeight)); // Sprite dimensions
+		}
+		
+		return sheetRegions.get(spriteID);
 	}
 	
 	private static Texture getTexture(String imagePath) {

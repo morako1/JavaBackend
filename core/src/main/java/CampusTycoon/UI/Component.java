@@ -19,22 +19,26 @@ public abstract class Component {
 	}
 	
 	
-	private float baseX, baseY, baseWidth, baseHeight; // add setter/getters (so that things can update properly when these values are changed)
+	private float baseX, baseY, baseWidth, baseHeight; // TODO: add setter/getters (so that things can update properly when these values are changed)
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
 	
 	public Component(float X, float Y, float Width, float Height) {
 		sprite = new Sprite("MissingTexture.png"); // I love purple and black squares
-		Initialise(X, Y, Width, Height);
+		initialise(X, Y, Width, Height);
 	}
 	public Component(String ImagePath, float X, float Y, float Width, float Height) {
 		sprite = new Sprite(ImagePath);
-		Initialise(X, Y, Width, Height);
+		initialise(X, Y, Width, Height);
 	}
 	public Component(List<String> ImagePaths, float X, float Y, float Width, float Height) {
 		sprite = new Sprite(ImagePaths);
-		Initialise(X, Y, Width, Height);
+		initialise(X, Y, Width, Height);
+	}
+	public Component(SpriteSheet SpriteSheet, int SpriteID, float X, float Y, float Width, float Height) {
+		sprite = new Sprite(SpriteSheet, SpriteID);
+		initialise(X, Y, Width, Height);
 	}
 	
 	// Called after resolution changes
@@ -44,7 +48,7 @@ public abstract class Component {
 		applyAnchor();
 	}
 	
-	private void Initialise(float X, float Y, float Width, float Height) {
+	private void initialise(float X, float Y, float Width, float Height) {
 		baseX = X;
 		baseY = Y;
 		baseWidth = Width;
@@ -64,14 +68,14 @@ public abstract class Component {
 		height = baseHeight * heightRatio;
 	}
 	
-	
+	// Changes the anchor point to the specified part of the window
 	public void setAnchor(String anchorPoint) {
 		anchor = anchorPoint;
 	}
 	
 	private void applyAnchor() {
 		// I don't know how to do this without using a switch statement
-		// If only I could store functions within a Map, then I could tie the Anchor constants to it and call the correct function simply by passing the Map the Anchor point 
+		// If only I could store functions within a HashMap, then the Anchor constants could be keys and call the correct function simply by passing the Anchor point to the HashMap
 		// (Note: I haven't actually looked into whether or not doing the above is possible)
 		
 		switch (anchor) {
