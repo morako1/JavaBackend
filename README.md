@@ -1,5 +1,10 @@
 # CampusTycoon
 
+The game designed by team 9, for the uni of york compsci eng1 module.
+
+Perfect in *almost* every way.
+
+
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 
 This project was generated with a template including simple application launchers and a main class extending `Game` that sets the first screen.
