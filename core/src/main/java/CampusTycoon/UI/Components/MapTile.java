@@ -1,8 +1,5 @@
 package CampusTycoon.UI.Components;
 
-import CampusTycoon.GameLogic.Coordinate;
-import CampusTycoon.GameLogic.Map;
-import CampusTycoon.GameLogic.Tiles.Tile;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.SpriteSheet;
 
