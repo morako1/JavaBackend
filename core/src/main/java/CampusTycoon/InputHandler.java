@@ -1,15 +1,25 @@
 package CampusTycoon;
 
+import java.util.List;
+
 import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.UI.Components.Button;
 
 public class InputHandler implements InputProcessor {
 	public static Coordinate camera = new Coordinate();
 	public static float zoom = 1;
 	private Coordinate mouseDragPos;
-	
-	public InputHandler() {
+	private Button paramButton;
+	private List<Button> buttonList;
+
+	public InputHandler(Button paramButton) {
+		this.paramButton = paramButton;
+	}
+
+	public InputHandler(List<Button> buttons){
+		this.buttonList = buttons;
 	}
 	
 	public boolean keyDown (int keycode) {
@@ -26,8 +36,25 @@ public class InputHandler implements InputProcessor {
 
 	public boolean touchDown (int x, int y, int pointer, int button) {
 		mouseDragPos = new Coordinate(x, y);
+
+		for (Button btn : buttonList){
+			if (isTouchWithinButton(x, y, btn)) {
+				System.out.println("Button Clicked");
+				// Add functionality for button click here
+				return true;
+			}
+        }
 		return true;
 	}
+
+	private boolean isTouchWithinButton(int x, int y, Button button) {
+		if (button == null) {
+			return false; // Button is null, so return false to avoid a NullPointerException
+		}
+        // Assuming button's (x, y) represents the top-left corner and has width and height
+        return x >= button.getX() && x <= button.getX() + button.getWidth()
+                && y >= button.getY() && y <= button.getY() + button.getHeight();
+    }
 
 	public boolean touchUp (int x, int y, int pointer, int button) {
 		return false;

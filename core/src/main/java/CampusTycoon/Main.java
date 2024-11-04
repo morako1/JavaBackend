@@ -1,7 +1,6 @@
 package CampusTycoon;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.UI.StartScreen;
@@ -13,7 +12,8 @@ public class Main extends Game {
         setScreen(new StartScreen(new Map(8)));
 		// Research global variables and static types as a way to share Map between classes
 				
-		InputHandler ip = new InputHandler();
-		Gdx.input.setInputProcessor(ip);
+        //CODE BELOW STOPPED COMPILING FOR SOME REASON, COMMENTED OUT FOR NOW
+		//InputHandler ip = new InputHandler();
+		//Gdx.input.setInputProcessor(ip);
     }
 }
