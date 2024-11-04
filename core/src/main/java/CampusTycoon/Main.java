@@ -9,7 +9,12 @@ import CampusTycoon.UI.StartScreen;
 public class Main extends Game {
     @Override
     public void create() {
-        setScreen(new StartScreen(new Map(8)));
+        try {
+            setScreen(new StartScreen(new Map()));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		// Research global variables and static types as a way to share Map between classes
 				
         //CODE BELOW STOPPED COMPILING FOR SOME REASON, COMMENTED OUT FOR NOW

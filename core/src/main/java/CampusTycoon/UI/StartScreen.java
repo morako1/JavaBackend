@@ -65,7 +65,11 @@ public class StartScreen implements Screen{
             InputHandler ip = new InputHandler(buttonList);
             Gdx.input.setInputProcessor(ip);
 
-            map = new Map(mapSize);
+            try {
+                map = new Map();
+            } catch (Exception e) {
+                // Dies
+            }
         }
     
         @Override

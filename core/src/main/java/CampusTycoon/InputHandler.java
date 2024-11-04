@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Components.Button;
+import CampusTycoon.UI.Component;
 
 public class InputHandler implements InputProcessor {
 	public static Coordinate camera = new Coordinate();
@@ -35,7 +36,8 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean touchDown (int x, int y, int pointer, int button) {
-		mouseDragPos = new Coordinate(x, y);
+		x = transformX(x);
+		y = transformY(y);
 
 		for (Button btn : buttonList){
 			if (isTouchWithinButton(x, y, btn)) {
@@ -45,6 +47,13 @@ public class InputHandler implements InputProcessor {
 			}
         }
 		return true;
+	}
+
+	private int transformX(int x) {
+		return (int)(x * Component.widthRatio);
+	}
+	private int transformY(int y) {
+		return (int)(y * Component.heightRatio);
 	}
 
 	private boolean isTouchWithinButton(int x, int y, Button button) {
@@ -61,9 +70,9 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean touchDragged (int x, int y, int pointer) {
-		camera.x += (x - mouseDragPos.x) / zoom;
-		camera.y += (y - mouseDragPos.y) / zoom;
-		mouseDragPos = new Coordinate(x, y);
+		//camera.x += (x - mouseDragPos.x) / zoom;
+		//camera.y += (y - mouseDragPos.y) / zoom;
+		//mouseDragPos = new Coordinate(x, y); // This crashes the program currently for some reason
 		return false;
 	}
 
