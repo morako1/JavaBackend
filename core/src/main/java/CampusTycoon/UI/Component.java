@@ -19,7 +19,7 @@ public abstract class Component {
 	}
 	
 	
-	private float baseX, baseY, baseWidth, baseHeight;
+	private float baseX, baseY, baseWidth, baseHeight; // TODO: add setter/getters (so that things can update properly when these values are changed)
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
@@ -71,7 +71,6 @@ public abstract class Component {
 	// Changes the anchor point to the specified part of the window
 	public void setAnchor(String anchorPoint) {
 		anchor = anchorPoint;
-		update();
 	}
 	
 	private void applyAnchor() {
@@ -107,58 +106,4 @@ public abstract class Component {
 		x = X * widthRatio;
 		y = Y * heightRatio;
 	}
-	
-	
-	public int left() {
-		return (int)this.x;
-	}
-	
-	public int right() {
-		return (int)(this.x + this.width);
-	}
-	
-	public int top() {
-		return (int)(this.y + this.height);
-	}
-	
-	public int bottom() {
-		return (int)this.y;
-	}
-	
-	
-	public float getX() {
-        return this.x;
-    }
-
-    public float getY() {
-        return this.y;
-    }
-
-    public float getWidth() {
-        return this.width;
-    }
-
-    public float getHeight() {
-        return this.height;
-    }
-
-	public void setX(float x) {
-        this.x = x;
-		update();
-    }
-
-    public void setY(float y) {
-        this.y = y;
-		update();
-    }
-
-    public void setWidth(float width) {
-        this.width = width;
-		update();
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-		update();
-    }
 }

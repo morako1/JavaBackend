@@ -13,14 +13,22 @@ import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.Backdrop;
 import CampusTycoon.UI.Components.Button;
+import CampusTycoon.UI.Components.MenuText;
+
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class EventScreen implements Screen{
 
         private Map map;
         private int mapSize;
-        
+        private BitmapFont font;
+        private SpriteBatch batch;
+
         public EventScreen(Map Map) {
-            map = Map;
+            this.map = Map;
+            this.font = new BitmapFont();
+            this.batch = new SpriteBatch();
         }
 
         @Override
@@ -48,6 +56,10 @@ public class EventScreen implements Screen{
             InputHandler ip = new InputHandler(buttonList);
             Gdx.input.setInputProcessor(ip);
 
+            //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
+            //eventTextTitle.setAnchor(Anchor.Centre);
+            Drawer.addText(2, "Text1", 0, 0);            
+
             try {
                 map = new Map();
             } catch (Exception e) {
@@ -57,8 +69,11 @@ public class EventScreen implements Screen{
     
         @Override
         public void render(float delta) {
+            //batch.begin();
             ScreenUtils.clear(Color.BLACK);
             Drawer.drawAll();
+            //font.draw(batch, "Random event 1", 260, 420);
+            //batch.end();
         }
         
         @Override
@@ -84,6 +99,7 @@ public class EventScreen implements Screen{
     
         @Override
         public void dispose() {
-            ;// Destroy screen's assets here.
+            font.dispose();
+            batch.dispose();
         }
     }
