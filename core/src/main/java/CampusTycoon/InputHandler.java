@@ -5,8 +5,8 @@ import java.util.List;
 import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
-import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Component;
+import CampusTycoon.UI.Components.Button;
 
 public class InputHandler implements InputProcessor {
 	public static Coordinate camera = new Coordinate();
@@ -42,6 +42,7 @@ public class InputHandler implements InputProcessor {
 		for (Button btn : buttonList){
 			if (isTouchWithinButton(x, y, btn)) {
 				System.out.println("Button Clicked");
+				System.out.println(btn);
 				// Add functionality for button click here
 				return true;
 			}
