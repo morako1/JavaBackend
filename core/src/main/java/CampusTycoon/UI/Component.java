@@ -71,6 +71,7 @@ public abstract class Component {
 	// Changes the anchor point to the specified part of the window
 	public void setAnchor(String anchorPoint) {
 		anchor = anchorPoint;
+		update();
 	}
 	
 	private void applyAnchor() {
@@ -105,6 +106,23 @@ public abstract class Component {
 		float Y = baseY + (Window.height - baseHeight) / 2;
 		x = X * widthRatio;
 		y = Y * heightRatio;
+	}
+	
+	
+	public int left() {
+		return (int)this.x;
+	}
+	
+	public int right() {
+		return (int)(this.x + this.width);
+	}
+	
+	public int top() {
+		return (int)(this.y + this.height);
+	}
+	
+	public int bottom() {
+		return (int)this.y;
 	}
 	
 	

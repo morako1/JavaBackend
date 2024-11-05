@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Component;
+import CampusTycoon.UI.Window;
 
 public class InputHandler implements InputProcessor {
 	public static Coordinate camera = new Coordinate();
@@ -39,9 +40,11 @@ public class InputHandler implements InputProcessor {
 		x = transformX(x);
 		y = transformY(y);
 
+		System.out.println("x: " + x + ", y: " + y);
+		
 		for (Button btn : buttonList){
 			if (isTouchWithinButton(x, y, btn)) {
-				System.out.println("Button Clicked");
+				System.out.println("Button Clicked: " + btn.getY());
 				// Add functionality for button click here
 				return true;
 			}
@@ -53,16 +56,17 @@ public class InputHandler implements InputProcessor {
 		return (int)(x * Component.widthRatio);
 	}
 	private int transformY(int y) {
-		return (int)(y * Component.heightRatio);
+		return Window.defaultHeight - (int)(y * Component.heightRatio);
 	}
 
 	private boolean isTouchWithinButton(int x, int y, Button button) {
 		if (button == null) {
 			return false; // Button is null, so return false to avoid a NullPointerException
 		}
+		
         // Assuming button's (x, y) represents the top-left corner and has width and height
-        return x >= button.getX() && x <= button.getX() + button.getWidth()
-                && y >= button.getY() && y <= button.getY() + button.getHeight();
+        return x >= button.left() && x <= button.right()
+                && y >= button.bottom() && y <= button.top();
     }
 
 	public boolean touchUp (int x, int y, int pointer, int button) {
