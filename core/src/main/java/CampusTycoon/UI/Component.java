@@ -13,11 +13,10 @@ public abstract class Component {
 	
 	public static float widthRatio, heightRatio;
 	
-	public static void updateResolution() {
-		widthRatio = (float)Window.defaultWidth / Window.width;
-		heightRatio = (float)Window.defaultHeight / Window.height;
-	}
-	
+	public void onClick() { }
+	public void onHover() { }
+	public void onCall() { }
+
 	
 	private float baseX, baseY, baseWidth, baseHeight;
 	public float x, y, width, height;
@@ -41,12 +40,6 @@ public abstract class Component {
 		initialise(X, Y, Width, Height);
 	}
 	
-	// Called after resolution changes
-	public void update() {
-		updateResolution();
-		updateSize();
-		applyAnchor();
-	}
 	
 	private void initialise(float X, float Y, float Width, float Height) {
 		baseX = X;
@@ -60,6 +53,18 @@ public abstract class Component {
 		// Default anchor is TopLeft
 		// (0, 0) is the top left of the screen for components bound to this anchor
 		applyAnchor();
+	}
+	
+	// Called after resolution changes or after setters are used
+	public void update() {
+		updateResolution();
+		updateSize();
+		applyAnchor();
+	}
+	
+	public static void updateResolution() {
+		widthRatio = (float)Window.defaultWidth / Window.width;
+		heightRatio = (float)Window.defaultHeight / Window.height;
 	}
 	
 	// Calculate the size of the image so that it scales correctly throughout resolution changes
@@ -143,22 +148,22 @@ public abstract class Component {
     }
 
 	public void setX(float x) {
-        this.x = x;
+        this.baseX = x;
 		update();
     }
 
     public void setY(float y) {
-        this.y = y;
+        this.baseY = y;
 		update();
     }
 
     public void setWidth(float width) {
-        this.width = width;
+        this.baseWidth = width;
 		update();
     }
 
     public void setHeight(float height) {
-        this.height = height;
+        this.baseHeight = height;
 		update();
     }
 }

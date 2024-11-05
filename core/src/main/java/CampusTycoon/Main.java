@@ -1,6 +1,7 @@
 package CampusTycoon;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.UI.EventScreen;
@@ -9,6 +10,14 @@ import CampusTycoon.UI.EventScreen;
 public class Main extends Game {
     @Override
     public void create() {
+		//Gdx.graphics.setForegroundFPS(60); // Useful function for settings menu later
+        //Gdx.graphics.setContinuousRendering(false); // Interesting function to explore later 
+        //(^if rendering performance becomes an issue)
+            
+        Gdx.graphics.setTitle("Campus Tycoon");
+        Gdx.input.setInputProcessor(new InputHandler());
+		
+		
         try {
             setScreen(new EventScreen(new Map()));
         } catch (Exception e) {

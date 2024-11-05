@@ -44,9 +44,8 @@ public class EventScreen implements Screen{
             buttonReject.setAnchor(Anchor.Centre);
             Drawer.add(2, buttonReject);
 
-            List<Button> buttonList = Arrays.asList(buttonAccept, buttonReject, buttonNeutral);
-            InputHandler ip = new InputHandler(buttonList);
-            Gdx.input.setInputProcessor(ip);
+            List<Component> buttonList = Arrays.asList(buttonAccept, buttonReject, buttonNeutral);
+            InputHandler.add(buttonList);
 
             try {
                 map = new Map();

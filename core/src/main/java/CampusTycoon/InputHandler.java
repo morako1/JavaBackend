@@ -1,29 +1,33 @@
 package CampusTycoon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Component;
-import CampusTycoon.UI.Components.Button;
-import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;
 
 public class InputHandler implements InputProcessor {
+	private static List<Component> clickables = new ArrayList<Component>();
 	public static Coordinate camera = new Coordinate();
 	public static float zoom = 1;
 	private Coordinate mouseDragPos;
-	private Button paramButton;
-	private List<Button> buttonList;
+	
 
-	public InputHandler(Button paramButton) {
-		this.paramButton = paramButton;
+	public InputHandler() {
 	}
-
-	public InputHandler(List<Button> buttons){
-		this.buttonList = buttons;
+	
+	
+	public static void add(Component button) {
+		clickables.add(button);
 	}
+	
+	public static void add(List<Component> buttons) {
+		clickables.addAll(buttons);
+	}
+	
 	
 	public boolean keyDown (int keycode) {
 		return false;
@@ -37,16 +41,15 @@ public class InputHandler implements InputProcessor {
 		return false;
 	}
 
+	// Called on click
 	public boolean touchDown (int x, int y, int pointer, int button) {
+		// Scales mouse position to resolution
 		x = transformX(x);
 		y = transformY(y);
-
-		System.out.println("x: " + x + ", y: " + y);
 		
-		for (Button btn : buttonList){
+		for (Component btn : clickables){
 			if (isTouchWithinButton(x, y, btn)) {
-				System.out.println("Button Clicked: " + btn.getY());
-				// Add functionality for button click here
+				btn.onClick();
 				return true;
 			}
         }
@@ -60,7 +63,7 @@ public class InputHandler implements InputProcessor {
 		return Window.defaultHeight - (int)(y * Component.heightRatio);
 	}
 
-	private boolean isTouchWithinButton(int x, int y, Button button) {
+	private boolean isTouchWithinButton(int x, int y, Component button) {
 		if (button == null) {
 			return false; // Button is null, so return false to avoid a NullPointerException
 		}
