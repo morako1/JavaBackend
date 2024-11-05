@@ -5,6 +5,7 @@ import java.util.List;
 import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;

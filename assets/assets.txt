@@ -1,11 +1,15 @@
 .gitkeep
+Accept.png
 assets copy.txt
+Backdrop.png
 Leaderboard.png
 Load Game.png
 Maps/York.txt
 MissingTexture copy.png
 MissingTexture.png
+Neutral.png
 New Game.png
+Reject.png
 Settings.png
 TestButton.png
 Tiles/Grass.png
