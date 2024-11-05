@@ -38,6 +38,7 @@ public class Map {
 		char[] chars = new char[(int) file.length()];
 		fileReader.read(chars);
 		String content = new String(chars);
+		fileReader.close();
 
 		String[] lines = content.split("\n");
 
