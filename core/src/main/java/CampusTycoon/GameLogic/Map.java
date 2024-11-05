@@ -28,7 +28,7 @@ public class Map {
 		// 		1 2 1
 
 		String defaultDirectory = System.getProperty("user.dir");
-
+		System.out.println(defaultDirectory);
 		File file = new File(defaultDirectory + "\\assets\\Maps\\York.txt");
 		if (file.exists() == false) {
 			throw new Exception("Default map does not exist.");
@@ -38,7 +38,6 @@ public class Map {
 		char[] chars = new char[(int) file.length()];
 		fileReader.read(chars);
 		String content = new String(chars);
-		fileReader.close();
 
 		String[] lines = content.split("\n");
 

@@ -9,12 +9,15 @@ import java.util.Map;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import CampusTycoon.GameLogic.Coordinate;
 
 public class Drawer {
 	private static List<DrawInfo> drawQueue = new LinkedList<>();
+	private static List<TextInfo> textQueue = new LinkedList<>();
 	private static SpriteBatch spriteBatch = new SpriteBatch();
+	private static BitmapFont font = new BitmapFont();
 	private static Map<String, Texture> textures = new HashMap(); // Note: this exists because I learned that generating hundreds of new textures every second is NOT a good idea
 	private static Map<Texture, Map<Integer, TextureRegion>> textureRegions = new HashMap();
 	
@@ -28,8 +31,24 @@ public class Drawer {
 		}
 	}
 	
+	private static class TextInfo {
+		private int layer;
+		private String text;
+		private float x, y;
+
+		public TextInfo(int layer, String text, float x, float y){
+			this.layer = layer;
+			this.text = text;
+			this.x = x;
+			this.y = y;
+		}
+
+	}
+
 	public static void drawAll() {
 		spriteBatch.begin();
+
+		//Drawing the components in the drawQueue
 		for (int i = 0; i < drawQueue.size(); i++) {
 			// drawQueue is pre-sorted, so this draws primarily in order of layer (ascending)
 			// Followed by the time the component was added to the queue (within each layer)
@@ -41,6 +60,10 @@ public class Drawer {
 			else {
 				draw(component);
 			}
+		}
+
+		for (TextInfo textInfo : textQueue){
+			font.draw(spriteBatch, textInfo.text, textInfo.x, textInfo.y);
 		}
 		spriteBatch.end();
 	}
@@ -113,6 +136,10 @@ public class Drawer {
 	// Adds the new component to the drawQueue at the end of the given layer
 	public static void add(int layer, Component component) {
 		drawQueue.add(binarySearch(layer), new DrawInfo(layer, component));
+	}
+
+	public static void addText(int layer, String text, float x, float y){
+		textQueue.add(binarySearch(layer), new TextInfo(layer, text, x, y));
 	}
 	
 	// Searches the drawQueue to find the index of the end of a given layer

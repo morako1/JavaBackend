@@ -18,7 +18,7 @@ public abstract class Component {
 	public void onCall() { }
 
 	
-	private float baseX, baseY, baseWidth, baseHeight;
+	private float baseX, baseY, baseWidth, baseHeight; // TODO: add setter/getters (so that things can update properly when these values are changed)
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
@@ -76,7 +76,6 @@ public abstract class Component {
 	// Changes the anchor point to the specified part of the window
 	public void setAnchor(String anchorPoint) {
 		anchor = anchorPoint;
-		update();
 	}
 	
 	private void applyAnchor() {
