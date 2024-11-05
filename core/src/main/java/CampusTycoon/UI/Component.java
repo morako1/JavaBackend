@@ -126,17 +126,21 @@ public abstract class Component {
 
 	public void setX(float x) {
         this.x = x;
+		update();
     }
 
     public void setY(float y) {
         this.y = y;
+		update();
     }
 
     public void setWidth(float width) {
         this.width = width;
+		update();
     }
 
     public void setHeight(float height) {
         this.height = height;
+		update();
     }
 }
