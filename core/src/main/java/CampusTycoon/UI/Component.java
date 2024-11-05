@@ -19,7 +19,7 @@ public abstract class Component {
 	}
 	
 	
-	private float baseX, baseY, baseWidth, baseHeight; // TODO: add setter/getters (so that things can update properly when these values are changed)
+	private float baseX, baseY, baseWidth, baseHeight;
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
@@ -106,4 +106,37 @@ public abstract class Component {
 		x = X * widthRatio;
 		y = Y * heightRatio;
 	}
+	
+	
+	public float getX() {
+        return this.x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public float getWidth() {
+        return this.width;
+    }
+
+    public float getHeight() {
+        return this.height;
+    }
+
+	public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
 }
