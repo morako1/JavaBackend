@@ -57,7 +57,9 @@ public class EventScreen implements Screen{
 
             //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
             //eventTextTitle.setAnchor(Anchor.Centre);
-            Drawer.addText(2, "Text1", 0, 0);            
+			MenuText testText = new MenuText("Text1", 0, 0, 30, 10);
+			testText.setAnchor(Anchor.Centre);
+            Drawer.add(2, testText);
 
             try {
                 map = new Map();

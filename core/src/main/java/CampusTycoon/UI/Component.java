@@ -22,9 +22,11 @@ public abstract class Component {
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
+	public Boolean isText = false;
+	public String text;
 	
 	public Component(float X, float Y, float Width, float Height) {
-		sprite = new Sprite("MissingTexture.png"); // I love purple and black squares
+		sprite = new Sprite("null");
 		initialise(X, Y, Width, Height);
 	}
 	public Component(String ImagePath, float X, float Y, float Width, float Height) {

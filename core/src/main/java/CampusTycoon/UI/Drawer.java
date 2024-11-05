@@ -15,7 +15,6 @@ import CampusTycoon.GameLogic.Coordinate;
 
 public class Drawer {
 	private static List<DrawInfo> drawQueue = new LinkedList<>();
-	private static List<TextInfo> textQueue = new LinkedList<>();
 	private static SpriteBatch spriteBatch = new SpriteBatch();
 	private static BitmapFont font = new BitmapFont();
 	private static Map<String, Texture> textures = new HashMap(); // Note: this exists because I learned that generating hundreds of new textures every second is NOT a good idea
@@ -30,20 +29,6 @@ public class Drawer {
 			component = Component;
 		}
 	}
-	
-	private static class TextInfo {
-		private int layer;
-		private String text;
-		private float x, y;
-
-		public TextInfo(int layer, String text, float x, float y){
-			this.layer = layer;
-			this.text = text;
-			this.x = x;
-			this.y = y;
-		}
-
-	}
 
 	public static void drawAll() {
 		spriteBatch.begin();
@@ -57,15 +42,21 @@ public class Drawer {
 			if (component.sprite.usesSpriteSheet) {
 				drawRegion(component);
 			}
+			else if (component.isText) {
+				drawText(component);
+			}
 			else {
 				draw(component);
 			}
 		}
-
-		for (TextInfo textInfo : textQueue){
-			font.draw(spriteBatch, textInfo.text, textInfo.x, textInfo.y);
-		}
 		spriteBatch.end();
+	}
+	
+	private static void drawText(Component component) {
+		font.draw(spriteBatch, component.text, 
+			component.x, component.y, 
+			component.width, 0, // Setting targetWidth doesn't seem to do anything other than applying an offset, and there is no target height
+			false);
 	}
 	
 	private static void draw(Component component) {
@@ -136,10 +127,6 @@ public class Drawer {
 	// Adds the new component to the drawQueue at the end of the given layer
 	public static void add(int layer, Component component) {
 		drawQueue.add(binarySearch(layer), new DrawInfo(layer, component));
-	}
-
-	public static void addText(int layer, String text, float x, float y){
-		textQueue.add(binarySearch(layer), new TextInfo(layer, text, x, y));
 	}
 	
 	// Searches the drawQueue to find the index of the end of a given layer
