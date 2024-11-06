@@ -27,30 +27,42 @@ public class GameplayScreen implements Screen{
 
         @Override
         public void show() {
-            Button buttonPH1 = new Button("Placeholder.png", -250, -200, 90, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
-            buttonPH1.setAnchor(Anchor.Centre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
+            Button buttonPH1 = new Button("Placeholder.png", -250, 10, 90, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
+            buttonPH1.setAnchor(Anchor.BottomCentre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
             Drawer.add(1, buttonPH1);         //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
 
-            Button buttonPH2 = new Button("Placeholder.png", -150, -200, 90, 66);
-            buttonPH2.setAnchor(Anchor.Centre);
+            Button buttonPH2 = new Button("Placeholder.png", -150, 10, 90, 66);
+            buttonPH2.setAnchor(Anchor.BottomCentre);
             Drawer.add(1, buttonPH2);
 
-            Button buttonPH3 = new Button("Placeholder.png", -50, -200, 90, 66);
-            buttonPH3.setAnchor(Anchor.Centre);
+            Button buttonPH3 = new Button("Placeholder.png", -50, 10, 90, 66);
+            buttonPH3.setAnchor(Anchor.BottomCentre);
             Drawer.add(1, buttonPH3);
     
-            Button buttonPH4 = new Button("Placeholder.png", 50, -200, 90, 66);
-            buttonPH4.setAnchor(Anchor.Centre);
+            Button buttonPH4 = new Button("Placeholder.png", 50, 10, 90, 66);
+            buttonPH4.setAnchor(Anchor.BottomCentre);
             Drawer.add(1, buttonPH4);
     
-            Button buttonPH5 = new Button("Placeholder.png", 150, -200, 90, 66);
-            buttonPH5.setAnchor(Anchor.Centre);
+            Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
+            buttonPH5.setAnchor(Anchor.BottomCentre);
             Drawer.add(1, buttonPH5);
     
-            Button buttonPH6 = new Button("Placeholder.png",250, -200, 90, 66);
-            buttonPH6.setAnchor(Anchor.Centre);
+            Button buttonPH6 = new Button("Placeholder.png",250, 10, 90, 66);
+            buttonPH6.setAnchor(Anchor.BottomCentre);
             Drawer.add(1, buttonPH6);
     
+            Button buttonDollar = new Button("Dollar.png", -150, 0, 70, 66);
+            buttonDollar.setAnchor(Anchor.TopCentre);
+            Drawer.add(1, buttonDollar);
+
+            Button buttonHouses = new Button("House.png", 0, 0, 70, 66);
+            buttonHouses.setAnchor(Anchor.TopCentre);
+            Drawer.add(1, buttonHouses);
+
+            Button buttonPeople = new Button("Person.png", 150, 0, 60, 66);
+            buttonPeople.setAnchor(Anchor.TopCentre);
+            Drawer.add(1, buttonPeople);
+
             Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
             notif1.setAnchor(Anchor.TopLeft);
             Drawer.add(1, notif1);
@@ -66,10 +78,8 @@ public class GameplayScreen implements Screen{
             MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 30, 10);
             notifText2.setAnchor(Anchor.TopLeft);
             Drawer.add(2, notifText2);
-
-
-    
-            List<Component> buttonList = Arrays.asList(buttonPH1, buttonPH2, buttonPH3, buttonPH4, buttonPH5, buttonPH6, notif1, notif2);
+     
+            List<Component> buttonList = Arrays.asList(buttonPH1, buttonPH2, buttonPH3, buttonPH4, buttonPH5, buttonPH6, notif1, notif2, buttonDollar, buttonHouses, buttonPeople);
 			InputHandler.add(buttonList);
 
             try {

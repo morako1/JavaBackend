@@ -8,6 +8,9 @@ public abstract class Component {
 	public abstract class Anchor {
 		public static final String TopLeft = "TOPLEFT";
 		public static final String Centre = "CENTRE";
+		public static final String BottomCentre = "BOTTOMCENTRE";
+		public static final String TopRight = "TOPRIGHT";
+		public static final String TopCentre = "TOPCENTRE";
 	} 
 	
 	
@@ -18,7 +21,7 @@ public abstract class Component {
 	public void onCall() { }
 
 	
-	private float baseX, baseY, baseWidth, baseHeight; // TODO: add setter/getters (so that things can update properly when these values are changed)
+	private float baseX, baseY, baseWidth, baseHeight; //TODO: add setter/getters (so that things can update properly when these values are changed)
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
@@ -92,6 +95,15 @@ public abstract class Component {
 			case Anchor.Centre:
 				anchorCentre();
 				break;
+			case Anchor.BottomCentre:
+				anchorBottomCentre();
+				break;
+			case Anchor.TopRight:
+				anchorTopRight();
+				break;
+			case Anchor.TopCentre:
+				anchorTopCentre();
+				break;
 			default:
 				System.out.println("WARNING: Invalid anchor type, defaulting to TopLeft");
 				anchorTopLeft();
@@ -114,6 +126,26 @@ public abstract class Component {
 		y = Y * heightRatio;
 	}
 	
+	private void anchorBottomCentre() {
+		float X = baseX + (Window.width - baseWidth) / 2;
+		float Y = baseY;
+		x = X * widthRatio;
+		y = Y * heightRatio;
+	}
+
+	private void anchorTopRight() {
+		float X = Window.width - baseX - baseWidth;
+		float Y = Window.height - baseY - baseHeight;
+		x = X * widthRatio;
+		y = Y * heightRatio;
+	}
+
+	private void anchorTopCentre() {
+		float X = baseX + (Window.width - baseWidth) / 2;
+		float Y = Window.height - baseY - baseHeight;
+		x = X * widthRatio;
+		y = Y * heightRatio;
+	}
 	
 	public int left() {
 		return (int)this.x;
