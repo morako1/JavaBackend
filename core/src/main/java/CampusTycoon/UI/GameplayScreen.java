@@ -3,10 +3,8 @@ package CampusTycoon.UI;
 import java.util.Arrays;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.DynamicsModifier.CentripetalAcceleration;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameLogic.Map;

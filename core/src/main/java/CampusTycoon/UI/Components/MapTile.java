@@ -12,4 +12,12 @@ public class MapTile extends Component {
 		super(SpriteSheet, TileID, X, Y, SpriteSheet.spriteWidth, SpriteSheet.spriteHeight);
 	}
 	
+	
+	
+	@Override
+	public void setClickAction(String action) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setClickAction'");
+	}
+	
 }

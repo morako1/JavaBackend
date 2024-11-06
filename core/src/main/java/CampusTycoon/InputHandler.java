@@ -55,19 +55,25 @@ public class InputHandler implements InputProcessor {
         }
 		return true;
 	}
+	
+	public double half(int a) {
+		double result = a / 2.0;
+		System.out.println(result);
+		return result;
+	}
 
 	private int transformX(int x) {
 		return (int)(x * Component.widthRatio);
 	}
 	private int transformY(int y) {
-		return (int)(y * Component.heightRatio);
+		return Window.defaultHeight - (int)(y * Component.heightRatio);
 	}
 
 	private boolean isTouchWithinButton(int x, int y, Component button) {
 		if (button == null) {
 			return false; // Button is null, so return false to avoid a NullPointerException
 		}
-        // Assuming button's (x, y) represents the top-left corner and has width and height
+        // Assuming button's (x, y) represents the bottom-left corner and has width and height
         return x >= button.getX() && x <= button.getX() + button.getWidth()
                 && y >= button.getY() && y <= button.getY() + button.getHeight();
     }

@@ -1,6 +1,7 @@
 package CampusTycoon.UI;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class Component {
 	
@@ -13,13 +14,25 @@ public abstract class Component {
 		public static final String TopCentre = "TOPCENTRE";
 	} 
 	
+	// Add to this class when implementing new component functionalities
+	public abstract class Actions {
+		public static final String OpenGameplayScreen = "OPENGAMEPLAYSCREEN";
+		public static final String OpenEventScreen = "OPENEVENTSCREEN";
+		public static final String OpenStartScreen = "OPENSTARTSCREEN";
+	}
+	
+	
+	protected Consumer<Boolean> clickAction = a -> none(a);
+	protected Consumer<Boolean> hoverAction = a -> none(a);
+	protected Consumer<Boolean> callAction = a -> none(a);
+	protected static void none(Boolean a) { }
+	
+	public void onClick() { clickAction.accept(true); }
+	public void onHover() { hoverAction.accept(true); }
+	public void onCall() { callAction.accept(true); }
+
 	
 	public static float widthRatio, heightRatio;
-	
-	public void onClick() { }
-	public void onHover() { }
-	public void onCall() { }
-
 	
 	private float baseX, baseY, baseWidth, baseHeight; //TODO: add setter/getters (so that things can update properly when these values are changed)
 	public float x, y, width, height;
@@ -147,15 +160,21 @@ public abstract class Component {
 		y = Y * heightRatio;
 	}
 	
+	
+	public abstract void setClickAction(String action);
+	
+	
 	public int left() {
 		return (int)this.x;
 	}
 	
 	public int right() {
+		// TODO: Add some kind of workaround to get the correct positions for text
 		return (int)(this.x + this.width);
 	}
 	
 	public int top() {
+		// TODO: ^^
 		return (int)(this.y + this.height);
 	}
 	

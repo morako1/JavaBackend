@@ -3,13 +3,13 @@ package CampusTycoon.UI;
 import java.util.Arrays;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.InputHandler;
+import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.Button;
 
@@ -26,6 +26,7 @@ public class StartScreen implements Screen{
         @Override
         public void show() {
             Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
+			buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
             buttonNewGame.setAnchor(Anchor.Centre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
             Drawer.add(1, buttonNewGame);         //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
 
@@ -62,21 +63,22 @@ public class StartScreen implements Screen{
     
         @Override
         public void pause() {
-            ;// Menu screen can't be paused, so nothing will be done
+            // Menu screen can't be paused, so nothing will be done
         }
     
         @Override
         public void resume() {
-            ;// Menu screen can't be resumed, so nothing will be done
+            // Menu screen can't be resumed, so nothing will be done
         }
     
         @Override
         public void hide() {
-            ;// This method is called when another screen replaces this one.
+            // This method is called when another screen replaces this one.
+			Drawer.clear();
         }
     
         @Override
         public void dispose() {
-            ;// Destroy screen's assets here.
+            // Destroy screen's assets here.
         }
     }

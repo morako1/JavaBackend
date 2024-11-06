@@ -1,6 +1,5 @@
 package CampusTycoon.UI;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +30,10 @@ public class Drawer {
 		}
 	}
 
+	public static void clear() {
+		drawQueue.clear();
+	}
+	
 	public static void drawAll() {
 		spriteBatch.begin();
 

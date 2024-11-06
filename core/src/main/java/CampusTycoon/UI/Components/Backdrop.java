@@ -47,4 +47,13 @@ public class Backdrop extends Component {
     public void setHeight(float height) {
         this.height = height;
     }
+	
+	
+	
+	// Not needed as backdrop elements don't need to do anything on click
+	@Override
+	public void setClickAction(String action) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setClickAction'");
+	}
 }

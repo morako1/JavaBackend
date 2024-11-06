@@ -13,11 +13,11 @@ public class Map {
 	public ArrayList<ArrayList<Tile>> grid;
 	public Random rng = new Random();
 	
-	public Map() throws Exception {
+	public Map() {
 		grid = initialiseGrid();
 	}
 	
-	private ArrayList<ArrayList<Tile>> initialiseGrid() throws Exception {
+	private ArrayList<ArrayList<Tile>> initialiseGrid() {
 		// Read map file from somewhere
 		// Format: 
 		// 		width height
@@ -30,14 +30,20 @@ public class Map {
 		String defaultDirectory = System.getProperty("user.dir");
 		System.out.println(defaultDirectory);
 		File file = new File(defaultDirectory + "\\assets\\Maps\\York.txt");
-		if (file.exists() == false) {
-			throw new Exception("Default map does not exist.");
-		}
+		
+		String content = "";
+		try {
+			if (file.exists() == false) {
+				throw new Exception("Default map does not exist.");
+			}
 
-		FileReader fileReader = new FileReader(file);
-		char[] chars = new char[(int) file.length()];
-		fileReader.read(chars);
-		String content = new String(chars);
+			FileReader fileReader = new FileReader(file);
+			char[] chars = new char[(int) file.length()];
+			fileReader.read(chars);
+			content = new String(chars);
+			fileReader.close();
+		}
+		catch (Exception e) { }
 
 		String[] lines = content.split("\n");
 
@@ -59,7 +65,7 @@ public class Map {
 		return grid;
 	}
 
-	private Tile getTile(int tileID) throws Exception {
+	private Tile getTile(int tileID) {
 		Tile tile;
 		switch (tileID) {
 			case 0:
@@ -72,7 +78,8 @@ public class Map {
 				tile = new Mountain();
 				break;
 			default:
-				throw new Exception("Unknown tile ID: \"" + tileID + "\"");
+				System.out.println("Unknown tile ID: \"" + tileID + "\"");
+				tile = null;
 		}
 		return tile;
 	}

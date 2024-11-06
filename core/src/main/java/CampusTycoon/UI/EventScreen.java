@@ -21,7 +21,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class EventScreen implements Screen{
 
         private Map map;
-        private int mapSize;
         private BitmapFont font;
         private SpriteBatch batch;
 

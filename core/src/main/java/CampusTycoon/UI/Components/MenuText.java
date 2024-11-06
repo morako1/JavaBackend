@@ -1,7 +1,5 @@
 package CampusTycoon.UI.Components;
 
-import java.util.List;
-
 import CampusTycoon.UI.Component;
 
 public class MenuText extends Component {
@@ -11,6 +9,15 @@ public class MenuText extends Component {
 		
 		this.text = text;
 		this.isText = true;
+	}
+
+	
+	
+	// Not needed as text elements don't need to do anything on click
+	@Override
+	public void setClickAction(String action) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setClickAction'");
 	}
 }
 
