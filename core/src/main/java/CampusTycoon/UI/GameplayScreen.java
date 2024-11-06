@@ -80,11 +80,7 @@ public class GameplayScreen implements Screen{
             List<Component> buttonList = Arrays.asList(buttonPH1, buttonPH2, buttonPH3, buttonPH4, buttonPH5, buttonPH6, notif1, notif2, buttonDollar, buttonHouses, buttonPeople);
 			InputHandler.add(buttonList);
 
-            try {
-                map = new Map();
-            } catch (Exception e) {
-                // Dies
-            }
+            map = new Map();
         }
     
         @Override

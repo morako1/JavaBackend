@@ -17,18 +17,17 @@ import CampusTycoon.UI.Components.Button;
 public class StartScreen implements Screen{
 
     /** First screen of the application. Displayed after the application is created. */
-        private Map map;
-        
-        public StartScreen(Map Map) {
-            map = Map;
+        public StartScreen() {
         }
 
         @Override
         public void show() {
-            Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
+			// This button has a weird rendeding problem due to the button being 261 wide. 
+			// These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
+            Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66);
 			buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
-            buttonNewGame.setAnchor(Anchor.Centre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
-            Drawer.add(1, buttonNewGame);         //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
+            buttonNewGame.setAnchor(Anchor.Centre);
+            Drawer.add(1, buttonNewGame); //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
 
             Button buttonLeaderboard = new Button("Leaderboard.png", 0, 20, 262, 66);
             buttonLeaderboard.setAnchor(Anchor.Centre);
@@ -41,12 +40,6 @@ public class StartScreen implements Screen{
     
             List<Component> buttonList = Arrays.asList(buttonNewGame, buttonLeaderboard, buttonSettings);
 			InputHandler.add(buttonList);
-
-            try {
-                map = new Map();
-            } catch (Exception e) {
-                // Dies
-            }
         }
     
         @Override

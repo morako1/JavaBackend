@@ -6,15 +6,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import CampusTycoon.GameLogic.Tiles.*;
+import CampusTycoon.UI.Systems.MapDisplay;
 
 public class Map {
-	public static String defaultMap = "University of York";
+	public static String defaultMap = "York.txt";
 
 	public ArrayList<ArrayList<Tile>> grid;
+	public int width, height;
 	public Random rng = new Random();
+	private MapDisplay display;
 	
 	public Map() {
 		grid = initialiseGrid();
+		display = new MapDisplay(this);
+		display.drawMap();
 	}
 	
 	private ArrayList<ArrayList<Tile>> initialiseGrid() {
@@ -29,7 +34,7 @@ public class Map {
 
 		String defaultDirectory = System.getProperty("user.dir");
 		System.out.println(defaultDirectory);
-		File file = new File(defaultDirectory + "\\assets\\Maps\\York.txt");
+		File file = new File(defaultDirectory + "\\assets\\Maps\\" + defaultMap);
 		
 		String content = "";
 		try {
@@ -48,8 +53,8 @@ public class Map {
 		String[] lines = content.split("\n");
 
 		String[] size = lines[0].split(" ");
-		int width = Integer.parseInt(size[0].toString().strip());
-		int height = Integer.parseInt(size[1].toString().strip());
+		width = Integer.parseInt(size[0].toString().strip());
+		height = Integer.parseInt(size[1].toString().strip());
 
 		grid = new ArrayList<ArrayList<Tile>>(height);
 

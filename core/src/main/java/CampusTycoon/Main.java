@@ -22,7 +22,7 @@ public class Main extends Game {
         Gdx.graphics.setTitle("Campus Tycoon");
         Gdx.input.setInputProcessor(new InputHandler());
 		
-		Screen screen = new StartScreen(new Map());
+		Screen screen = new StartScreen();
 		ScreenUtils.CurrentScreen = screen;
     	setScreen(screen);
     }

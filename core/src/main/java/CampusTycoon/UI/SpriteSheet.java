@@ -16,8 +16,8 @@ public class SpriteSheet {
 		spriteHeight = SpriteHeight;
 		
 		// width (how many sprites fit in a row) = width (in pixels) / spriteWidth (in pixels)
-		sheetWidth = SheetWidth / spriteWidth;    
-		sheetHeight = SheetHeight / spriteHeight; 
+		sheetWidth = SheetWidth;  
+		sheetHeight = SheetHeight;
 	}
 	
 	public Coordinate getRegionCoords(int spriteID) {
