@@ -57,7 +57,7 @@ public class EventScreen implements Screen{
 
             //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
             //eventTextTitle.setAnchor(Anchor.Centre);
-			MenuText testText = new MenuText("Text1", 0, 0, 30, 10);
+			MenuText testText = new MenuText("Tessssssssssst1", 0, 0, 1.5f, 1.5f);
 			testText.setAnchor(Anchor.Centre);
             Drawer.add(2, testText);
 

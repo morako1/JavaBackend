@@ -60,7 +60,7 @@ public class InputHandler implements InputProcessor {
 		return (int)(x * Component.widthRatio);
 	}
 	private int transformY(int y) {
-		return (int)(y * Component.heightRatio);
+		return (int)(Window.defaultHeight - y * Component.heightRatio);
 	}
 
 	private boolean isTouchWithinButton(int x, int y, Component button) {
