@@ -71,11 +71,11 @@ public class GameplayScreen implements Screen{
             notif2.setAnchor(Anchor.TopLeft);
             Drawer.add(1, notif2);
 
-            MenuText notifText1 = new MenuText("Notification 1", 130, 23, 30, 10);
+            MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
 			notifText1.setAnchor(Anchor.TopLeft);
             Drawer.add(2, notifText1);
 
-            MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 30, 10);
+            MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 1.5f, 1.5f);
             notifText2.setAnchor(Anchor.TopLeft);
             Drawer.add(2, notifText2);
      

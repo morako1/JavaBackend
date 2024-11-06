@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -53,10 +54,13 @@ public class Drawer {
 	}
 	
 	private static void drawText(Component component) {
+		//font.setFixedWidthGlyphs(component.text);
+		font.getRegion().getTexture().setFilter(
+			TextureFilter.Linear, TextureFilter.Linear);
+		font.getData().setScale(component.width, component.height);
+		
 		font.draw(spriteBatch, component.text, 
-			component.x, component.y, 
-			component.width, 0, // Setting targetWidth doesn't seem to do anything other than applying an offset, and there is no target height
-			false);
+			component.x, component.y);
 	}
 	
 	private static void draw(Component component) {
