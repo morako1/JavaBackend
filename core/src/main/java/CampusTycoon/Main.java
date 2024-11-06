@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.UI.EventScreen;
+import CampusTycoon.UI.GameplayScreen;
 import CampusTycoon.UI.StartScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -20,7 +21,7 @@ public class Main extends Game {
 		
 		
         try {
-            setScreen(new EventScreen(new Map()));
+            setScreen(new GameplayScreen(new Map()));
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

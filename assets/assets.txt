@@ -2,6 +2,7 @@
 Accept.png
 assets copy.txt
 Backdrop.png
+ExclamationMark.png
 Leaderboard.png
 Load Game.png
 Maps/York.txt
@@ -9,6 +10,8 @@ MissingTexture copy.png
 MissingTexture.png
 Neutral.png
 New Game.png
+Placeholder.png
+QuestionMark.png
 Reject.png
 Settings.png
 TestButton.png
