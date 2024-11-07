@@ -19,6 +19,7 @@ public abstract class Component {
 		public static final String OpenGameplayScreen = "OPENGAMEPLAYSCREEN";
 		public static final String OpenEventScreen = "OPENEVENTSCREEN";
 		public static final String OpenStartScreen = "OPENSTARTSCREEN";
+		public static final String CloseEventScreen = "CLOSEEVENTSCREEN";
 	}
 	
 	
@@ -166,9 +167,7 @@ public abstract class Component {
 		y = Y * heightRatio;
 	}
 	
-	
 	public abstract void setClickAction(String action);
-	
 	
 	public void setOffset(float X, float Y) {
 		this.baseX = this.baseX - offsetX + X;

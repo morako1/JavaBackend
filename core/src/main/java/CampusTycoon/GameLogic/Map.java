@@ -3,43 +3,26 @@ package CampusTycoon.GameLogic;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import CampusTycoon.GameLogic.Buildings.*;
 import CampusTycoon.GameLogic.Tiles.*;
-import CampusTycoon.UI.Drawer;
-import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
 
 public class Map {
 	public static String defaultMap = "York.txt";
 
 	public ArrayList<ArrayList<Tile>> grid;
-	public List<Building> buildings = new ArrayList<Building>();
 	public int width, height;
 	public Random rng = new Random();
 	private MapDisplay display;
-	private BuildingDisplay buildingDisplay;
 	
 	public Map() {
-		initialiseGrid();
-		initialiseBuildings();
-		
+		grid = initialiseGrid();
 		display = new MapDisplay(this);
 		display.drawMap();
-		buildingDisplay = new BuildingDisplay(buildings);
-		buildingDisplay.drawBuildings();
 	}
 	
-	private void initialiseBuildings() {
-		buildings = new ArrayList<Building>();
-		buildings.add(new Cafeteria(new Coordinate(5, 12)));
-		buildings.add(new Cafeteria(new Coordinate(23, 9)));
-		buildings.add(new Cafeteria(new Coordinate(7, 19)));
-	}
-	
-	private void initialiseGrid() {
+	private ArrayList<ArrayList<Tile>> initialiseGrid() {
 		// Read map file from somewhere
 		// Format: 
 		// 		width height
@@ -84,6 +67,7 @@ public class Map {
 			}
 			grid.add(row);
 		}
+		return grid;
 	}
 
 	private Tile getTile(int tileID) {

@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.InputHandler;
+import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.Backdrop;
 import CampusTycoon.UI.Components.Button;
@@ -17,6 +18,7 @@ import CampusTycoon.UI.Components.MenuText;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class EventScreen implements Screen{
 
@@ -40,14 +42,19 @@ public class EventScreen implements Screen{
             Drawer.add(1, eventScreenBackdrop);
             
             Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
+            SatisfactionMeter.increaseSatisfactionScore(3);
+            buttonAccept.setClickAction(Actions.CloseEventScreen);
             buttonAccept.setAnchor(Anchor.Centre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
             Drawer.add(2, buttonAccept); //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
 
             Button buttonNeutral = new Button("Neutral.png", 0, -106, 126, 66);
+            buttonNeutral.setClickAction(Actions.CloseEventScreen);
             buttonNeutral.setAnchor(Anchor.Centre);
             Drawer.add(2, buttonNeutral);
 
             Button buttonReject = new Button("Reject.png", 130, -106, 126, 66);
+            SatisfactionMeter.decreaseSatisfactionScore(5);
+            buttonReject.setClickAction(Actions.CloseEventScreen);
             buttonReject.setAnchor(Anchor.Centre);
             Drawer.add(2, buttonReject);
 
@@ -56,7 +63,7 @@ public class EventScreen implements Screen{
 
             //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
             //eventTextTitle.setAnchor(Anchor.Centre);
-			MenuText testText = new MenuText("Text1", 0, 0, 1.5f, 1.5f);
+			MenuText testText = new MenuText("Random Event 1", 0, 0, 1.5f, 1.5f);
 			testText.setAnchor(Anchor.Centre);
             Drawer.add(2, testText);
 
@@ -91,7 +98,12 @@ public class EventScreen implements Screen{
     
         @Override
         public void hide() {
-            ;// This method is called when another screen replaces this one.
+            Drawer.clear();
+            InputHandler.clear();
+
+            //if (map != null) {
+            //    map.dispose(); // Ensure any resources are cleaned up
+            //    map = null;    // Nu;// This method is called when another screen replaces this one.
         }
     
         @Override

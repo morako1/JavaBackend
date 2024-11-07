@@ -16,6 +16,7 @@ Person.png
 Placeholder.png
 QuestionMark.png
 Reject.png
+Satisfaction.png
 Settings.png
 TestButton.png
 Tiles/Grass.png

@@ -7,7 +7,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import CampusTycoon.GameLogic.Map;
 import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
@@ -38,8 +37,8 @@ public class StartScreen implements Screen{
             Drawer.add(1, buttonSettings);
     
     
-            List<Component> buttonList = Arrays.asList(buttonNewGame, buttonLeaderboard, buttonSettings);
-			InputHandler.add(buttonList);
+            List<Component> startScreenButtonList = Arrays.asList(buttonNewGame, buttonLeaderboard, buttonSettings);
+			InputHandler.add(startScreenButtonList);
         }
     
         @Override

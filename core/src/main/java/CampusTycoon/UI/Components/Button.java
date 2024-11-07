@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.ScreenUtils;
+import CampusTycoon.InputHandler;
+import CampusTycoon.UI.Drawer;
 
 public class Button extends Component {
 
@@ -27,7 +29,18 @@ public class Button extends Component {
 		ScreenUtils.openGameplayScreen();
 		System.out.println("Screen changed to GameplayScreen");
 	}
+
+	protected static void openEventScreen(Boolean isAction) {
+		ScreenUtils.OpenEventScreen();
+		System.out.println("Screen changed to EventScreen");
+	}
 	
+	protected static void closeEventScreen(Boolean isAction) {
+		Drawer.clear();
+		InputHandler.clear();
+		ScreenUtils.CloseEventScreen();
+		System.out.println("Closed EventScreen");
+	}
 	
 	@Override
 	public void setClickAction(String Action) {
@@ -38,6 +51,12 @@ public class Button extends Component {
 				break;
 			case Actions.OpenGameplayScreen:
 				action = a -> openGameplayScreen(a);
+				break;
+			case Actions.OpenEventScreen:
+				action = a -> openEventScreen(a);
+				break;
+			case Actions.CloseEventScreen:
+				action = a -> closeEventScreen(a);
 				break;
 			default:
 				System.out.println("Invalid action passed to button: " + this.toString());

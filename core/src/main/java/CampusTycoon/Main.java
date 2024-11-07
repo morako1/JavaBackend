@@ -4,9 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
-import CampusTycoon.GameLogic.Map;
-import CampusTycoon.UI.EventScreen;
-import CampusTycoon.UI.GameplayScreen;
 import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.UI.StartScreen;
 

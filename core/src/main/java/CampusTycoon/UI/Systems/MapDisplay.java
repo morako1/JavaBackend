@@ -39,13 +39,12 @@ public class MapDisplay {
 	}
 	
 	private int getY(int y) {
-		return spriteSheet.spriteHeight * (map.height - 1 - y);
+		return spriteSheet.spriteHeight * (map.height - y);
 	}
 	
 	private void initialise() {
-		spriteSheet = new SpriteSheet(
-			"Tiles\\SpriteMap.png", 
-			12, 12, 
-			Tile.SpriteSize, Tile.SpriteSize);
+		spriteSheet = new SpriteSheet("Tiles\\SpriteMap.png", 12, 12, 64, 64);
+		// Implementing this is actually gonna be a bit more complicated than I thought because I need to keep performance in mind by limiting which tiles get rendered to be only those visible on camera, which means I need to implement the camera properly first
+		// Therefore, this is a function stub (and really a class stub too)
 	}
 }

@@ -9,16 +9,18 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.InputHandler;
+import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Components.MenuText;
 
+import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class GameplayScreen implements Screen{
 
+
     /** First screen of the application. Displayed after the application is created. */
         private Map map;
-        
         public GameplayScreen(Map Map) {
             map = Map;
         }
@@ -62,12 +64,22 @@ public class GameplayScreen implements Screen{
             Drawer.add(1, buttonPeople);
 
             Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
+            notif1.setClickAction(Actions.OpenEventScreen);
             notif1.setAnchor(Anchor.TopLeft);
             Drawer.add(1, notif1);
 
             Button notif2 = new Button("QuestionMark.png", 0, 80, 80, 80);
+            notif2.setClickAction(Actions.OpenEventScreen);
             notif2.setAnchor(Anchor.TopLeft);
             Drawer.add(1, notif2);
+
+            Button buttonSatisfaction = new Button("Satisfaction.png", 100, 10, 200, 66);
+            buttonSatisfaction.setAnchor(Anchor.TopRight);
+            Drawer.add(1, buttonSatisfaction);
+
+            MenuText satisfationText = new MenuText("" + SatisfactionMeter.getSatisfactionScore() +"", 50, 30, 2f, 2f);
+            satisfationText.setAnchor(Anchor.TopRight);
+            Drawer.add(2, satisfationText);
 
             MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
 			notifText1.setAnchor(Anchor.TopLeft);
