@@ -3,6 +3,7 @@ package CampusTycoon.UI;
 import java.util.List;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
 
 public class Camera {
@@ -20,6 +21,7 @@ public class Camera {
 		y = Math.round(y * (oldZoom / zoom));
 		printCameraInfo();
 		updateDrawTiles();
+		updateDrawBuildings();
 	}
 	
 	public static void click(int X, int Y, int button) {
@@ -32,6 +34,7 @@ public class Camera {
 		lastMousePos = new Coordinate(mouseX, mouseY);
 		printCameraInfo();
 		updateDrawTiles();
+		updateDrawBuildings();
 	}
 	
 	private static void updateDrawTiles() {
@@ -40,6 +43,15 @@ public class Camera {
 			component.setOffset(x, y);
 			component.setScale(1f / zoom);
 			Drawer.add(MapDisplay.Layer, component);
+		}
+	}
+	
+	private static void updateDrawBuildings() {
+		List<Component> components = Drawer.popLayer(BuildingDisplay.Layer);
+		for (Component component : components) { 
+			component.setOffset(x, y);
+			component.setScale(1f / zoom);
+			Drawer.add(BuildingDisplay.Layer, component);
 		}
 	}
 	
