@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
 
+import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Camera;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;
@@ -27,6 +28,7 @@ public class InputHandler implements InputProcessor {
 	public static void add(List<Component> buttons) {
 		clickables.addAll(buttons);
 	}
+	
 	
 	public boolean keyDown (int keycode) {
 		return false;
