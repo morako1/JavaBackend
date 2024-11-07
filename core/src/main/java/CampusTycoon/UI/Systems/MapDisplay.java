@@ -10,6 +10,7 @@ import CampusTycoon.UI.Components.MapTile;
 import java.util.List;
 
 public class MapDisplay {
+	public static final int Layer = -2;
 	private Map map;
 	private SpriteSheet spriteSheet;
 	
@@ -26,9 +27,9 @@ public class MapDisplay {
 				MapTile drawTile = new MapTile(
 					spriteSheet, 
 					tile.getTileID(), 
-					getX(row), getY(col));
+					getX(col), getY(row));
 				drawTile.setAnchor(Anchor.Centre);
-				Drawer.add(0, drawTile);
+				Drawer.add(Layer, drawTile);
 			}
 		}
 	}
@@ -38,7 +39,7 @@ public class MapDisplay {
 	}
 	
 	private int getY(int y) {
-		return spriteSheet.spriteHeight * y;
+		return spriteSheet.spriteHeight * (map.height - y);
 	}
 	
 	private void initialise() {

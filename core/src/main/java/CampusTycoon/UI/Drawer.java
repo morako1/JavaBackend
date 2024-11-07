@@ -3,6 +3,7 @@ package CampusTycoon.UI;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -21,13 +22,28 @@ public class Drawer {
 	private static Map<Texture, Map<Integer, TextureRegion>> textureRegions = new HashMap();
 	
 	private static class DrawInfo { // Cursed static class with non-static members
-		private int layer; // Used to determine draw order
-		private Component component;
+		public int layer; // Used to determine draw order
+		public Component component;
 		
 		public DrawInfo(int Layer, Component Component) {
 			layer = Layer;
 			component = Component;
 		}
+	}
+	
+	public static List<Component> popLayer(int layer) {
+		List<Component> layerComponents = new ArrayList<Component>();
+		
+		int left = binarySearch(layer - 1);
+		int right = binarySearch(layer);
+		int count = right - left;
+		
+		for (int i = 0; i < count; i++) {
+			Component component = drawQueue.get(left).component;
+			layerComponents.add(component);
+			drawQueue.remove(left);
+		}
+		return layerComponents;
 	}
 
 	public static void clear() {

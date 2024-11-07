@@ -34,7 +34,9 @@ public abstract class Component {
 	
 	public static float widthRatio, heightRatio;
 	
-	private float baseX, baseY, baseWidth, baseHeight; //TODO: add setter/getters (so that things can update properly when these values are changed)
+	private float scale;
+	private float offsetX, offsetY;
+	private float baseX, baseY, baseWidth, baseHeight;
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;
@@ -64,6 +66,10 @@ public abstract class Component {
 		baseY = Y;
 		baseWidth = Width;
 		baseHeight = Height;
+		
+		scale = 1;
+		offsetX = 0;
+		offsetY = 0;
 		
 		updateResolution();
 		updateSize();
@@ -164,6 +170,23 @@ public abstract class Component {
 	public abstract void setClickAction(String action);
 	
 	
+	public void setOffset(float X, float Y) {
+		this.baseX = this.baseX - offsetX + X;
+		this.baseY = this.baseY - offsetY + Y;
+		offsetX = X;
+		offsetY = Y;
+		update();
+	}
+	
+	public void setScale(float Scale) {
+		float scaleRatio = Scale / scale;
+		this.baseWidth = this.baseWidth * scaleRatio;
+		this.baseHeight = this.baseHeight * scaleRatio;
+		scale = Scale;
+		update();
+	}
+	
+	
 	public int left() {
 		return (int)this.x;
 	}
@@ -198,6 +221,24 @@ public abstract class Component {
     public float getHeight() {
         return this.height;
     }
+	
+	
+	public float getBaseX() {
+        return this.baseX;
+    }
+
+    public float getBaseY() {
+        return this.baseY;
+    }
+
+    public float getBaseWidth() {
+        return this.baseWidth;
+    }
+
+    public float getBaseHeight() {
+        return this.baseHeight;
+    }
+	
 
 	public void setX(float x) {
         this.baseX = x;

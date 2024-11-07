@@ -68,6 +68,7 @@ public class StartScreen implements Screen{
         public void hide() {
             // This method is called when another screen replaces this one.
 			Drawer.clear();
+			InputHandler.clear();
         }
     
         @Override

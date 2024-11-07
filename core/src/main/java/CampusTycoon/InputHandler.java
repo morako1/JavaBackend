@@ -6,19 +6,20 @@ import java.util.List;
 import com.badlogic.gdx.InputProcessor;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.UI.Camera;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;
 
 public class InputHandler implements InputProcessor {
 	private static List<Component> clickables = new ArrayList<Component>();
-	public static Coordinate camera = new Coordinate();
-	public static float zoom = 1;
-	private Coordinate mouseDragPos;
 	
 
 	public InputHandler() {
 	}
 	
+	public static void clear() {
+		clickables = new ArrayList<Component>();
+	}
 	
 	public static void add(Component button) {
 		clickables.add(button);
@@ -43,6 +44,8 @@ public class InputHandler implements InputProcessor {
 
 	// Called on click
 	public boolean touchDown (int x, int y, int pointer, int button) {
+		Camera.click(x, y, button);
+		
 		// Scales mouse position to resolution
 		x = transformX(x);
 		y = transformY(y);
@@ -52,14 +55,8 @@ public class InputHandler implements InputProcessor {
 				btn.onClick();
 				return true;
 			}
-        }
+		}
 		return true;
-	}
-	
-	public double half(int a) {
-		double result = a / 2.0;
-		System.out.println(result);
-		return result;
 	}
 
 	private int transformX(int x) {
@@ -83,10 +80,8 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean touchDragged (int x, int y, int pointer) {
-		//camera.x += (x - mouseDragPos.x) / zoom;
-		//camera.y += (y - mouseDragPos.y) / zoom;
-		//mouseDragPos = new Coordinate(x, y); // This crashes the program currently for some reason
-		return false;
+		Camera.drag(x, y);
+		return true;
 	}
 
 	public boolean mouseMoved (int x, int y) {
@@ -94,10 +89,7 @@ public class InputHandler implements InputProcessor {
 	}
 
 	public boolean scrolled (float amountX, float amountY) {
-		float oldZoom = zoom;
-		zoom += amountY / 10;
-		camera.x = Math.round(camera.x * (oldZoom / zoom));
-		camera.y = Math.round(camera.y * (oldZoom / zoom));
+		Camera.scroll(amountY);
 		return true;
 	}
 
