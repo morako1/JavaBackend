@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import CampusTycoon.GameUtils;
 import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
@@ -21,24 +22,7 @@ public class StartScreen implements Screen{
 
         @Override
         public void show() {
-			// This button has a weird rendeding problem due to the button being 261 wide. 
-			// These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
-            Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66);
-			buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
-            buttonNewGame.setAnchor(Anchor.Centre);
-            Drawer.add(1, buttonNewGame); //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
-
-            Button buttonLeaderboard = new Button("Leaderboard.png", 0, 20, 262, 66);
-            buttonLeaderboard.setAnchor(Anchor.Centre);
-            Drawer.add(1, buttonLeaderboard);
-
-            Button buttonSettings = new Button("Settings.png", 0, -50, 262, 66);
-            buttonSettings.setAnchor(Anchor.Centre);
-            Drawer.add(1, buttonSettings);
-    
-    
-            List<Component> startScreenButtonList = Arrays.asList(buttonNewGame, buttonLeaderboard, buttonSettings);
-			InputHandler.add(startScreenButtonList);
+			GameUtils.createStartMenuUI();
         }
     
         @Override

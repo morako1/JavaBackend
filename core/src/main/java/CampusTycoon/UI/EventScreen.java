@@ -8,7 +8,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import CampusTycoon.GameLogic.Map;
 import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
@@ -22,12 +21,10 @@ import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class EventScreen implements Screen{
 
-        private Map map;
         private BitmapFont font;
         private SpriteBatch batch;
 
-        public EventScreen(Map Map) {
-            this.map = Map;
+        public EventScreen() {
             this.font = new BitmapFont();
             this.batch = new SpriteBatch();
         }
@@ -66,12 +63,6 @@ public class EventScreen implements Screen{
 			MenuText testText = new MenuText("Random Event 1", 0, 0, 1.5f, 1.5f);
 			testText.setAnchor(Anchor.Centre);
             Drawer.add(2, testText);
-
-            try {
-                map = new Map();
-            } catch (Exception e) {
-                // Dies
-            }
         }
     
         @Override
@@ -88,19 +79,16 @@ public class EventScreen implements Screen{
     
         @Override
         public void pause() {
-            ;// Menu screen can't be paused, so nothing will be done
         }
     
         @Override
         public void resume() {
-            ;// Menu screen can't be resumed, so nothing will be done
         }
     
         @Override
         public void hide() {
             Drawer.clear();
             InputHandler.clear();
-
             //if (map != null) {
             //    map.dispose(); // Ensure any resources are cleaned up
             //    map = null;    // Nu;// This method is called when another screen replaces this one.

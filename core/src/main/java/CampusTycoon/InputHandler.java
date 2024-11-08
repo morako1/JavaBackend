@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.badlogic.gdx.InputProcessor;
 
-import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Camera;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;
@@ -30,20 +29,20 @@ public class InputHandler implements InputProcessor {
 	}
 	
 	
-	public boolean keyDown (int keycode) {
+	public boolean keyDown(int keycode) {
 		return false;
 	}
 
-	public boolean keyUp (int keycode) {
+	public boolean keyUp(int keycode) {
 		return false;
 	}
 
-	public boolean keyTyped (char character) {
+	public boolean keyTyped(char character) {
 		return false;
 	}
 
 	// Called on click
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown(int x, int y, int pointer, int button) {
 		Camera.click(x, y, button);
 		
 		// Scales mouse position to resolution
@@ -75,20 +74,21 @@ public class InputHandler implements InputProcessor {
                 && y >= button.getY() && y <= button.getY() + button.getHeight();
     }
 
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp(int x, int y, int pointer, int button) {
 		return false;
 	}
 
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged(int x, int y, int pointer) {
 		Camera.drag(x, y);
 		return true;
 	}
 
-	public boolean mouseMoved (int x, int y) {
-		return false;
+	public boolean mouseMoved(int x, int y) {
+		Camera.checkMouseOverTile(x ,y);
+		return true;
 	}
 
-	public boolean scrolled (float amountX, float amountY) {
+	public boolean scrolled(float amountX, float amountY) {
 		Camera.scroll(amountY);
 		return true;
 	}

@@ -9,7 +9,6 @@ import CampusTycoon.UI.StartScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
-	
     @Override
     public void create() {
 		//Gdx.graphics.setForegroundFPS(60); // Useful function for settings menu later
@@ -19,14 +18,15 @@ public class Main extends Game {
         Gdx.graphics.setTitle("Campus Tycoon");
         Gdx.input.setInputProcessor(new InputHandler());
 		
+		// Sets the screen to the Main Menu
 		Screen screen = new StartScreen();
-		ScreenUtils.CurrentScreen = screen;
+		ScreenUtils.currentScreen = screen;
 		setScreen(screen);
 	}
 	
 	@Override
 	public void render () {
 		if (screen != null) screen.render(Gdx.graphics.getDeltaTime());
-		if (ScreenUtils.CurrentScreen != screen) { setScreen(ScreenUtils.CurrentScreen); }
+		if (ScreenUtils.currentScreen != screen) { setScreen(ScreenUtils.currentScreen); }
 	}
 }

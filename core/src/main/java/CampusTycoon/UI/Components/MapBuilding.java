@@ -2,7 +2,6 @@ package CampusTycoon.UI.Components;
 
 import java.util.List;
 
-import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.Tiles.Tile;
 import CampusTycoon.UI.Component;
 

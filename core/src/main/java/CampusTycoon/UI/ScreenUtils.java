@@ -1,20 +1,24 @@
 package CampusTycoon.UI;
 
 import com.badlogic.gdx.Screen;
-import CampusTycoon.GameLogic.Map;
 
 public final class ScreenUtils {
-	public static Screen CurrentScreen;
+	public static Screen currentScreen;
+	
+	public static Screen startScreen = new StartScreen();
+	public static Screen gameplayScreen = new GameplayScreen();
+	public static Screen eventScreen = new EventScreen();
+	
 	
 	public static void openGameplayScreen() {
-		CurrentScreen = new GameplayScreen(new Map());
+		currentScreen = gameplayScreen;
 	}
 
 	public static void OpenEventScreen() {
-		CurrentScreen = new EventScreen(new Map());
+		currentScreen = eventScreen;
 	}
 
 	public static void CloseEventScreen() {
-		CurrentScreen = new GameplayScreen(new Map());
+		currentScreen = gameplayScreen;
 	}
 }

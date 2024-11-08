@@ -3,17 +3,31 @@ package CampusTycoon.UI;
 import java.util.List;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.GameLogic.Map;
 import CampusTycoon.UI.Components.MapBuilding;
 import CampusTycoon.UI.Components.MapTile;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
+import CampusTycoon.UI.GameplayScreen;
 
 public class Camera {
+	public static Map map;
+	public static int gridX, gridY;
 	public static int x = 0, y = 0;
 	public static int width = Window.defaultWidth, height = Window.defaultHeight;
 	public static float zoom = 1;
 	private static final float MinZoom = 0.4f, MaxZoom = 2.5f;
 	private static Coordinate lastMousePos = new Coordinate();
+	
+	public static void update() {
+		printCameraInfo();
+		updateDrawTiles();
+		updateDrawBuildings();
+	}
+	
+	public static void checkMouseOverTile(int X, int Y) {
+		
+	}
 
 	public static void scroll(float scrollAmount) {
 		float oldZoom = zoom;
@@ -21,9 +35,7 @@ public class Camera {
 		zoom = Math.min(MaxZoom, Math.max(MinZoom, zoom));
 		x = Math.round(x * (oldZoom / zoom));
 		y = Math.round(y * (oldZoom / zoom));
-		printCameraInfo();
-		updateDrawTiles();
-		updateDrawBuildings();
+		update();
 	}
 	
 	public static void click(int X, int Y, int button) {
@@ -34,9 +46,7 @@ public class Camera {
 		x += mouseX - lastMousePos.x;
 		y -= mouseY - lastMousePos.y;
 		lastMousePos = new Coordinate(mouseX, mouseY);
-		printCameraInfo();
-		updateDrawTiles();
-		updateDrawBuildings();
+		update();
 	}
 	
 	private static List<MapTile> getDrawTiles() {
