@@ -30,7 +30,7 @@ public class MapDisplay {
 					tile.getTileID(), 
 					getX(col), getY(row),
 					col, row);
-				drawTile.setAnchor(Anchor.Centre);
+				drawTile.setAnchor(Anchor.BottomLeft);
 				Drawer.add(Layer, drawTile);
 			}
 		}

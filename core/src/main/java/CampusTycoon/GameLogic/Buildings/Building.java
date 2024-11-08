@@ -14,14 +14,16 @@ public abstract class Building {
 		drawInfo = new MapBuilding(
 			"MissingTexture.png", 
 			position.x, position.y);
-		drawInfo.setAnchor(Anchor.Centre);
+		drawInfo.setAnchor(Anchor.BottomLeft);
 	}
 	protected Building(Coordinate Position, String ImagePath, int Width, int Height) {
 		position = Position;
+		width = Width;
+		height = Height;
 		drawInfo = new MapBuilding(
 			ImagePath, 
 			position.x, position.y, 
 			Width, Height);
-		drawInfo.setAnchor(Anchor.Centre);
+		drawInfo.setAnchor(Anchor.BottomLeft);
 	}
 }

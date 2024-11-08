@@ -8,10 +8,11 @@ public abstract class Component {
 	// Add to this class when implementing a new anchor point
 	public abstract class Anchor {
 		public static final String TopLeft = "TOPLEFT";
-		public static final String Centre = "CENTRE";
-		public static final String BottomCentre = "BOTTOMCENTRE";
-		public static final String TopRight = "TOPRIGHT";
 		public static final String TopCentre = "TOPCENTRE";
+		public static final String TopRight = "TOPRIGHT";
+		public static final String Centre = "CENTRE";
+		public static final String BottomLeft = "BOTTOMLEFT";
+		public static final String BottomCentre = "BOTTOMCENTRE";
 	} 
 	
 	// Add to this class when implementing new component functionalities
@@ -124,6 +125,9 @@ public abstract class Component {
 			case Anchor.TopCentre:
 				anchorTopCentre();
 				break;
+			case Anchor.BottomLeft:
+				anchorBottomLeft();
+				break;
 			default:
 				System.out.println("WARNING: Invalid anchor type, defaulting to TopLeft");
 				anchorTopLeft();
@@ -166,6 +170,12 @@ public abstract class Component {
 		x = X * widthRatio;
 		y = Y * heightRatio;
 	}
+	
+	private void anchorBottomLeft() {
+		x = baseX * widthRatio;
+		y = baseY * heightRatio;
+	}
+	
 	
 	public abstract void setClickAction(String action);
 	

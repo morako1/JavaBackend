@@ -10,11 +10,13 @@ import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Window;
 
 public class InputHandler implements InputProcessor {
-	private static List<Component> clickables = new ArrayList<Component>();
+	private static final int LeftClick = 0;
+	private static final int RightClick = 1;
+	private static final int MiddleClick = 2;
 	
-
-	public InputHandler() {
-	}
+	private static List<Component> clickables = new ArrayList<Component>();
+	private static boolean leftClickDown = false;
+	
 	
 	public static void clear() {
 		clickables = new ArrayList<Component>();
@@ -43,6 +45,9 @@ public class InputHandler implements InputProcessor {
 
 	// Called on click
 	public boolean touchDown(int x, int y, int pointer, int button) {
+		if (button == LeftClick) {
+			leftClickDown = true;
+		}
 		Camera.click(x, y, button);
 		
 		// Scales mouse position to resolution
@@ -75,7 +80,11 @@ public class InputHandler implements InputProcessor {
     }
 
 	public boolean touchUp(int x, int y, int pointer, int button) {
-		return false;
+		if (button == LeftClick) {
+			leftClickDown = false;
+			Camera.lift(x, y, button);
+		}
+		return true;
 	}
 
 	public boolean touchDragged(int x, int y, int pointer) {

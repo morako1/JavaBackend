@@ -8,6 +8,7 @@ import java.util.Random;
 
 import CampusTycoon.GameLogic.Buildings.*;
 import CampusTycoon.GameLogic.Tiles.*;
+import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
 
@@ -33,9 +34,9 @@ public class Map {
 	
 	private void initialiseBuildings() {
 		buildings = new ArrayList<Building>();
-		buildings.add(new Cafeteria(new Coordinate(5, 12)));
-		buildings.add(new Cafeteria(new Coordinate(23, 9)));
-		buildings.add(new Cafeteria(new Coordinate(7, 19)));
+		placeBuilding(new Cafeteria(new Coordinate(5, 12)));
+		placeBuilding(new Cafeteria(new Coordinate(23, 9)));
+		placeBuilding(new Cafeteria(new Coordinate(7, 19)));
 	}
 	
 	private void initialiseGrid() {
@@ -83,6 +84,43 @@ public class Map {
 			}
 			grid.add(row);
 		}
+	}
+	
+	public void placeBuilding(Building building) {
+		if (buildingPlaceable(building)) {
+			return;
+		}
+		
+		// Else when tile is free:
+		buildings.add(building);
+		Drawer.add(-1, building.drawInfo);
+	}
+	
+	public boolean buildingPlaceable(Building newBuilding) {
+		for (Building Building : buildings) {
+			Coordinate b = Building.position;
+			Coordinate newPos = newBuilding.position;
+			
+			// Checks if the tile is between the bottom/left and top/right sides of the building
+			if (newPos.x + newBuilding.width - 1 >= b.x && newPos.x < b.x + Building.width &&
+				newPos.y + newBuilding.height - 1 >= b.y && newPos.y < b.y + Building.height) {
+					return true;
+				}
+		}
+		return false;
+	}
+	
+	public boolean tileHasBuilding(Coordinate tile) {
+		for (Building building : buildings) {
+			Coordinate pos = building.position;
+			
+			// Checks if the tile is between the bottom/left and top/right sides of the building
+			if (tile.x >= pos.x && tile.x < pos.x + building.width &&
+				tile.y >= pos.y && tile.y < pos.y + building.height) {
+					return true;
+				}
+		}
+		return false;
 	}
 
 	private Tile getTile(int tileID) {

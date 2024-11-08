@@ -5,6 +5,7 @@ import java.util.List;
 
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.SatisfactionMeter;
+import CampusTycoon.UI.Camera;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
@@ -17,6 +18,7 @@ public class GameUtils {
 	
 	public static void startGame() {
 		map = new Map();
+		Camera.map = map;
 	}
 	
 	public static void createStartMenuUI() {

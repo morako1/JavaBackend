@@ -1,17 +1,11 @@
 package CampusTycoon.UI;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameUtils;
 import CampusTycoon.InputHandler;
-import CampusTycoon.UI.Component.Actions;
-import CampusTycoon.UI.Component.Anchor;
-import CampusTycoon.UI.Components.Button;
 
 
 public class StartScreen implements Screen{
