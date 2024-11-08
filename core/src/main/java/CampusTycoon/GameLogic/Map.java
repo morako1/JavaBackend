@@ -8,7 +8,6 @@ import java.util.Random;
 
 import CampusTycoon.GameLogic.Buildings.*;
 import CampusTycoon.GameLogic.Tiles.*;
-import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
 
@@ -17,7 +16,7 @@ public class Map {
 
 	public ArrayList<ArrayList<Tile>> grid;
 	public List<Building> buildings = new ArrayList<Building>();
-	public int width, height;
+	public static int width, height;
 	public Random rng = new Random();
 	private MapDisplay display;
 	private BuildingDisplay buildingDisplay;

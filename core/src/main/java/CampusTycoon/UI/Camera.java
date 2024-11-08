@@ -3,14 +3,16 @@ package CampusTycoon.UI;
 import java.util.List;
 
 import CampusTycoon.GameLogic.Coordinate;
+import CampusTycoon.UI.Components.MapBuilding;
+import CampusTycoon.UI.Components.MapTile;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
 
 public class Camera {
 	public static int x = 0, y = 0;
 	public static int width = Window.defaultWidth, height = Window.defaultHeight;
-	private static float zoom = 1;
-	private static final float MinZoom = 0.35f, MaxZoom = 2.5f;
+	public static float zoom = 1;
+	private static final float MinZoom = 0.4f, MaxZoom = 2.5f;
 	private static Coordinate lastMousePos = new Coordinate();
 
 	public static void scroll(float scrollAmount) {
@@ -29,29 +31,36 @@ public class Camera {
 	}
 	
 	public static void drag(int mouseX, int mouseY) {
-		x += (mouseX - lastMousePos.x) / zoom;
-		y -= (mouseY - lastMousePos.y) / zoom;
+		x += mouseX - lastMousePos.x;
+		y -= mouseY - lastMousePos.y;
 		lastMousePos = new Coordinate(mouseX, mouseY);
 		printCameraInfo();
 		updateDrawTiles();
 		updateDrawBuildings();
 	}
 	
+	private static List<MapTile> getDrawTiles() {
+		List<MapTile> components = Drawer.popLayer(MapDisplay.Layer, new MapTile());
+		return components;
+	}
+	
 	private static void updateDrawTiles() {
-		List<Component> components = Drawer.popLayer(MapDisplay.Layer);
-		for (Component component : components) { 
-			component.setOffset(x, y);
-			component.setScale(1f / zoom);
-			Drawer.add(MapDisplay.Layer, component);
+		List<MapTile> tiles = getDrawTiles();
+		for (MapTile tile : tiles) { 
+			tile.setOffset(x, y);
+			tile.setScale(1f / zoom);
+			tile.applyZoomOffset();
+			Drawer.add(MapDisplay.Layer, tile);
 		}
 	}
 	
 	private static void updateDrawBuildings() {
-		List<Component> components = Drawer.popLayer(BuildingDisplay.Layer);
-		for (Component component : components) { 
-			component.setOffset(x, y);
-			component.setScale(1f / zoom);
-			Drawer.add(BuildingDisplay.Layer, component);
+		List<MapBuilding> buildings = Drawer.popLayer(BuildingDisplay.Layer, new MapBuilding());
+		for (MapBuilding building : buildings) { 
+			building.setOffset(x, y);
+			building.setScale(1f / zoom);
+			building.applyZoomOffset();
+			Drawer.add(BuildingDisplay.Layer, building);
 		}
 	}
 	

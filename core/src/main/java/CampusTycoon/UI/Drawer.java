@@ -31,17 +31,19 @@ public class Drawer {
 		}
 	}
 	
-	public static List<Component> popLayer(int layer) {
-		List<Component> layerComponents = new ArrayList<Component>();
+	public static <T> List<T> popLayer(int layer, T type) {
+		List<T> layerComponents = new ArrayList<T>();
 		
 		int left = binarySearch(layer - 1);
 		int right = binarySearch(layer);
 		int count = right - left;
 		
 		for (int i = 0; i < count; i++) {
-			Component component = drawQueue.get(left).component;
-			layerComponents.add(component);
-			drawQueue.remove(left);
+			if (drawQueue.get(left).component.getClass() == type.getClass()) {
+				T component = (T)drawQueue.get(left).component; // Should be a safe cast
+				layerComponents.add(component);
+				drawQueue.remove(left);
+			}
 		}
 		return layerComponents;
 	}

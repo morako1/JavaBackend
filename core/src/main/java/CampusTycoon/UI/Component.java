@@ -35,9 +35,9 @@ public abstract class Component {
 	
 	public static float widthRatio, heightRatio;
 	
-	private float scale;
-	private float offsetX, offsetY;
-	private float baseX, baseY, baseWidth, baseHeight;
+	protected float scale;
+	protected float offsetX, offsetY;
+	protected float baseX, baseY, baseWidth, baseHeight;
 	public float x, y, width, height;
 	private String anchor = Anchor.TopLeft; // Default anchor position
 	public Sprite sprite;

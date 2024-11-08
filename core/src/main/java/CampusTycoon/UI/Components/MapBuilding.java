@@ -2,20 +2,49 @@ package CampusTycoon.UI.Components;
 
 import java.util.List;
 
+import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.Tiles.Tile;
 import CampusTycoon.UI.Component;
 
 public class MapBuilding extends Component {
+	float gridBaseWidth, gridBaseHeight;
+	float gridX, gridY;
+	
 	public MapBuilding(String imagePath, float X, float Y, float Width, float Height) {
-		super(imagePath, X, Y, Width * Tile.SpriteSize, Height * Tile.SpriteSize);
+		super(imagePath, getX(X), getY(Y), Width * Tile.SpriteSize, Height * Tile.SpriteSize);
+		initialise(X, Y, Width, Height);
 	}
 	public MapBuilding(List<String> imagePaths, float X, float Y, float Width, float Height) {
-		super(imagePaths, X, Y, Width * Tile.SpriteSize, Height * Tile.SpriteSize);
+		super(imagePaths, getX(X), getY(Y), Width * Tile.SpriteSize, Height * Tile.SpriteSize);
+		initialise(X, Y, Width, Height);
 	}
 	public MapBuilding(String imagePath, float X, float Y) {
-		super(imagePath, X, Y, Tile.SpriteSize, Tile.SpriteSize);
+		super(imagePath, getX(X), getY(Y), Tile.SpriteSize, Tile.SpriteSize);
+		initialise(X, Y, 1, 1);
+	}
+	public MapBuilding() {
+		super(0, 0, 0, 0);
 	}
 	
+	private void initialise(float X, float Y, float Width, float Height) {
+		gridX = X;
+		gridY = Y;
+		gridBaseWidth = Width;
+		gridBaseHeight = Height;
+	}
+	
+	private static float getX(float X) {
+		return X * Tile.SpriteSize;
+	}
+	private static float getY(float Y) {
+		return Y * Tile.SpriteSize;
+	}
+	
+	public void applyZoomOffset() {
+		this.baseX = this.offsetX + (getBaseWidth() * this.gridX) / this.gridBaseWidth;
+		this.baseY = this.offsetY + (getBaseHeight() * this.gridY) / this.gridBaseHeight;
+		update();
+	}
 	
 	@Override
 	public void setClickAction(String action) {
