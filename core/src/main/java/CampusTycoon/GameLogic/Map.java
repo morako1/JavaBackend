@@ -11,6 +11,7 @@ import CampusTycoon.GameLogic.Tiles.*;
 import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
+import CampusTycoon.GameLogic.BuildingCounter;
 
 public class Map {
 	public static String defaultMap = "York.txt";
@@ -33,7 +34,7 @@ public class Map {
 	}
 	
 	private void initialiseBuildings() {
-		buildings = new ArrayList<Building>();
+		buildings = new ArrayList<Building>(); 
 		placeBuilding(new Cafeteria(new Coordinate(5, 12)));
 		placeBuilding(new Cafeteria(new Coordinate(23, 9)));
 		placeBuilding(new Cafeteria(new Coordinate(7, 19)));

@@ -12,6 +12,7 @@ import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Components.MenuText;
+import CampusTycoon.GameLogic.BuildingCounter;
 
 public class GameUtils {
 	public static Map map;
@@ -60,8 +61,8 @@ public class GameUtils {
             buttonPH3.setAnchor(Anchor.BottomCentre);
     
             Button buttonRelax = new Button("MissingTexture.png", 50, 10, 90, 66);
-			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);
-            buttonRelax.setAnchor(Anchor.BottomCentre);
+			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);	//Temporarily only opens EventScreen
+            buttonRelax.setAnchor(Anchor.BottomCentre);											//Just so I can verify the button is actually clicked
     
             Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
             buttonPH5.setAnchor(Anchor.BottomCentre);
@@ -92,7 +93,7 @@ public class GameUtils {
 			
 			List<Component> UIButtons = Arrays.asList(
 				buttonPH1, buttonPH2, buttonPH3, buttonRelax, buttonPH5, buttonPH6, 
-				notif1, notif2, 
+				notif1, notif2, buttonSatisfaction,
 				buttonDollar, buttonHouses, buttonPeople);
 			
 			// Add all buttons to the drawQueue
@@ -115,7 +116,7 @@ public class GameUtils {
             MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 1.5f, 1.5f);
             notifText2.setAnchor(Anchor.TopLeft);
 
-			MenuText buildingCounterText = new MenuText("asdkjhjkjkhkjh", 0, 0, 2f, 2f);
+			MenuText buildingCounterText = new MenuText("" +BuildingCounter.getBuildingCounter() + "", 70, 25, 2f, 2f);
 			buildingCounterText.setAnchor(Anchor.TopCentre);
      
             List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText);
