@@ -61,8 +61,8 @@ public class GameUtils {
             buttonPH3.setAnchor(Anchor.BottomCentre);
     
             Button buttonRelax = new Button("MissingTexture.png", 50, 10, 90, 66);
-			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);	//Temporarily only opens EventScreen
-            buttonRelax.setAnchor(Anchor.BottomCentre);											//Just so I can verify the button is actually clicked
+			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);
+            buttonRelax.setAnchor(Anchor.BottomCentre);
     
             Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
             buttonPH5.setAnchor(Anchor.BottomCentre);
