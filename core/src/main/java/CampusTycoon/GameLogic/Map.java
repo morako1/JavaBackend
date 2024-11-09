@@ -16,9 +16,9 @@ public class Map {
 	public static String defaultMap = "York.txt";
 
 	public ArrayList<ArrayList<Tile>> grid;
-	public List<Building> buildings = new ArrayList<Building>();
 	public static int width, height;
 	public Random rng = new Random();
+	public List<Building> buildings = new ArrayList<Building>();
 	private MapDisplay display;
 	private BuildingDisplay buildingDisplay;
 	
@@ -85,7 +85,7 @@ public class Map {
 			grid.add(row);
 		}
 	}
-	
+
 	public void placeBuilding(Building building) {
 		if (buildingPlaceable(building)) {
 			return;
