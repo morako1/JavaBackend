@@ -21,6 +21,10 @@ public abstract class Component {
 		public static final String OpenEventScreen = "OPENEVENTSCREEN";
 		public static final String OpenStartScreen = "OPENSTARTSCREEN";
 		public static final String CloseEventScreen = "CLOSEEVENTSCREEN";
+		public static final String IncreaseSatisfactionScore = "INCREASESATISFACTIONSCORE";
+		public static final String DecreaseSatisfactionSccore = "DECREASESATISFACTIONSCORE";
+		public static final String PlaceBuilding = "PLACEBUILDING";
+		public static final String PlaceRelaxationBuilding = "PLACERELAXATIONBUILDING";
 	}
 	
 	
@@ -248,7 +252,6 @@ public abstract class Component {
         return this.baseHeight;
     }
 	
-
 	public void setX(float x) {
         this.baseX = x;
 		update();

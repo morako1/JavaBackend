@@ -30,7 +30,6 @@ public class InputHandler implements InputProcessor {
 		clickables.addAll(buttons);
 	}
 	
-	
 	public boolean keyDown(int keycode) {
 		return false;
 	}

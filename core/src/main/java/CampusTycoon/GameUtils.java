@@ -59,8 +59,9 @@ public class GameUtils {
             Button buttonPH3 = new Button("Placeholder.png", -50, 10, 90, 66);
             buttonPH3.setAnchor(Anchor.BottomCentre);
     
-            Button buttonPH4 = new Button("Placeholder.png", 50, 10, 90, 66);
-            buttonPH4.setAnchor(Anchor.BottomCentre);
+            Button buttonRelax = new Button("MissingTexture.png", 50, 10, 90, 66);
+			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);
+            buttonRelax.setAnchor(Anchor.BottomCentre);
     
             Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
             buttonPH5.setAnchor(Anchor.BottomCentre);
@@ -68,13 +69,13 @@ public class GameUtils {
             Button buttonPH6 = new Button("Placeholder.png",250, 10, 90, 66);
             buttonPH6.setAnchor(Anchor.BottomCentre);
     
-            Button buttonDollar = new Button("Dollar.png", -150, 0, 70, 66);
+            Button buttonDollar = new Button("Dollar.png", -300, 0, 70, 66);
             buttonDollar.setAnchor(Anchor.TopCentre);
 
             Button buttonHouses = new Button("House.png", 0, 0, 70, 66);
             buttonHouses.setAnchor(Anchor.TopCentre);
 
-            Button buttonPeople = new Button("Person.png", 150, 0, 60, 66);
+            Button buttonPeople = new Button("Person.png", 300, 0, 60, 66);
             buttonPeople.setAnchor(Anchor.TopCentre);
 
             Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
@@ -90,7 +91,7 @@ public class GameUtils {
 			
 			
 			List<Component> UIButtons = Arrays.asList(
-				buttonPH1, buttonPH2, buttonPH3, buttonPH4, buttonPH5, buttonPH6, 
+				buttonPH1, buttonPH2, buttonPH3, buttonRelax, buttonPH5, buttonPH6, 
 				notif1, notif2, 
 				buttonDollar, buttonHouses, buttonPeople);
 			
@@ -113,9 +114,11 @@ public class GameUtils {
 
             MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 1.5f, 1.5f);
             notifText2.setAnchor(Anchor.TopLeft);
+
+			MenuText buildingCounterText = new MenuText("asdkjhjkjkhkjh", 0, 0, 2f, 2f);
+			buildingCounterText.setAnchor(Anchor.TopCentre);
      
-			
-            List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2);
+            List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText);
 			
 			// Add all text to the drawQueue
 			for (Component text : textElements) {

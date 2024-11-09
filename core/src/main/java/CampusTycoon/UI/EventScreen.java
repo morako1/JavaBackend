@@ -39,19 +39,17 @@ public class EventScreen implements Screen{
             Drawer.add(1, eventScreenBackdrop);
             
             Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66); //This button has a weird rendeding problem due to the button being 261 wide. 
-            SatisfactionMeter.increaseSatisfactionScore(3);
-            buttonAccept.setClickAction(Actions.CloseEventScreen);
+            buttonAccept.setClickAction(Actions.CloseEventScreen, Actions.IncreaseSatisfactionScore, 4);
             buttonAccept.setAnchor(Anchor.Centre);                                                       //These buttons are only temporary, so this won't be an issue once we get actually good looking buttons
             Drawer.add(2, buttonAccept); //IMPORTANT - UI elements should all be kept on the same layer (1 is just an arbitrary number for now)
 
             Button buttonNeutral = new Button("Neutral.png", 0, -106, 126, 66);
-            buttonNeutral.setClickAction(Actions.CloseEventScreen);
+            buttonNeutral.setClickAction(Actions.CloseEventScreen, Actions.DecreaseSatisfactionSccore, 1);
             buttonNeutral.setAnchor(Anchor.Centre);
             Drawer.add(2, buttonNeutral);
 
             Button buttonReject = new Button("Reject.png", 130, -106, 126, 66);
-            SatisfactionMeter.decreaseSatisfactionScore(5);
-            buttonReject.setClickAction(Actions.CloseEventScreen);
+            buttonReject.setClickAction(Actions.CloseEventScreen, Actions.DecreaseSatisfactionSccore, 5);
             buttonReject.setAnchor(Anchor.Centre);
             Drawer.add(2, buttonReject);
 
