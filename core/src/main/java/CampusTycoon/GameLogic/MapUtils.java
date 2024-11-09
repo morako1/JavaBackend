@@ -25,7 +25,7 @@ public class MapUtils {
 		public static final String Road = "ROAD"; // Most definitely not implemented yet
 	}
 	
-	public Building getBuilding(String buildingType) {
+	public static Building getBuilding(String buildingType) {
 		switch (buildingType) {
 			case Placement.CafeteriaBuilding:
 				return new Cafeteria();
@@ -90,7 +90,7 @@ public class MapUtils {
 
 		String defaultDirectory = System.getProperty("user.dir");
 		System.out.println(defaultDirectory);
-		File file = new File(defaultDirectory + "\\assets\\Maps\\" + map.defaultMap);
+		File file = new File(defaultDirectory + "\\assets\\Maps\\" + Map.defaultMap);
 		
 		String content = "";
 		try {

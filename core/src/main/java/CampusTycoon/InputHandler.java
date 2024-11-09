@@ -90,6 +90,7 @@ public class InputHandler implements InputProcessor {
 
 	public boolean mouseMoved(int x, int y) {
 		Camera.checkMouseOverTile(x ,y);
+		Camera.drawCursor();
 		return true;
 	}
 

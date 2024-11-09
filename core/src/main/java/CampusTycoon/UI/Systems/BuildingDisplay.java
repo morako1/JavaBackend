@@ -8,7 +8,7 @@ import CampusTycoon.UI.Drawer;
 public class BuildingDisplay {
 	public static final int Layer = -1;
 	
-	List<Building> buildings;
+	public List<Building> buildings;
 	
 	public BuildingDisplay(List<Building> Buildings) {
 		buildings = Buildings;

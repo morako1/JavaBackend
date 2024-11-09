@@ -105,6 +105,12 @@ public class Sprite {
 		return selectImage();
 	}
 	
+	public void updateImagePath(String ImagePath) {
+		AnimationInfo animInfo = this.animationType.get(selected);
+		animInfo = new AnimationInfo(ImagePath);
+		animationType.put(selected, animInfo);
+	}
+	
 	private String selectImage() {
 		AnimationInfo animInfo = animationType.get(selected);
 		if (!usesSpriteSheet) {

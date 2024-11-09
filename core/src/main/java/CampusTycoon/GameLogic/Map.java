@@ -1,7 +1,5 @@
 package CampusTycoon.GameLogic;
 
-import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,8 +9,6 @@ import CampusTycoon.GameLogic.Tiles.*;
 import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
-import CampusTycoon.GameLogic.BuildingCounter;
-import CampusTycoon.GameLogic.MapUtils.Placement;
 
 public class Map {
 	public static String defaultMap = "York.txt";
@@ -22,7 +18,7 @@ public class Map {
 	public Random rng = new Random();
 	public List<Building> buildings = new ArrayList<Building>();
 	private MapDisplay display;
-	private BuildingDisplay buildingDisplay;
+	public BuildingDisplay buildingDisplay;
 	private MapUtils mapUtils;
 	
 	public boolean placing;
@@ -54,7 +50,7 @@ public class Map {
 			return; // Placement mode currently toggled off
 		}
 		
-		Building building = mapUtils.getBuilding(placementType);
+		Building building = MapUtils.getBuilding(placementType);
 		building.setPosition(position);
 		if (!mapUtils.buildingPlaceable(building)) {
 			return; // Building location invalid

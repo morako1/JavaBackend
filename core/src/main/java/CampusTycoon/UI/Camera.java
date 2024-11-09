@@ -2,8 +2,11 @@ package CampusTycoon.UI;
 
 import java.util.List;
 
+import CampusTycoon.GameUtils;
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.GameLogic.Map;
+import CampusTycoon.GameLogic.MapUtils;
+import CampusTycoon.GameLogic.Buildings.Building;
 import CampusTycoon.GameLogic.Buildings.Cafeteria;
 import CampusTycoon.GameLogic.Tiles.Tile;
 import CampusTycoon.UI.Components.MapBuilding;
@@ -20,6 +23,8 @@ public class Camera {
 	private static final float MinZoom = 0.4f, MaxZoom = 2.5f;
 	private static Coordinate lastMousePos = new Coordinate();
 	private static Coordinate lastClickPos = null;
+	private static boolean placing;
+	private static Building hoverDisplay;
 	
 	public static void update() {
 		printCameraInfo();
@@ -35,6 +40,37 @@ public class Camera {
 	private static float getGridY(int Y) {
 		float GridY = zoom * (Window.height - Y - y) / (Tile.SpriteSize);
 		return GridY;
+	}
+	
+	public static void drawCursor() {
+		// Game not started yet
+		if (ScreenUtils.currentScreen != ScreenUtils.gameplayScreen) {
+			return;
+		}
+		
+		// If placing is false and was false last check too
+		if (placing == false && placing == map.placing) {
+			return;
+		}
+		
+		// If placing was just turned off
+		if (placing == true && placing != map.placing) {
+			placing = false;
+			// Remove hoverDisplay from the draw queue and building list
+			return;
+		}
+		
+		// If placing mode was just turned on
+		if (placing != map.placing) {
+			placing = true;
+			
+			hoverDisplay = MapUtils.getBuilding(map.placementType);
+			hoverDisplay.drawInfo.setImage(
+				GameUtils.getHoverImagePath(
+					hoverDisplay.drawInfo.sprite.getImagePath()));
+			Drawer.add(BuildingDisplay.Layer, hoverDisplay.drawInfo);
+		}
+		hoverDisplay.setPosition(new Coordinate(gridX, gridY));
 	}
 	
 	public static void checkMouseOverTile(int X, int Y) {

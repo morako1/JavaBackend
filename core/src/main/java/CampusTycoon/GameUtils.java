@@ -13,6 +13,7 @@ import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.GameLogic.BuildingCounter;
+import CampusTycoon.GameLogic.Buildings.*;
 
 public class GameUtils {
 	public static Map map;
@@ -20,6 +21,19 @@ public class GameUtils {
 	public static void startGame() {
 		map = new Map();
 		Camera.map = map;
+	}
+	
+	// Gets the image used for hover displays (just a semi-transparent version of the original)
+	public static String getHoverImagePath(String originalImage) {
+		switch (originalImage) {
+			case Cafeteria.defaultImage:
+				// e.g. "Cafeteria.png" -> "CafeteriaTransparent.png"
+				return Cafeteria.defaultImage.replace(".png", "Transparent.png");
+			case Relaxation.defaultImage:
+				return Cafeteria.defaultImage.replace(".png", "Transparent.png");
+			default:
+				return "MissingTexture.png";
+		}
 	}
 	
 	public static void createStartMenuUI() {
