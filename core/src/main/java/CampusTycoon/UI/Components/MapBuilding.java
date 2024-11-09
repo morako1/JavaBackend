@@ -11,21 +11,21 @@ public class MapBuilding extends Component {
 	
 	public MapBuilding(String imagePath, float X, float Y, float Width, float Height) {
 		super(imagePath, getX(X), getY(Y), Width * Tile.SpriteSize, Height * Tile.SpriteSize);
-		initialise(X, Y, Width, Height);
+		initialiseBuilding(X, Y, Width, Height);
 	}
 	public MapBuilding(List<String> imagePaths, float X, float Y, float Width, float Height) {
 		super(imagePaths, getX(X), getY(Y), Width * Tile.SpriteSize, Height * Tile.SpriteSize);
-		initialise(X, Y, Width, Height);
+		initialiseBuilding(X, Y, Width, Height);
 	}
 	public MapBuilding(String imagePath, float X, float Y) {
 		super(imagePath, getX(X), getY(Y), Tile.SpriteSize, Tile.SpriteSize);
-		initialise(X, Y, 1, 1);
+		initialiseBuilding(X, Y, 1, 1);
 	}
 	public MapBuilding() {
 		super(0, 0, 0, 0);
 	}
 	
-	private void initialise(float X, float Y, float Width, float Height) {
+	private void initialiseBuilding(float X, float Y, float Width, float Height) {
 		gridX = X;
 		gridY = Y;
 		gridBaseWidth = Width;
@@ -37,6 +37,12 @@ public class MapBuilding extends Component {
 	}
 	private static float getY(float Y) {
 		return Y * Tile.SpriteSize;
+	}
+	
+	public void setGridCoordinates(int X, int Y) {
+		gridX = X;
+		gridY = Y;
+		initialise(getX(X), getY(Y), baseWidth, baseHeight);
 	}
 	
 	public void applyZoomOffset() {

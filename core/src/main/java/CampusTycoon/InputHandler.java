@@ -47,18 +47,15 @@ public class InputHandler implements InputProcessor {
 		if (button == LeftClick) {
 			leftClickDown = true;
 		}
-		Camera.click(x, y, button);
-		
-		// Scales mouse position to resolution
-		x = transformX(x);
-		y = transformY(y);
 		
 		for (Component btn : clickables){
-			if (isTouchWithinButton(x, y, btn)) {
+			if (isTouchWithinButton(transformX(x), transformY(y), btn)) {
 				btn.onClick();
 				return true;
 			}
 		}
+		
+		Camera.click(x, y, button);
 		return true;
 	}
 

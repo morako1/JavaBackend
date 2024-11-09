@@ -55,7 +55,7 @@ public class Camera {
 	
 	private static void placeBuilding() {
 		if (ScreenUtils.currentScreen == ScreenUtils.gameplayScreen) {
-			map.placeBuilding(new Cafeteria(new Coordinate(gridX, gridY)));
+			map.placeBuilding(new Coordinate(gridX, gridY));
 			update();
 		}
 	}

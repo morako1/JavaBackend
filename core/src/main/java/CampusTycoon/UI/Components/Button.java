@@ -5,9 +5,10 @@ import java.util.function.Consumer;
 
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.ScreenUtils;
+import CampusTycoon.GameUtils;
 import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Drawer;
-
+import CampusTycoon.GameLogic.MapUtils;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class Button extends Component {
@@ -26,12 +27,10 @@ public class Button extends Component {
 	protected static void openStartScreen(Boolean isAction) {
 		System.out.println("Screen changed to StartScreen");
 	}
-	
 	protected static void openGameplayScreen(Boolean isAction) {
 		ScreenUtils.openGameplayScreen();
 		System.out.println("Screen changed to GameplayScreen");
 	}
-
 	protected static void openEventScreen(Boolean isAction) {
 		ScreenUtils.OpenEventScreen();
 		System.out.println("Screen changed to EventScreen");
@@ -44,14 +43,23 @@ public class Button extends Component {
 		System.out.println("Closed EventScreen");
 	}
 
-	protected static void PlaceRelaxationBuilding(Boolean isAction) {
-		;
+	protected static void toggleCafeteriaBuilding(Boolean isAction) {
+		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.CafeteriaBuilding);
+		System.out.println("Toggled building placement mode to: " + GameUtils.map.placing +
+			"\nToggled building placement type to: " + GameUtils.map.placementType);
 	}
+	protected static void toggleRelaxationBuilding(Boolean isAction) {
+		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.RelaxationBuilding);
+		System.out.println("Toggled building placement mode to: " + GameUtils.map.placing +
+			"\nToggled building placement type to: " + GameUtils.map.placementType);
+	}
+
 	
 	@Override
-	public void setClickAction(String Action) {	//Action for changing screens
+	public void setClickAction(String Action) {
 		Consumer<Boolean> action = a -> none(a);
 		switch (Action) {
+			// Screen changes
 			case Actions.OpenStartScreen:
 				action = a -> openStartScreen(a);
 				break;
@@ -64,6 +72,14 @@ public class Button extends Component {
 			case Actions.CloseEventScreen:
 				action = a -> closeEventScreen(a);
 				break;
+				
+			// Building toggles
+			case Actions.ToggleCafeteriaBuilding:
+				action = a -> toggleCafeteriaBuilding(a);
+				break;
+			case Actions.ToggleRelaxationBuilding:
+				action = a -> toggleRelaxationBuilding(a);
+				break;
 			default:
 				System.out.println("Invalid action passed to button: " + this.toString());
 				break;
@@ -74,9 +90,9 @@ public class Button extends Component {
 	public void setClickAction(String Action, String buildingType) {	//Action for placing buildings on the map
 		Consumer<Boolean> action = a -> none(a);
 		switch (Action) {
-			case Actions.PlaceBuilding:
+			case Actions.ToggleRelaxationBuilding: // I don't really know what to use this entire function for
 				switch(buildingType) {
-					case Actions.PlaceRelaxationBuilding:
+					case Actions.ToggleRelaxationBuilding:
 						action = a -> openEventScreen(a);
 						break;
 				}
@@ -94,18 +110,19 @@ public class Button extends Component {
 			case Actions.CloseEventScreen:
 				switch(effect) {
 					case Actions.IncreaseSatisfactionScore:
-					action = a -> {
-						closeEventScreen(a);
-						SatisfactionMeter.increaseSatisfactionScore(value);
+						action = a -> {
+							closeEventScreen(a);
+							SatisfactionMeter.increaseSatisfactionScore(value);
 					};
-					break;
+						break;
 					case Actions.DecreaseSatisfactionSccore:
-					action = a -> {
-						closeEventScreen(a);
-						SatisfactionMeter.decreaseSatisfactionScore(value);
+						action = a -> {
+							closeEventScreen(a);
+							SatisfactionMeter.decreaseSatisfactionScore(value);
 					};
-					break;
+						break;
 				}
+				break;
 			default:
 				System.out.println("Invalid action passed to button: " + this.toString());
 				break;

@@ -3,10 +3,10 @@ package CampusTycoon.GameLogic;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import CampusTycoon.GameLogic.Buildings.Building;
 import CampusTycoon.GameLogic.Buildings.Cafeteria;
+import CampusTycoon.GameLogic.Buildings.Relaxation;
 import CampusTycoon.GameLogic.Tiles.Grass;
 import CampusTycoon.GameLogic.Tiles.Lake;
 import CampusTycoon.GameLogic.Tiles.Mountain;
@@ -19,18 +19,36 @@ public class MapUtils {
 		map = Map;
 	}
 	
+	public abstract class Placement {
+		public static final String CafeteriaBuilding = "CAFETERIA";
+		public static final String RelaxationBuilding = "RELAXATION";
+		public static final String Road = "ROAD"; // Most definitely not implemented yet
+	}
+	
+	public Building getBuilding(String buildingType) {
+		switch (buildingType) {
+			case Placement.CafeteriaBuilding:
+				return new Cafeteria();
+			case Placement.RelaxationBuilding:
+				return new Relaxation();
+			default:
+				return new Building();
+		}
+	}
+	
+	
 	public boolean buildingPlaceable(Building newBuilding) {
 		for (Building Building : map.buildings) {
 			Coordinate b = Building.position;
 			Coordinate newPos = newBuilding.position;
 			
-			// Checks if the tile is between the bottom/left and top/right sides of the building
+			// Checks if the position of the new building would cause any part of itself to overlap with an existing building
 			if (newPos.x + newBuilding.width - 1 >= b.x && newPos.x < b.x + Building.width &&
 				newPos.y + newBuilding.height - 1 >= b.y && newPos.y < b.y + Building.height) {
-					return true;
+					return false;
 				}
 		}
-		return false;
+		return true;
 	}
 	
 	
@@ -38,7 +56,7 @@ public class MapUtils {
 		for (Building building : map.buildings) {
 			Coordinate pos = building.position;
 			
-			// Checks if the tile is between the bottom/left and top/right sides of the building
+			// Checks if a building occupies the current tile space
 			if (tile.x >= pos.x && tile.x < pos.x + building.width &&
 				tile.y >= pos.y && tile.y < pos.y + building.height) {
 					return true;
@@ -49,9 +67,15 @@ public class MapUtils {
 	
 	public void initialiseBuildings() {
 		map.buildings = new ArrayList<Building>(); 
-		map.placeBuilding(new Cafeteria(new Coordinate(5, 12)));
-		map.placeBuilding(new Cafeteria(new Coordinate(23, 9)));
-		map.placeBuilding(new Cafeteria(new Coordinate(7, 19)));
+		
+		// Forcefully enables placement mode and sets the building to cafeteria
+		map.placementType = Placement.CafeteriaBuilding;
+		map.placing = true;
+		
+		// Adds a few cafeterias to the map
+		map.placeBuilding(new Coordinate(5, 12));
+		map.placeBuilding(new Coordinate(23, 9));
+		map.placeBuilding(new Coordinate(7, 19));
 	}
 	
 	public void initialiseGrid() {

@@ -57,11 +57,12 @@ public class GameUtils {
             Button buttonPH2 = new Button("Placeholder.png", -150, 10, 90, 66);
             buttonPH2.setAnchor(Anchor.BottomCentre);
 
-            Button buttonPH3 = new Button("Placeholder.png", -50, 10, 90, 66);
-            buttonPH3.setAnchor(Anchor.BottomCentre);
+            Button buttonCafe = new Button("Buildings\\Cafeteria.png", -50, 10, 90, 66);
+			buttonCafe.setClickAction(Actions.ToggleCafeteriaBuilding);
+            buttonCafe.setAnchor(Anchor.BottomCentre);
     
-            Button buttonRelax = new Button("MissingTexture.png", 50, 10, 90, 66);
-			buttonRelax.setClickAction(Actions.PlaceBuilding, Actions.PlaceRelaxationBuilding);
+            Button buttonRelax = new Button("Buildings\\Relaxation.png", 50, 10, 90, 66);
+			buttonRelax.setClickAction(Actions.ToggleRelaxationBuilding);
             buttonRelax.setAnchor(Anchor.BottomCentre);
     
             Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
@@ -92,7 +93,7 @@ public class GameUtils {
 			
 			
 			List<Component> UIButtons = Arrays.asList(
-				buttonPH1, buttonPH2, buttonPH3, buttonRelax, buttonPH5, buttonPH6, 
+				buttonPH1, buttonPH2, buttonCafe, buttonRelax, buttonPH5, buttonPH6, 
 				notif1, notif2, buttonSatisfaction,
 				buttonDollar, buttonHouses, buttonPeople);
 			

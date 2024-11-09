@@ -21,10 +21,12 @@ public abstract class Component {
 		public static final String OpenEventScreen = "OPENEVENTSCREEN";
 		public static final String OpenStartScreen = "OPENSTARTSCREEN";
 		public static final String CloseEventScreen = "CLOSEEVENTSCREEN";
+		
 		public static final String IncreaseSatisfactionScore = "INCREASESATISFACTIONSCORE";
 		public static final String DecreaseSatisfactionSccore = "DECREASESATISFACTIONSCORE";
-		public static final String PlaceBuilding = "PLACEBUILDING";
-		public static final String PlaceRelaxationBuilding = "PLACERELAXATIONBUILDING";
+		
+		public static final String ToggleCafeteriaBuilding = "TOGGLECAFETERIABUILDING";
+		public static final String ToggleRelaxationBuilding = "TOGGLERELAXATIONBUILDING";
 	}
 	
 	
@@ -67,7 +69,7 @@ public abstract class Component {
 	}
 	
 	
-	private void initialise(float X, float Y, float Width, float Height) {
+	protected void initialise(float X, float Y, float Width, float Height) {
 		baseX = X;
 		baseY = Y;
 		baseWidth = Width;

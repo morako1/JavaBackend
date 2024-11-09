@@ -21,15 +21,16 @@ public class MapDisplay {
 	}
 	
 	public void drawMap() {
-		for (int row = 0; row < Map.height; row++) {
+		for (int row = 0; row < map.height; row++) {
 			List<Tile> mapRow = map.grid.get(row);
-			for (int col = 0; col < Map.width; col++) {
+			for (int col = 0; col < map.width; col++) {
 				Tile tile = mapRow.get(col);
 				MapTile drawTile = new MapTile(
 					spriteSheet, 
 					tile.getTileID(), 
 					getX(col), getY(row),
-					col, row);
+					col, row,
+					map.height);
 				drawTile.setAnchor(Anchor.BottomLeft);
 				Drawer.add(Layer, drawTile);
 			}
@@ -41,7 +42,7 @@ public class MapDisplay {
 	}
 	
 	private int getY(int y) {
-		return (int)(spriteSheet.spriteHeight * (Map.height - 1 - y) * Camera.zoom);
+		return (int)(spriteSheet.spriteHeight * (map.height - 1 - y) * Camera.zoom);
 	}
 	
 	private void initialise() {

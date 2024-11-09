@@ -4,12 +4,23 @@ import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.MapBuilding;
 
-public abstract class Building {
+public class Building {
 	public MapBuilding drawInfo;
 	public Coordinate position;
 	public int width, height;
 	
+	public Building() {
+		width = 1;
+		height = 1;
+		position = new Coordinate(0, 0);
+		drawInfo = new MapBuilding(
+			"MissingTexture.png", 
+			position.x, position.y);
+		drawInfo.setAnchor(Anchor.BottomLeft);
+	}
 	public Building(Coordinate Position) {
+		width = 1;
+		height = 1;
 		position = Position;
 		drawInfo = new MapBuilding(
 			"MissingTexture.png", 
@@ -25,5 +36,11 @@ public abstract class Building {
 			position.x, position.y, 
 			Width, Height);
 		drawInfo.setAnchor(Anchor.BottomLeft);
+	}
+	
+	
+	public void setPosition(Coordinate Position) {
+		position = Position;
+		drawInfo.setGridCoordinates(position.x, position.y);
 	}
 }
