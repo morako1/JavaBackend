@@ -154,6 +154,26 @@ public class Drawer {
 		drawQueue.add(binarySearch(layer), new DrawInfo(layer, component));
 	}
 	
+	public static void remove(int layer, Component component) {
+		remove(component, binarySearch(layer - 1));
+	}
+	
+	public static void remove(Component component) {
+		remove(component, 0);
+	}
+	
+	// Removes the given component from the drawQueue
+	// Does a linear search of the drawQueue starting from the index given by startIndex
+	private static void remove(Component component, int startIndex) {
+		int index = startIndex;
+		for (DrawInfo drawInfo : drawQueue) {
+			if (drawInfo.component.equals(component)) {
+				drawQueue.remove(index);
+				return;
+			}
+		}
+	}
+	
 	// Searches the drawQueue to find the index of the end of a given layer
 	// e.g. in {-1, 0, 0, 1, 1, 1, 2, 2}, searching for '1' would give the index of the first 2
 	private static int binarySearch(int target) {
