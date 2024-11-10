@@ -30,7 +30,7 @@ public class GameUtils {
 				// e.g. "Cafeteria.png" -> "CafeteriaTransparent.png"
 				return Cafeteria.defaultImage.replace(".png", "Transparent.png");
 			case Relaxation.defaultImage:
-				return Cafeteria.defaultImage.replace(".png", "Transparent.png");
+				return Relaxation.defaultImage.replace(".png", "Transparent.png");
 			default:
 				return "MissingTexture.png";
 		}

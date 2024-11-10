@@ -171,6 +171,7 @@ public class Drawer {
 				drawQueue.remove(index);
 				return;
 			}
+			index++;
 		}
 	}
 	

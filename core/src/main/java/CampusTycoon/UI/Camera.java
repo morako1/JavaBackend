@@ -24,6 +24,7 @@ public class Camera {
 	private static Coordinate lastMousePos = new Coordinate();
 	private static Coordinate lastClickPos = null;
 	private static boolean placing;
+	private static String placementType;
 	private static Building hoverDisplay;
 	
 	public static void update() {
@@ -56,8 +57,21 @@ public class Camera {
 		// If placing was just turned off
 		if (placing == true && placing != map.placing) {
 			placing = false;
-			// Remove hoverDisplay from the draw queue and building list
+			Drawer.remove(hoverDisplay.drawInfo);
 			return;
+		}
+		
+		// If the hover icon just changed
+		if (map != null && hoverDisplay != null && map.placementType != placementType) {
+			Drawer.remove(hoverDisplay.drawInfo);
+			
+			hoverDisplay = MapUtils.getBuilding(map.placementType);
+			hoverDisplay.drawInfo.setImage(
+				GameUtils.getHoverImagePath(
+					hoverDisplay.drawInfo.sprite.getImagePath()));
+			Drawer.add(BuildingDisplay.Layer, hoverDisplay.drawInfo);
+			
+			placementType = map.placementType;
 		}
 		
 		// If placing mode was just turned on
