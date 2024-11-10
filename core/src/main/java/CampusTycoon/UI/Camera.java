@@ -64,7 +64,8 @@ public class Camera {
 		}
 		
 		// If the hover icon just changed
-		if (map != null && hoverDisplay != null && map.placementType != placementType) {
+		if (map != null && hoverDisplay != null && 
+		placing == true && map.placementType != placementType) {
 			Drawer.remove(hoverDisplay.drawInfo);
 			
 			hoverDisplay = MapUtils.getBuilding(map.placementType);
@@ -74,11 +75,10 @@ public class Camera {
 			Drawer.add(BuildingDisplay.Layer + 1, hoverDisplay.drawInfo);
 			
 			placementType = map.placementType;
-			return;
 		}
 		
 		// If placing mode was just turned on
-		if (placing != map.placing) {
+		else if (placing != map.placing) {
 			placing = true;
 			
 			hoverDisplay = MapUtils.getBuilding(map.placementType);
