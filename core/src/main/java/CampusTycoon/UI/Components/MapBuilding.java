@@ -42,7 +42,7 @@ public class MapBuilding extends Component {
 	public void setGridCoordinates(int X, int Y) {
 		gridX = X;
 		gridY = Y;
-		initialise(getX(X), getY(Y), baseWidth, baseHeight);
+		initialise(getX(X), getY(Y), baseWidth, baseHeight, scale);
 	}
 	
 	public void applyZoomOffset() {

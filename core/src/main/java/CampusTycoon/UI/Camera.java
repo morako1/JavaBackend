@@ -9,6 +9,7 @@ import CampusTycoon.GameLogic.MapUtils;
 import CampusTycoon.GameLogic.Buildings.Building;
 import CampusTycoon.GameLogic.Buildings.Cafeteria;
 import CampusTycoon.GameLogic.Tiles.Tile;
+import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.MapBuilding;
 import CampusTycoon.UI.Components.MapTile;
 import CampusTycoon.UI.Systems.BuildingDisplay;
@@ -31,6 +32,7 @@ public class Camera {
 		printCameraInfo();
 		updateDrawTiles();
 		updateDrawBuildings();
+		updateCursor();
 	}
 	
 	// Calculates which Grid coordinate the mouse is over
@@ -69,9 +71,10 @@ public class Camera {
 			hoverDisplay.drawInfo.setImage(
 				GameUtils.getHoverImagePath(
 					hoverDisplay.drawInfo.sprite.getImagePath()));
-			Drawer.add(BuildingDisplay.Layer, hoverDisplay.drawInfo);
+			Drawer.add(BuildingDisplay.Layer + 1, hoverDisplay.drawInfo);
 			
 			placementType = map.placementType;
+			return;
 		}
 		
 		// If placing mode was just turned on
@@ -82,12 +85,16 @@ public class Camera {
 			hoverDisplay.drawInfo.setImage(
 				GameUtils.getHoverImagePath(
 					hoverDisplay.drawInfo.sprite.getImagePath()));
-			Drawer.add(BuildingDisplay.Layer, hoverDisplay.drawInfo);
+			Drawer.add(BuildingDisplay.Layer + 1, hoverDisplay.drawInfo);
 		}
+		
 		hoverDisplay.setPosition(new Coordinate(gridX, gridY));
+		updateCursor();
 	}
 	
 	public static void checkMouseOverTile(int X, int Y) {
+		lastMousePos = new Coordinate(X, Y);
+		
 		gridX = (int)Math.floor((double)getGridX(X));
 		gridY = (int)Math.floor((double)getGridY(Y));
 		System.out.println("X: " + X + ", Y: " + Y);
@@ -100,6 +107,9 @@ public class Camera {
 		zoom = Math.min(MaxZoom, Math.max(MinZoom, zoom));
 		x = Math.round(x * (oldZoom / zoom));
 		y = Math.round(y * (oldZoom / zoom));
+		
+		checkMouseOverTile(lastMousePos.x, lastMousePos.y);
+		drawCursor();
 		update();
 	}
 	
@@ -112,7 +122,7 @@ public class Camera {
 	
 	public static void lift(int X, int Y, int button) {
 		// TODO: Add a time based check to this too
-		// Check that the mouse has barely moved since clicking
+		// Checks that the mouse has barely moved since clicking
 		if (lastClickPos != null && 
 		lastClickPos.distance(new Coordinate(X, Y)) < 5) { // 5 is an extremely arbitrary number
 			placeBuilding();
@@ -131,13 +141,13 @@ public class Camera {
 		update();
 	}
 	
-	private static List<MapTile> getDrawTiles() {
+	private static List<MapTile> popDrawTiles() {
 		List<MapTile> components = Drawer.popLayer(MapDisplay.Layer, new MapTile());
 		return components;
 	}
 	
 	private static void updateDrawTiles() {
-		List<MapTile> tiles = getDrawTiles();
+		List<MapTile> tiles = popDrawTiles();
 		for (MapTile tile : tiles) { 
 			tile.setOffset(x, y);
 			tile.setScale(1f / zoom);
@@ -154,6 +164,18 @@ public class Camera {
 			building.applyZoomOffset();
 			Drawer.add(BuildingDisplay.Layer, building);
 		}
+	}
+	
+	private static void updateCursor() {
+		if (hoverDisplay == null) {
+			return;
+		}
+		
+		hoverDisplay.drawInfo.setOffset(x, y);
+		hoverDisplay.drawInfo.setScale(1f / zoom);
+		hoverDisplay.drawInfo.applyZoomOffset();
+		System.out.println(hoverDisplay.drawInfo.scale);
+		System.out.println(hoverDisplay.drawInfo.baseWidth);
 	}
 	
 	// For debug purposes

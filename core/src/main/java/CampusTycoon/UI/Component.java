@@ -68,7 +68,6 @@ public abstract class Component {
 		initialise(X, Y, Width, Height);
 	}
 	
-	
 	protected void initialise(float X, float Y, float Width, float Height) {
 		baseX = X;
 		baseY = Y;
@@ -85,6 +84,11 @@ public abstract class Component {
 		// Default anchor is TopLeft
 		// (0, 0) is the top left of the screen for components bound to this anchor
 		applyAnchor();
+	}
+	
+	protected void initialise(float X, float Y, float Width, float Height, float Scale) {
+		initialise(X, Y, Width, Height);
+		scale = Scale;
 	}
 	
 	// Called after resolution changes or after setters are used
