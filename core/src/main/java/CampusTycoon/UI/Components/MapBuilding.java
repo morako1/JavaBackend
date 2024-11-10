@@ -39,10 +39,6 @@ public class MapBuilding extends Component {
 		return Y * Tile.SpriteSize;
 	}
 	
-	public void setImage(String image) {
-		
-	}
-	
 	public void setGridCoordinates(int X, int Y) {
 		gridX = X;
 		gridY = Y;

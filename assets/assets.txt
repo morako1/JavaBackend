@@ -3,6 +3,9 @@ Accept.png
 assets copy.txt
 Backdrop.png
 Buildings/Cafeteria.png
+Buildings/CafeteriaTransparent.png
+Buildings/Relaxation.png
+Buildings/RelaxationTransparent.png
 Dollar.png
 ExclamationMark.png
 House.png

@@ -101,6 +101,10 @@ public class Sprite {
 		selected = selection;
 	}
 	
+	public void setImagePath(String ImagePath) {
+		this.animationType.put(selected, new AnimationInfo(ImagePath));
+	}
+	
 	public String getImagePath() {
 		return selectImage();
 	}

@@ -201,6 +201,10 @@ public abstract class Component {
 		update();
 	}
 	
+	public void setImage(String ImagePath) {
+		this.sprite.setImagePath(ImagePath);
+	}
+	
 	
 	public int left() {
 		return (int)this.x;
