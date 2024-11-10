@@ -43,14 +43,25 @@ public class Button extends Component {
 		System.out.println("Closed EventScreen");
 	}
 
+	protected static void toggleAccommodationBuilding(Boolean isAction) {
+		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.AccommodationBuilding);
+		printBuildingChange();
+	}
+	protected static void toggleStudyBuilding(Boolean isAction) {
+		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.StudyBuilding);
+		printBuildingChange();
+	}
 	protected static void toggleCafeteriaBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.CafeteriaBuilding);
-		System.out.println("Toggled building placement mode to: " + GameUtils.map.placing +
-			"\nToggled building placement type to: " + GameUtils.map.placementType);
+		printBuildingChange();
 	}
 	protected static void toggleRelaxationBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.RelaxationBuilding);
-		System.out.println("Toggled building placement mode to: " + GameUtils.map.placing +
+		printBuildingChange();
+	}
+	private static void printBuildingChange() {
+		System.out.println(
+			"Toggled building placement mode to: " + GameUtils.map.placing +
 			"\nToggled building placement type to: " + GameUtils.map.placementType);
 	}
 
@@ -74,6 +85,12 @@ public class Button extends Component {
 				break;
 				
 			// Building toggles
+			case Actions.ToggleAccommodationBuilding:
+				action = a -> toggleAccommodationBuilding(a);
+				break;
+			case Actions.ToggleStudyBuilding:
+				action = a -> toggleStudyBuilding(a);
+				break;
 			case Actions.ToggleCafeteriaBuilding:
 				action = a -> toggleCafeteriaBuilding(a);
 				break;

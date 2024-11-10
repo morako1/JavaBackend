@@ -25,6 +25,8 @@ public abstract class Component {
 		public static final String IncreaseSatisfactionScore = "INCREASESATISFACTIONSCORE";
 		public static final String DecreaseSatisfactionSccore = "DECREASESATISFACTIONSCORE";
 		
+		public static final String ToggleAccommodationBuilding = "TOGGLEACCOMMODATIONBUILDING";
+		public static final String ToggleStudyBuilding = "TOGGLESTUDYBUILDING";
 		public static final String ToggleCafeteriaBuilding = "TOGGLECAFETERIABUILDING";
 		public static final String ToggleRelaxationBuilding = "TOGGLERELAXATIONBUILDING";
 	}

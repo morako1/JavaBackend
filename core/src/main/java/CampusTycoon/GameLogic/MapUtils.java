@@ -4,13 +4,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import CampusTycoon.GameLogic.Buildings.Building;
-import CampusTycoon.GameLogic.Buildings.Cafeteria;
-import CampusTycoon.GameLogic.Buildings.Relaxation;
-import CampusTycoon.GameLogic.Tiles.Grass;
-import CampusTycoon.GameLogic.Tiles.Lake;
-import CampusTycoon.GameLogic.Tiles.Mountain;
-import CampusTycoon.GameLogic.Tiles.Tile;
+import CampusTycoon.GameLogic.Buildings.*;
+import CampusTycoon.GameLogic.Tiles.*;
 
 public class MapUtils {
 	private Map map;
@@ -20,6 +15,8 @@ public class MapUtils {
 	}
 	
 	public abstract class Placement {
+		public static final String AccommodationBuilding = "ACCOMMODATION";
+		public static final String StudyBuilding = "STUDY";
 		public static final String CafeteriaBuilding = "CAFETERIA";
 		public static final String RelaxationBuilding = "RELAXATION";
 		public static final String Road = "ROAD"; // Most definitely not implemented yet
@@ -27,6 +24,10 @@ public class MapUtils {
 	
 	public static Building getBuilding(String buildingType) {
 		switch (buildingType) {
+			case Placement.AccommodationBuilding:
+				return new Accommodation();
+			case Placement.StudyBuilding:
+				return new Study();
 			case Placement.CafeteriaBuilding:
 				return new Cafeteria();
 			case Placement.RelaxationBuilding:

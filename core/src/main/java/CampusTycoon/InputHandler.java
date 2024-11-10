@@ -51,6 +51,7 @@ public class InputHandler implements InputProcessor {
 		for (Component btn : clickables){
 			if (isTouchWithinButton(transformX(x), transformY(y), btn)) {
 				btn.onClick();
+				Camera.update();
 				return true;
 			}
 		}

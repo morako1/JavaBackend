@@ -7,9 +7,7 @@ import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.MapUtils;
 import CampusTycoon.GameLogic.Buildings.Building;
-import CampusTycoon.GameLogic.Buildings.Cafeteria;
 import CampusTycoon.GameLogic.Tiles.Tile;
-import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.MapBuilding;
 import CampusTycoon.UI.Components.MapTile;
 import CampusTycoon.UI.Systems.BuildingDisplay;
@@ -32,7 +30,7 @@ public class Camera {
 		printCameraInfo();
 		updateDrawTiles();
 		updateDrawBuildings();
-		updateCursor();
+		drawCursor();
 	}
 	
 	// Calculates which Grid coordinate the mouse is over
@@ -48,6 +46,11 @@ public class Camera {
 	public static void drawCursor() {
 		// Game not started yet
 		if (ScreenUtils.currentScreen != ScreenUtils.gameplayScreen) {
+			return;
+		}
+		
+		// Game not initialised yet
+		if (map == null) {
 			return;
 		}
 		
