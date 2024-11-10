@@ -3,6 +3,8 @@ package CampusTycoon;
 import java.util.Arrays;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 import CampusTycoon.UI.Camera;
@@ -10,13 +12,16 @@ import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Drawer;
+import CampusTycoon.UI.Components.Backdrop;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.GameLogic.BuildingCounter;
+import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.Buildings.*;
 
 public class GameUtils {
 	public static Map map;
+	public static Event currentEvent;
 	
 	public static void startGame() {
 		map = new Map();
@@ -103,11 +108,11 @@ public class GameUtils {
         buttonPeople.setAnchor(Anchor.TopCentre);
 
         Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
-        notif1.setClickAction(Actions.OpenEventScreen);
+        notif1.setClickAction(Actions.OpenEventPopup);
         notif1.setAnchor(Anchor.TopLeft);
 
         Button notif2 = new Button("QuestionMark.png", 0, 80, 80, 80);
-        notif2.setClickAction(Actions.OpenEventScreen);
+        notif2.setClickAction(Actions.OpenEventPopup);
         notif2.setAnchor(Anchor.TopLeft);
 
         Button buttonSatisfaction = new Button("Satisfaction.png", 100, 10, 200, 66);
@@ -142,6 +147,7 @@ public class GameUtils {
 		MenuText buildingCounterText = new MenuText("" +BuildingCounter.getBuildingCounter() + "", 70, 25, 2f, 2f);
 		buildingCounterText.setAnchor(Anchor.TopCentre);
      
+		
         List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText);
 		
 		// Add all text to the drawQueue
@@ -150,5 +156,48 @@ public class GameUtils {
 			Drawer.add(2, text);
 		}
 		// No need to add text to the InputHandler (unless you really want to be able to click on it for some reason)
+	}
+	
+	public static void createEventPopupUI(Event event) {
+        Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);
+        eventScreenBackdrop.setAnchor((Anchor.Centre));
+		eventScreenBackdrop.update();
+		event.eventUI.elements.add(eventScreenBackdrop);
+        Drawer.add(1, eventScreenBackdrop); // Rendered behind the rest of the UI
+    
+        Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66);
+        buttonAccept.setClickAction(
+			Actions.CloseEventPopup, Actions.IncreaseSatisfactionScore, 4);
+        buttonAccept.setAnchor(Anchor.Centre);
+
+        Button buttonNeutral = new Button("Neutral.png", 0, -106, 126, 66);
+        buttonNeutral.setClickAction(
+			Actions.CloseEventPopup, Actions.DecreaseSatisfactionSccore, 1);
+        buttonNeutral.setAnchor(Anchor.Centre);
+
+        Button buttonReject = new Button("Reject.png", 130, -106, 126, 66);
+        buttonReject.setClickAction(
+			Actions.CloseEventPopup, Actions.DecreaseSatisfactionSccore, 5);
+        buttonReject.setAnchor(Anchor.Centre);
+
+		
+        List<Component> eventChoices = Arrays.asList(buttonAccept, buttonReject, buttonNeutral);
+		
+		for (Component button : eventChoices) {
+			// All added to layer '2' (on top of almost all other UI elements)
+			button.update();
+			event.eventUI.elements.add(button);
+			Drawer.add(2, button);
+		}
+        InputHandler.add(eventChoices);
+		event.eventUI.buttonElements = eventChoices;
+
+        //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
+        //eventTextTitle.setAnchor(Anchor.Centre);
+		MenuText testText = new MenuText(event.eventText, 0, 0, 1.5f, 1.5f);
+		testText.setAnchor(Anchor.Centre);
+		testText.update();
+		event.eventUI.elements.add(testText);
+        Drawer.add(2, testText);
 	}
 }

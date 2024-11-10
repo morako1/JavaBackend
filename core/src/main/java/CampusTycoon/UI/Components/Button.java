@@ -8,6 +8,7 @@ import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.GameUtils;
 import CampusTycoon.InputHandler;
 import CampusTycoon.UI.Drawer;
+import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.MapUtils;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 
@@ -31,16 +32,14 @@ public class Button extends Component {
 		ScreenUtils.openGameplayScreen();
 		System.out.println("Screen changed to GameplayScreen");
 	}
-	protected static void openEventScreen(Boolean isAction) {
-		ScreenUtils.OpenEventScreen();
-		System.out.println("Screen changed to EventScreen");
-	}
 	
-	protected static void closeEventScreen(Boolean isAction) {
-		Drawer.clear();
-		InputHandler.clear();
-		ScreenUtils.CloseEventScreen();
-		System.out.println("Closed EventScreen");
+	protected static void openEventPopup(Boolean isAction) {
+		GameUtils.currentEvent = new Event();
+		System.out.println("Event opened");
+	}
+	protected static void closeEventPopup(Boolean isAction) {
+		GameUtils.currentEvent.eventUI.close();
+		System.out.println("Event closed");
 	}
 
 	protected static void toggleAccommodationBuilding(Boolean isAction) {
@@ -77,11 +76,13 @@ public class Button extends Component {
 			case Actions.OpenGameplayScreen:
 				action = a -> openGameplayScreen(a);
 				break;
-			case Actions.OpenEventScreen:
-				action = a -> openEventScreen(a);
+				
+			// Events
+			case Actions.OpenEventPopup:
+				action = a -> openEventPopup(a);
 				break;
-			case Actions.CloseEventScreen:
-				action = a -> closeEventScreen(a);
+			case Actions.CloseEventPopup:
+				action = a -> closeEventPopup(a);
 				break;
 				
 			// Building toggles
@@ -110,7 +111,7 @@ public class Button extends Component {
 			case Actions.ToggleRelaxationBuilding: // I don't really know what to use this entire function for
 				switch(buildingType) {
 					case Actions.ToggleRelaxationBuilding:
-						action = a -> openEventScreen(a);
+						action = a -> openEventPopup(a);
 						break;
 				}
 			break;
@@ -124,17 +125,17 @@ public class Button extends Component {
 		public void setClickAction(String Action, String effect, int value) {	//Action for affecting satisfaction score
 		Consumer<Boolean> action = a -> none(a);
 		switch (Action) {
-			case Actions.CloseEventScreen:
+			case Actions.CloseEventPopup:
 				switch(effect) {
 					case Actions.IncreaseSatisfactionScore:
 						action = a -> {
-							closeEventScreen(a);
+							closeEventPopup(a);
 							SatisfactionMeter.increaseSatisfactionScore(value);
 					};
 						break;
 					case Actions.DecreaseSatisfactionSccore:
 						action = a -> {
-							closeEventScreen(a);
+							closeEventPopup(a);
 							SatisfactionMeter.decreaseSatisfactionScore(value);
 					};
 						break;
