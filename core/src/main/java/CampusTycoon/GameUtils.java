@@ -16,6 +16,7 @@ import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.GameLogic.BuildingCounter;
 import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.Buildings.*;
+import CampusTycoon.GameLogic.Timer;
 
 public class GameUtils {
 	public static Map map;
@@ -159,8 +160,6 @@ public class GameUtils {
 		// Add all buttons to the InputHandler to allow for interaction handling
 		InputHandler.add(UIButtons);
 		
-		
-
         MenuText satisfactionText = new MenuText("", 50, 30, 2f, 2f);
         satisfactionText.setAnchor(Anchor.TopRight);
 		SatisfactionMeter.satisfactionText = satisfactionText;
@@ -174,9 +173,12 @@ public class GameUtils {
 
 		MenuText buildingCounterText = new MenuText("" + BuildingCounter.getTotalBuildingCount() + "", 70, 25, 2f, 2f);
 		buildingCounterText.setAnchor(Anchor.TopCentre);
-     
+
+		MenuText timerText = new MenuText("" + Timer.getTimeRemaining() + "", 80, 100, 2f, 2f);
+		timerText.setAnchor(Anchor.TopRight);
+    
 		
-        List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText, accommodationCount, studyCount, cafeCount, relaxCount);
+        List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText, accommodationCount, studyCount, cafeCount, relaxCount, timerText);
 		
 		// Add all text to the drawQueue
 		for (Component text : textElements) {
@@ -186,6 +188,8 @@ public class GameUtils {
 		// No need to add text to the InputHandler (unless you really want to be able to click on it for some reason)
 	}
 	
+
+
 	public static void createEventPopupUI(Event event) {
         Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);
         eventScreenBackdrop.setAnchor((Anchor.Centre));
