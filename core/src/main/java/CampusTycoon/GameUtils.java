@@ -3,8 +3,6 @@ package CampusTycoon;
 import java.util.Arrays;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 import CampusTycoon.UI.Camera;
@@ -79,18 +77,46 @@ public class GameUtils {
 		Button buttonAccommodation = new Button("Buildings\\Accommodation.png", -250, 10, 90, 66);
 		buttonAccommodation.setClickAction(Actions.ToggleAccommodationBuilding);
 		buttonAccommodation.setAnchor(Anchor.BottomCentre);
+		
+		MenuText accommodationCount = new MenuText(
+			String.valueOf(BuildingCounter.getBuildingCount(Accommodation.buildingName)), 
+			-260, 110, 2f, 2f);
+		accommodationCount.setAnchor(Anchor.BottomCentre);
+		BuildingCounter.UI.add(accommodationCount);
 
+		
         Button buttonStudy = new Button("Buildings\\Study.png", -150, 10, 90, 66);
 		buttonStudy.setClickAction(Actions.ToggleStudyBuilding);
         buttonStudy.setAnchor(Anchor.BottomCentre);
+		
+		MenuText studyCount = new MenuText(
+			String.valueOf(BuildingCounter.getBuildingCount(Study.buildingName)), 
+			-160, 110, 2f, 2f);
+		studyCount.setAnchor(Anchor.BottomCentre);
+		BuildingCounter.UI.add(studyCount);
+		
 
         Button buttonCafe = new Button("Buildings\\Cafeteria.png", -50, 10, 90, 66);
 		buttonCafe.setClickAction(Actions.ToggleCafeteriaBuilding);
         buttonCafe.setAnchor(Anchor.BottomCentre);
+		
+		MenuText cafeCount = new MenuText(
+			String.valueOf(BuildingCounter.getBuildingCount(Cafeteria.buildingName)), 
+			-60, 110, 2f, 2f);
+		cafeCount.setAnchor(Anchor.BottomCentre);
+		BuildingCounter.UI.add(cafeCount);
+		
     
         Button buttonRelax = new Button("Buildings\\Relaxation.png", 50, 10, 90, 66);
 		buttonRelax.setClickAction(Actions.ToggleRelaxationBuilding);
         buttonRelax.setAnchor(Anchor.BottomCentre);
+		
+		MenuText relaxCount = new MenuText(
+			String.valueOf(BuildingCounter.getBuildingCount(Relaxation.buildingName)), 
+			40, 110, 2f, 2f);
+		relaxCount.setAnchor(Anchor.BottomCentre);
+		BuildingCounter.UI.add(relaxCount);
+		
 
         Button buttonPH5 = new Button("Placeholder.png", 150, 10, 90, 66);
         buttonPH5.setAnchor(Anchor.BottomCentre);
@@ -146,11 +172,11 @@ public class GameUtils {
         MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 1.5f, 1.5f);
         notifText2.setAnchor(Anchor.TopLeft);
 
-		MenuText buildingCounterText = new MenuText("" +BuildingCounter.getBuildingCounter() + "", 70, 25, 2f, 2f);
+		MenuText buildingCounterText = new MenuText("" + BuildingCounter.getTotalBuildingCount() + "", 70, 25, 2f, 2f);
 		buildingCounterText.setAnchor(Anchor.TopCentre);
      
 		
-        List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText);
+        List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText, accommodationCount, studyCount, cafeCount, relaxCount);
 		
 		// Add all text to the drawQueue
 		for (Component text : textElements) {
