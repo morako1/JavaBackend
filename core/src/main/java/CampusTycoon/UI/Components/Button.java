@@ -8,7 +8,6 @@ import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.GameUtils;
 import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.MapUtils;
-import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class Button extends Component {
 	public int value; // Used to carry information about which button was pressed (i.e. in events)
@@ -106,49 +105,6 @@ public class Button extends Component {
 				break;
 			case Actions.ToggleRelaxationBuilding:
 				action = a -> toggleRelaxationBuilding(a);
-				break;
-			default:
-				System.out.println("Invalid action passed to button: " + this.toString());
-				break;
-		}
-		clickAction = action;
-	}
-
-	public void setClickAction(String Action, String buildingType) {	//Action for placing buildings on the map
-		Consumer<Boolean> action = a -> none(a);
-		switch (Action) {
-			case Actions.ToggleRelaxationBuilding: // I don't really know what to use this entire function for
-				switch(buildingType) {
-					case Actions.ToggleRelaxationBuilding:
-						action = a -> openEventPopup(a);
-						break;
-				}
-			break;
-			default:
-				System.out.println("Invalid action passed to button: " + this.toString());
-				break;
-		}
-		clickAction = action;
-	}
-
-		public void setClickAction(String Action, String effect, int value) {	//Action for affecting satisfaction score
-		Consumer<Boolean> action = a -> none(a);
-		switch (Action) {
-			case Actions.CloseEventPopup:
-				switch(effect) {
-					case Actions.IncreaseSatisfactionScore:
-						action = a -> {
-							closeEventPopup(a);
-							SatisfactionMeter.increaseSatisfactionScore(value);
-					};
-						break;
-					case Actions.DecreaseSatisfactionSccore:
-						action = a -> {
-							closeEventPopup(a);
-							SatisfactionMeter.decreaseSatisfactionScore(value);
-					};
-						break;
-				}
 				break;
 			default:
 				System.out.println("Invalid action passed to button: " + this.toString());
