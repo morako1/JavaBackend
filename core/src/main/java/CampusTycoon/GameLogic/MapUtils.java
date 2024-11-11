@@ -3,6 +3,7 @@ package CampusTycoon.GameLogic;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 
 import CampusTycoon.GameLogic.Buildings.*;
 import CampusTycoon.GameLogic.Tiles.*;
@@ -88,22 +89,11 @@ public class MapUtils {
 		//		0 0 1
 		//		0 1 1
 		// 		1 2 1
-
-		String defaultDirectory = System.getProperty("user.dir");
-		System.out.println(defaultDirectory);
-		File file = new File(defaultDirectory + "\\assets\\Maps\\" + Map.defaultMap);
 		
 		String content = "";
 		try {
-			if (file.exists() == false) {
-				throw new Exception("Default map does not exist.");
-			}
-
-			FileReader fileReader = new FileReader(file);
-			char[] chars = new char[(int) file.length()];
-			fileReader.read(chars);
-			content = new String(chars);
-			fileReader.close();
+			byte[] byteContent = getClass().getResourceAsStream(Map.defaultMap).readAllBytes();
+			content = new String(byteContent, StandardCharsets.UTF_8);
 		}
 		catch (Exception e) { }
 
