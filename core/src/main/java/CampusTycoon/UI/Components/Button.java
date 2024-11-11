@@ -25,6 +25,7 @@ public class Button extends Component {
 	
 	
 	protected static void openStartScreen(Boolean isAction) {
+		ScreenUtils.OpenStartScreen();
 		System.out.println("Screen changed to StartScreen");
 	}
 	protected static void openGameplayScreen(Boolean isAction) {

@@ -17,4 +17,8 @@ public final class ScreenUtils {
 	public static void OpenEndScreen() {
 		currentScreen = endScreen;
 	}
+
+	public static void OpenStartScreen() {
+		currentScreen = startScreen;
+	}
 }

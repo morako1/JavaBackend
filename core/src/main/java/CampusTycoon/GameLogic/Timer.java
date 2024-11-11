@@ -1,6 +1,7 @@
 package CampusTycoon.GameLogic;
 
 import CampusTycoon.UI.ScreenUtils;
+import CampusTycoon.UI.Drawer;
 
 public class Timer{
     private float timeRemaining;
@@ -51,8 +52,8 @@ public class Timer{
             hasEnded = true;
             isRunning = false; // Stop the timer completely
 
+            Drawer.clear();
             ScreenUtils.OpenEndScreen();
-
         }
     }
 }
