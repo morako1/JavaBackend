@@ -92,8 +92,9 @@ public class MapUtils {
 		
 		String content = "";
 		try {
-			byte[] byteContent = getClass().getResourceAsStream(Map.defaultMap).readAllBytes();
-			content = new String(byteContent, StandardCharsets.UTF_8);
+			//byte[] byteContent = getClass().getResourceAsStream(Map.defaultMap).readAllBytes();
+			//content = new String(byteContent, StandardCharsets.UTF_8);
+			content = York.RawMap;
 		}
 		catch (Exception e) { }
 
