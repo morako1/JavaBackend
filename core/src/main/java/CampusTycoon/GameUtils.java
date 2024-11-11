@@ -202,4 +202,30 @@ public class GameUtils {
 		event.eventUI.elements.add(testText);
         Drawer.add(2, testText);
 	}
+
+
+
+	public static void createEndScreenUI() {
+		Button buttonMainMenu = new Button("Main Menu.png", 0, 90, 262, 66);
+		buttonMainMenu.setClickAction(Actions.OpenStartScreen);
+        buttonMainMenu.setAnchor(Anchor.Centre);
+
+        Button buttonNewGame = new Button("New Game.png", 0, 20, 262, 66);
+		buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
+        buttonNewGame.setAnchor(Anchor.Centre);
+
+        List<Component> endScreenButtonList = Arrays.asList(
+			buttonMainMenu, 
+			buttonNewGame);
+		
+		// Add all buttons to the drawQueue
+		for (Component button : endScreenButtonList) {
+			// All added to layer '1' (generally on top of most other UI elements)
+			Drawer.add(1, button);
+		}
+		
+		// Add all buttons to the InputHandler to allow for interaction handling
+		// (Allows buttons to be clicked and things to actually happen)
+		InputHandler.add(endScreenButtonList);
+	}
 }

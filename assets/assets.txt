@@ -2,15 +2,20 @@
 Accept.png
 assets copy.txt
 Backdrop.png
+Buildings/Accommodation.png
+Buildings/AccommodationTransparent.png
 Buildings/Cafeteria.png
 Buildings/CafeteriaTransparent.png
 Buildings/Relaxation.png
 Buildings/RelaxationTransparent.png
+Buildings/Study.png
+Buildings/StudyTransparent.png
 Dollar.png
 ExclamationMark.png
 House.png
 Leaderboard.png
 Load Game.png
+Main Menu.png
 Maps/York.txt
 MissingTexture copy.png
 MissingTexture.png
