@@ -26,6 +26,9 @@ public class SatisfactionMeter {
     }
 	
 	public static void updateDisplay() {
+		if (satisfactionText == null) {
+			return;
+		}
 		satisfactionText.text = String.valueOf(satisfactionScore);
 	}
 }

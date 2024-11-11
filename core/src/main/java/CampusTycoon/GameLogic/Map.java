@@ -59,5 +59,8 @@ public class Map {
 		// Else if placing and building location valid:
 		buildings.add(building);
 		Drawer.add(-1, building.drawInfo);
+		
+		building.incrementBuildingCounter(); // Number go up (by 1)
+		SatisfactionMeter.increaseSatisfactionScore(5); // Placing buildings satisfies students!!!
 	}
 }

@@ -1,10 +1,12 @@
 package CampusTycoon.GameLogic.Buildings;
 
+import CampusTycoon.GameLogic.BuildingCounter;
 import CampusTycoon.GameLogic.Coordinate;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Components.MapBuilding;
 
 public class Building {
+	public static final String buildingName = "null"; // Used in the BuildingCounter
 	public MapBuilding drawInfo;
 	public Coordinate position;
 	public int width, height;
@@ -42,5 +44,9 @@ public class Building {
 	public void setPosition(Coordinate Position) {
 		position = Position;
 		drawInfo.setGridCoordinates(position.x, position.y);
+	}
+	
+	public void incrementBuildingCounter() {
+		BuildingCounter.increaseBuildingCounter(buildingName, 1);
 	}
 }
