@@ -1,9 +1,11 @@
 package CampusTycoon.GameLogic;
 
 import CampusTycoon.UI.ScreenUtils;
+import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.UI.Drawer;
 
 public class Timer{
+	public static MenuText text;
     private static float timeRemaining;
     private boolean isRunning;
     private boolean hasEnded;
@@ -37,6 +39,11 @@ public class Timer{
                 timeRemaining = 0;
                 onTimeUp(); // Call onTimeUp to handle end logic
             }
+			
+			if (text != null) {
+				text.text = String.valueOf(timeRemaining).split("\\.")[0];
+				text.update();
+			}
         }
     }
     

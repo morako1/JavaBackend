@@ -176,6 +176,7 @@ public class GameUtils {
 
 		MenuText timerText = new MenuText("" + Timer.getTimeRemaining() + "", 80, 100, 2f, 2f);
 		timerText.setAnchor(Anchor.TopRight);
+		Timer.text = timerText;
     
 		
         List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText, accommodationCount, studyCount, cafeCount, relaxCount, timerText);
