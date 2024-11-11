@@ -135,8 +135,10 @@ public class GameUtils {
 		
 		
 
-        MenuText satisfactionText = new MenuText("" + SatisfactionMeter.getSatisfactionScore() +"", 50, 30, 2f, 2f);
+        MenuText satisfactionText = new MenuText("", 50, 30, 2f, 2f);
         satisfactionText.setAnchor(Anchor.TopRight);
+		SatisfactionMeter.satisfactionText = satisfactionText;
+		SatisfactionMeter.updateDisplay();
 
         MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
 		notifText1.setAnchor(Anchor.TopLeft);
@@ -166,19 +168,19 @@ public class GameUtils {
         Drawer.add(1, eventScreenBackdrop); // Rendered behind the rest of the UI
     
         Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66);
-        buttonAccept.setClickAction(
-			Actions.CloseEventPopup, Actions.IncreaseSatisfactionScore, 4);
+        buttonAccept.setClickAction(Actions.ChooseEventOption);
         buttonAccept.setAnchor(Anchor.Centre);
+		buttonAccept.value = 1; // Used so the Event class knows which button was clicked
 
         Button buttonNeutral = new Button("Neutral.png", 0, -106, 126, 66);
-        buttonNeutral.setClickAction(
-			Actions.CloseEventPopup, Actions.DecreaseSatisfactionSccore, 1);
+        buttonNeutral.setClickAction(Actions.ChooseEventOption);
         buttonNeutral.setAnchor(Anchor.Centre);
+		buttonNeutral.value = 2;
 
         Button buttonReject = new Button("Reject.png", 130, -106, 126, 66);
-        buttonReject.setClickAction(
-			Actions.CloseEventPopup, Actions.DecreaseSatisfactionSccore, 5);
+        buttonReject.setClickAction(Actions.ChooseEventOption);
         buttonReject.setAnchor(Anchor.Centre);
+		buttonReject.value = 3;
 
 		
         List<Component> eventChoices = Arrays.asList(buttonAccept, buttonReject, buttonNeutral);

@@ -6,14 +6,13 @@ import java.util.function.Consumer;
 import CampusTycoon.UI.Component;
 import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.GameUtils;
-import CampusTycoon.InputHandler;
-import CampusTycoon.UI.Drawer;
 import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.MapUtils;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 
 public class Button extends Component {
-
+	public int value; // Used to carry information about which button was pressed (i.e. in events)
+	
 	public Button(float X, float Y, float Width, float Height) {
 		super(X, Y, Width, Height);
 	}
@@ -40,6 +39,9 @@ public class Button extends Component {
 	protected static void closeEventPopup(Boolean isAction) {
 		GameUtils.currentEvent.eventUI.close();
 		System.out.println("Event closed");
+	}
+	protected void chooseEventOption(Boolean isAction) {
+		GameUtils.currentEvent.chooseOption(value);
 	}
 
 	protected static void toggleAccommodationBuilding(Boolean isAction) {
@@ -77,6 +79,7 @@ public class Button extends Component {
 				action = a -> openGameplayScreen(a);
 				break;
 				
+				
 			// Events
 			case Actions.OpenEventPopup:
 				action = a -> openEventPopup(a);
@@ -85,6 +88,11 @@ public class Button extends Component {
 				action = a -> closeEventPopup(a);
 				break;
 				
+			case Actions.ChooseEventOption:
+				action = a -> chooseEventOption(a);
+				break;
+				
+			
 			// Building toggles
 			case Actions.ToggleAccommodationBuilding:
 				action = a -> toggleAccommodationBuilding(a);
