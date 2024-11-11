@@ -171,10 +171,11 @@ public class GameUtils {
         MenuText notifText2 = new MenuText ("Notification 2", 135, 105, 1.5f, 1.5f);
         notifText2.setAnchor(Anchor.TopLeft);
 
-		MenuText buildingCounterText = new MenuText("" + BuildingCounter.getTotalBuildingCount() + "", 70, 25, 2f, 2f);
+		MenuText buildingCounterText = new MenuText(String.valueOf(BuildingCounter.getTotalBuildingCount()), 70, 25, 2f, 2f);
 		buildingCounterText.setAnchor(Anchor.TopCentre);
+		BuildingCounter.totalCountUI = buildingCounterText;
 
-		MenuText timerText = new MenuText("" + Timer.getTimeRemaining() + "", 80, 100, 2f, 2f);
+		MenuText timerText = new MenuText("Time: " + Timer.getTimeRemaining(), 135, 100, 2f, 2f);
 		timerText.setAnchor(Anchor.TopRight);
 		Timer.text = timerText;
     

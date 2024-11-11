@@ -41,7 +41,7 @@ public class Timer{
             }
 			
 			if (text != null) {
-				text.text = String.valueOf(timeRemaining).split("\\.")[0];
+				text.text = "Time: " + String.valueOf(timeRemaining).split("\\.")[0];
 				text.update();
 			}
         }
@@ -62,6 +62,7 @@ public class Timer{
 
             Drawer.clear();
             ScreenUtils.OpenEndScreen();
+			BuildingCounter.reset();
         }
     }
 }

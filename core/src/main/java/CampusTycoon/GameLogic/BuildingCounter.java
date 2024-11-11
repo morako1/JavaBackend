@@ -12,6 +12,13 @@ public class BuildingCounter {
 	// [0] = "Accommodation", [1] = "Study", [2] = "Cafeteria", [3] = "Relaxation", [4] = "null"
 	private static int[] buildingCounts = new int[5];
 	public static List<MenuText> UI = new ArrayList<MenuText>();
+	public static MenuText totalCountUI;
+	
+	public static void reset() {
+		totalBuildingCount = 0;
+		buildingCounts = new int[5];
+		UI = new ArrayList<MenuText>();
+	}
 
     public static int getTotalBuildingCount() {
         return totalBuildingCount;
@@ -31,6 +38,8 @@ public class BuildingCounter {
 			textDisplay.text = String.valueOf(buildingCounts[i]);
 			textDisplay.update();
 		}
+		totalCountUI.text = String.valueOf(totalBuildingCount);
+		totalCountUI.update();
 	}
 	
 	private static int getBuildingCountIndex(String building) {
