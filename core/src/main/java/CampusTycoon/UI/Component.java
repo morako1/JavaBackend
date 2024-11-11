@@ -18,11 +18,10 @@ public abstract class Component {
 	// Add to this class when implementing new component functionalities
 	public abstract class Actions {
 		public static final String OpenGameplayScreen = "OPENGAMEPLAYSCREEN";
+		public static final String OpenEventScreen = "OPENEVENTSCREEN";
 		public static final String OpenStartScreen = "OPENSTARTSCREEN";
-		
-		public static final String OpenEventPopup = "OPENEVENTPOPUP";
-		public static final String CloseEventPopup = "CLOSEEVENTPOPUP";
-		public static final String ChooseEventOption = "CHOOSEEVENTOPTION";
+		public static final String CloseEventScreen = "CLOSEEVENTSCREEN";
+		public static final String OpenEndScreen = "OPENENDSCREEN";
 		
 		public static final String IncreaseSatisfactionScore = "INCREASESATISFACTIONSCORE";
 		public static final String DecreaseSatisfactionSccore = "DECREASESATISFACTIONSCORE";

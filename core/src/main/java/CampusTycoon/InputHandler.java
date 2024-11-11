@@ -18,18 +18,6 @@ public class InputHandler implements InputProcessor {
 	private static boolean leftClickDown = false;
 	
 	
-	// Removes a component from clickables, so that it stops being processed
-	// Does a linear search through the list to find the component
-	public static void removeComponent(Component component) {
-		for (int index = 0; index < clickables.size(); index++) {
-			if (component.equals(clickables.get(index))) {
-				clickables.remove(index);
-				return;
-			}
-		}
-	}
-	
-	
 	public static void clear() {
 		clickables = new ArrayList<Component>();
 	}
