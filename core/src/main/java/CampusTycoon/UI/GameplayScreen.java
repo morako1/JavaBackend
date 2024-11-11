@@ -13,7 +13,7 @@ public class GameplayScreen implements Screen{
 
     @Override
     public void show() {
-        timer = new Timer(5);
+        timer = new Timer(10); // Sets a countdown for 300 seconds (5 minutes)
         timer.start();
         GameUtils.startGame();
         GameUtils.createGameplayUI();
@@ -23,6 +23,7 @@ public class GameplayScreen implements Screen{
     @Override
     public void render(float delta) {
         timer.update(delta); // Update the timer every frame
+        
 
         // Check if the timer has ended and stateChanged is false
         if (timer.hasEnded() && !stateChanged) {

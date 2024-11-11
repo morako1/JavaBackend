@@ -4,31 +4,32 @@ import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.UI.Drawer;
 
 public class Timer{
-    private float timeRemaining;
+    private static float timeRemaining;
     private boolean isRunning;
     private boolean hasEnded;
 
+    
     public Timer(float startTime) {
         this.timeRemaining = startTime;
         this.isRunning = false;
         this.hasEnded = false;
     }
-
+    
     public void start() {
         isRunning = true;
         hasEnded = false; // Reset if the timer is restarted
     }
-
+    
     public void pause() {
         isRunning = false;
     }
-
+    
     public void reset(float startTime) {
         this.timeRemaining = startTime;
         this.isRunning = false;
         this.hasEnded = false;
     }
-
+    
     public void update(float deltaTime) {
         if (isRunning && timeRemaining > 0) {
             timeRemaining -= deltaTime;
@@ -38,8 +39,8 @@ public class Timer{
             }
         }
     }
-
-    public float getTimeRemaining() {
+    
+    public static float getTimeRemaining() {
         return timeRemaining;
     }
 
