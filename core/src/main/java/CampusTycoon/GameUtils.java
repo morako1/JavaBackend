@@ -3,8 +3,6 @@ package CampusTycoon;
 import java.util.Arrays;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-
 import CampusTycoon.GameLogic.Map;
 import CampusTycoon.GameLogic.SatisfactionMeter;
 import CampusTycoon.UI.Camera;
@@ -12,16 +10,13 @@ import CampusTycoon.UI.Component;
 import CampusTycoon.UI.Component.Actions;
 import CampusTycoon.UI.Component.Anchor;
 import CampusTycoon.UI.Drawer;
-import CampusTycoon.UI.Components.Backdrop;
 import CampusTycoon.UI.Components.Button;
 import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.GameLogic.BuildingCounter;
-import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.Buildings.*;
 
 public class GameUtils {
 	public static Map map;
-	public static Event currentEvent;
 	
 	public static void startGame() {
 		map = new Map();
@@ -47,6 +42,8 @@ public class GameUtils {
 		}
 	}
 	
+
+
 	public static void createStartMenuUI() {
         Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66);
 		buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
@@ -57,7 +54,6 @@ public class GameUtils {
 
         Button buttonSettings = new Button("Settings.png", 0, -50, 262, 66);
         buttonSettings.setAnchor(Anchor.Centre);
-
 
         List<Component> startScreenButtonList = Arrays.asList(
 			buttonNewGame, 
@@ -75,7 +71,11 @@ public class GameUtils {
 		InputHandler.add(startScreenButtonList);
 	}
 	
+
+
 	public static void createGameplayUI() {
+
+		//Creating all of the buttons for the UI
 		Button buttonAccommodation = new Button("Buildings\\Accommodation.png", -250, 10, 90, 66);
 		buttonAccommodation.setClickAction(Actions.ToggleAccommodationBuilding);
 		buttonAccommodation.setAnchor(Anchor.BottomCentre);
@@ -108,16 +108,15 @@ public class GameUtils {
         buttonPeople.setAnchor(Anchor.TopCentre);
 
         Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
-        notif1.setClickAction(Actions.OpenEventPopup);
+        notif1.setClickAction(Actions.OpenEventScreen);
         notif1.setAnchor(Anchor.TopLeft);
 
         Button notif2 = new Button("QuestionMark.png", 0, 80, 80, 80);
-        notif2.setClickAction(Actions.OpenEventPopup);
+        notif2.setClickAction(Actions.OpenEventScreen);
         notif2.setAnchor(Anchor.TopLeft);
 
         Button buttonSatisfaction = new Button("Satisfaction.png", 100, 10, 200, 66);
         buttonSatisfaction.setAnchor(Anchor.TopRight);
-			
 			
 		List<Component> UIButtons = Arrays.asList(
 			buttonAccommodation, buttonStudy, buttonCafe, buttonRelax, buttonPH5, buttonPH6, 
@@ -132,13 +131,9 @@ public class GameUtils {
 		
 		// Add all buttons to the InputHandler to allow for interaction handling
 		InputHandler.add(UIButtons);
-		
-		
 
-        MenuText satisfactionText = new MenuText("", 50, 30, 2f, 2f);
+        MenuText satisfactionText = new MenuText("" + SatisfactionMeter.getSatisfactionScore() +"", 50, 30, 2f, 2f);
         satisfactionText.setAnchor(Anchor.TopRight);
-		SatisfactionMeter.satisfactionText = satisfactionText;
-		SatisfactionMeter.updateDisplay();
 
         MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
 		notifText1.setAnchor(Anchor.TopLeft);
@@ -149,7 +144,6 @@ public class GameUtils {
 		MenuText buildingCounterText = new MenuText("" +BuildingCounter.getBuildingCounter() + "", 70, 25, 2f, 2f);
 		buildingCounterText.setAnchor(Anchor.TopCentre);
      
-		
         List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText);
 		
 		// Add all text to the drawQueue
@@ -159,47 +153,31 @@ public class GameUtils {
 		}
 		// No need to add text to the InputHandler (unless you really want to be able to click on it for some reason)
 	}
-	
-	public static void createEventPopupUI(Event event) {
-        Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);
-        eventScreenBackdrop.setAnchor((Anchor.Centre));
-		eventScreenBackdrop.update();
-		event.eventUI.elements.add(eventScreenBackdrop);
-        Drawer.add(1, eventScreenBackdrop); // Rendered behind the rest of the UI
-    
-        Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66);
-        buttonAccept.setClickAction(Actions.ChooseEventOption);
-        buttonAccept.setAnchor(Anchor.Centre);
-		buttonAccept.value = 1; // Used so the Event class knows which button was clicked
 
-        Button buttonNeutral = new Button("Neutral.png", 0, -106, 126, 66);
-        buttonNeutral.setClickAction(Actions.ChooseEventOption);
-        buttonNeutral.setAnchor(Anchor.Centre);
-		buttonNeutral.value = 2;
 
-        Button buttonReject = new Button("Reject.png", 130, -106, 126, 66);
-        buttonReject.setClickAction(Actions.ChooseEventOption);
-        buttonReject.setAnchor(Anchor.Centre);
-		buttonReject.value = 3;
 
+	public static void createEndScreenUI() {
+		Button buttonMainMenu = new Button("Main Menu.png", 0, 90, 262, 66);
+		buttonMainMenu.setClickAction(Actions.OpenStartScreen);
+        buttonMainMenu.setAnchor(Anchor.Centre);
+
+        Button buttonNewGame = new Button("New Game.png", 0, 20, 262, 66);
+		buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
+        buttonNewGame.setAnchor(Anchor.Centre);
+
+        List<Component> endScreenButtonList = Arrays.asList(
+			buttonMainMenu, 
+			buttonNewGame);
 		
-        List<Component> eventChoices = Arrays.asList(buttonAccept, buttonReject, buttonNeutral);
-		
-		for (Component button : eventChoices) {
-			// All added to layer '2' (on top of almost all other UI elements)
-			button.update();
-			event.eventUI.elements.add(button);
-			Drawer.add(2, button);
+		// Add all buttons to the drawQueue
+		for (Component button : endScreenButtonList) {
+			// All added to layer '1' (generally on top of most other UI elements)
+			Drawer.add(1, button);
 		}
-        InputHandler.add(eventChoices);
-		event.eventUI.buttonElements = eventChoices;
-
-        //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
-        //eventTextTitle.setAnchor(Anchor.Centre);
-		MenuText testText = new MenuText(event.eventText, 0, 0, 1.5f, 1.5f);
-		testText.setAnchor(Anchor.Centre);
-		testText.update();
-		event.eventUI.elements.add(testText);
-        Drawer.add(2, testText);
+		
+		// Add all buttons to the InputHandler to allow for interaction handling
+		// (Allows buttons to be clicked and things to actually happen)
+		InputHandler.add(endScreenButtonList);
 	}
+
 }
