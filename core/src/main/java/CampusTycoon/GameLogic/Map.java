@@ -9,7 +9,6 @@ import CampusTycoon.GameLogic.Tiles.*;
 import CampusTycoon.UI.Drawer;
 import CampusTycoon.UI.Systems.BuildingDisplay;
 import CampusTycoon.UI.Systems.MapDisplay;
-import CampusTycoon.GameLogic.MapUtils.Placement;
 
 public class Map {
 	public static String defaultMap = "York.txt";

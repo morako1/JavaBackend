@@ -75,7 +75,6 @@ public class MapUtils {
 		
 		// Adds a few cafeterias to the map
 		map.placeBuilding(new Coordinate(5, 12));
-		SatisfactionMeter.increaseSatisfactionScore(4);
 		map.placeBuilding(new Coordinate(23, 9));
 		map.placeBuilding(new Coordinate(7, 19));
 	}
