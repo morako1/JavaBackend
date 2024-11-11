@@ -18,8 +18,10 @@ public class Drawer {
 	private static List<DrawInfo> drawQueue = new LinkedList<>();
 	private static SpriteBatch spriteBatch = new SpriteBatch();
 	private static BitmapFont font = new BitmapFont();
-	private static Map<String, Texture> textures = new HashMap(); // Note: this exists because I learned that generating hundreds of new textures every second is NOT a good idea
-	private static Map<Texture, Map<Integer, TextureRegion>> textureRegions = new HashMap();
+	private static Map<String, Texture>
+		textures = new HashMap<String, Texture>(); // Note: this exists because I learned that generating hundreds of new textures every second is NOT a good idea
+	private static Map<Texture, Map<Integer, TextureRegion>>
+		textureRegions = new HashMap<Texture, Map<Integer, TextureRegion>>();
 	
 	private static class DrawInfo { // Cursed static class with non-static members
 		public int layer; // Used to determine draw order
@@ -165,13 +167,11 @@ public class Drawer {
 	// Removes the given component from the drawQueue
 	// Does a linear search of the drawQueue starting from the index given by startIndex
 	private static void remove(Component component, int startIndex) {
-		int index = startIndex;
-		for (DrawInfo drawInfo : drawQueue) {
-			if (drawInfo.component.equals(component)) {
+		for (int index = startIndex; index < drawQueue.size(); index++) {
+			if (drawQueue.get(index).component.equals(component)) {
 				drawQueue.remove(index);
 				return;
 			}
-			index++;
 		}
 	}
 	

@@ -5,33 +5,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import CampusTycoon.GameUtils;
-import CampusTycoon.GameLogic.Timer;
 
 public class GameplayScreen implements Screen{
-    private Timer timer;
-    private boolean stateChanged;
-
-    @Override
-    public void show() {
-        timer = new Timer(5);
-        timer.start();
-        GameUtils.startGame();
-        GameUtils.createGameplayUI();
-        stateChanged = false;  // Reset stateChanged when the screen is shown
-    }
-    
-    @Override
-    public void render(float delta) {
-        timer.update(delta); // Update the timer every frame
-
-        // Check if the timer has ended and stateChanged is false
-        if (timer.hasEnded() && !stateChanged) {
-            stateChanged = true; // Set the flag to true to prevent re-execution
+        @Override
+        public void show() {
+            GameUtils.startGame();
+			GameUtils.createGameplayUI();
         }
-
-        ScreenUtils.clear(Color.BLACK);
-        Drawer.drawAll();
-    }
+    
+        @Override
+        public void render(float delta) {
+            ScreenUtils.clear(Color.BLACK);
+            Drawer.drawAll();
+        }
         
         @Override
         public void resize(int width, int height) {
