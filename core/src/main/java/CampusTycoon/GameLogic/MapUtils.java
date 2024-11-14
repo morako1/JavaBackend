@@ -38,7 +38,6 @@ public class MapUtils {
 		}
 	}
 	
-	
 	public boolean buildingPlaceable(Building newBuilding) {
 		for (Building Building : map.buildings) {
 			Coordinate b = Building.position;
@@ -53,7 +52,6 @@ public class MapUtils {
 		return true;
 	}
 	
-	
 	public boolean tileHasBuilding(Coordinate tile) {
 		for (Building building : map.buildings) {
 			Coordinate pos = building.position;
@@ -66,6 +64,15 @@ public class MapUtils {
 		}
 		return false;
 	}
+	
+	public boolean outsideMap(Coordinate tile) {
+		if (tile.x >= map.width || tile.x < 0 ||
+				tile.y >= map.height || tile.y < 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public void initialiseBuildings() {
 		map.buildings = new ArrayList<Building>(); 

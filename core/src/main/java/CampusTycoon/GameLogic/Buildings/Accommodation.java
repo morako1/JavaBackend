@@ -6,12 +6,13 @@ import CampusTycoon.GameLogic.Coordinate;
 public class Accommodation extends Building {
 	public static final String defaultImage = "Buildings\\Accommodation.png";
 	public static final String buildingName = "Accommodation";
+	public static int width = 3, height = 3;
 	
 	public Accommodation(Coordinate Position) {
-		super(Position, defaultImage, 3 , 3);
+		super(Position, defaultImage, width , height);
 	}
 	public Accommodation() {
-		super(new Coordinate(0, 0), defaultImage, 3 , 3);
+		super(new Coordinate(0, 0), defaultImage, width , height);
 	}
 	
 	

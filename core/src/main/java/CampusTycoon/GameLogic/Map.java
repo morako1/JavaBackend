@@ -56,6 +56,11 @@ public class Map {
 			return; // Building location invalid
 		}
 		
+		if (mapUtils.outsideMap(position)) {
+			// Tried to place a building in the void, so places a space station instead
+			building = new SpaceStation(position);
+		}
+		
 		// Else if placing and building location valid:
 		buildings.add(building);
 		Drawer.add(-1, building.drawInfo);
