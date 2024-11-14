@@ -70,14 +70,19 @@ public class MapUtils {
 	public void initialiseBuildings() {
 		map.buildings = new ArrayList<Building>(); 
 		
-		// Forcefully enables placement mode and sets the building to cafeteria
-		map.placementType = Placement.CafeteriaBuilding;
+		
+		// Forcefully enables placement mode
 		map.placing = true;
 		
-		// Adds a few cafeterias to the map
-		map.placeBuilding(new Coordinate(5, 12));
-		map.placeBuilding(new Coordinate(23, 9));
-		map.placeBuilding(new Coordinate(7, 19));
+		// Adds a few different buildings to the map
+		map.placementType = Placement.CafeteriaBuilding;
+		map.placeBuilding(new Coordinate(4, 5));
+		
+		map.placementType = Placement.StudyBuilding;
+		map.placeBuilding(new Coordinate(10, 13));
+		
+		map.placementType = Placement.AccommodationBuilding;
+		map.placeBuilding(new Coordinate(23, 14));
 	}
 	
 	public void initialiseGrid() {
