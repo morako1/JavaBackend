@@ -108,8 +108,8 @@ public class Camera {
 		float oldZoom = zoom;
 		zoom += scrollAmount / 10;
 		zoom = Math.min(MaxZoom, Math.max(MinZoom, zoom));
-		x = Math.round(x * (oldZoom / zoom));
-		y = Math.round(y * (oldZoom / zoom));
+		x = Math.round(x * (oldZoom / zoom) + 64f / zoom); // 64f makes sense as its the tile width
+		y = Math.round(y * (oldZoom / zoom) + 36f / zoom); // 36f does not make any sense at all
 		
 		checkMouseOverTile(lastMousePos.x, lastMousePos.y);
 		drawCursor();

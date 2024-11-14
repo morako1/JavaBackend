@@ -33,12 +33,10 @@ public class EndScreen implements Screen{
     
         @Override
         public void pause() {
-            // Menu screen can't be paused, so nothing will be done
         }
     
         @Override
         public void resume() {
-            // Menu screen can't be resumed, so nothing will be done
         }
     
         @Override
