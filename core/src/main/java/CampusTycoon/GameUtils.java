@@ -197,7 +197,7 @@ public class GameUtils {
         eventScreenBackdrop.setAnchor((Anchor.Centre));
 		eventScreenBackdrop.update();
 		event.eventUI.elements.add(eventScreenBackdrop);
-        Drawer.add(1, eventScreenBackdrop); // Rendered behind the rest of the UI
+        Drawer.add(1, eventScreenBackdrop); // Layer 1 so its behind the rest of the UI
     
         Button buttonAccept = new Button("Accept.png", -130, -106, 126, 66);
         buttonAccept.setClickAction(Actions.ChooseEventOption);
@@ -228,7 +228,11 @@ public class GameUtils {
 
         //MenuText eventTextTitle = new MenuText("Event 1", 0, 0, 0, 0);
         //eventTextTitle.setAnchor(Anchor.Centre);
-		MenuText testText = new MenuText(event.eventText, 0, 0, 1.5f, 1.5f);
+		MenuText testText = new MenuText(
+			event.eventText, 
+			-eventScreenBackdrop.getBaseWidth() / 2 + eventScreenBackdrop.getBaseX() + 15, 
+			eventScreenBackdrop.getBaseHeight() / 2 + eventScreenBackdrop.getBaseY() - 12, 
+			1.5f, 1.5f);
 		testText.setAnchor(Anchor.Centre);
 		testText.update();
 		event.eventUI.elements.add(testText);
