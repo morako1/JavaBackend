@@ -194,7 +194,7 @@ public class GameUtils {
 
 	public static void createEventPopupUI(Event event) {
         Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);
-        eventScreenBackdrop.setAnchor((Anchor.Centre));
+        eventScreenBackdrop.setAnchor(Anchor.Centre);
 		eventScreenBackdrop.update();
 		event.eventUI.elements.add(eventScreenBackdrop);
         Drawer.add(1, eventScreenBackdrop); // Layer 1 so its behind the rest of the UI

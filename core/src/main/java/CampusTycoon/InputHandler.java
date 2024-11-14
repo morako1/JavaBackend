@@ -20,7 +20,7 @@ public class InputHandler implements InputProcessor {
 	
 	// Removes a component from clickables, so that it stops being processed
 	// Does a linear search through the list to find the component
-	public static void removeComponent(Component component) {
+	public static void remove(Component component) {
 		for (int index = 0; index < clickables.size(); index++) {
 			if (component.equals(clickables.get(index))) {
 				clickables.remove(index);

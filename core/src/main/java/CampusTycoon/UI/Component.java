@@ -16,7 +16,7 @@ public abstract class Component {
 	} 
 	
 	// Add to this class when implementing new component functionalities
-	public abstract class Actions {
+	public final class Actions {
 		public static final String OpenGameplayScreen = "OPENGAMEPLAYSCREEN";
 		public static final String OpenStartScreen = "OPENSTARTSCREEN";
 		

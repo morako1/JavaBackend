@@ -26,7 +26,7 @@ public class EventPopup {
 
     public void close() {
 		for (Component element : buttonElements) { 
-			InputHandler.removeComponent(element);
+			InputHandler.remove(element);
 		}
 		
 		for (Component element : elements) { 
