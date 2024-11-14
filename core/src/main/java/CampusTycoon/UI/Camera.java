@@ -19,7 +19,8 @@ public class Camera {
 	public static int x = 0, y = 0; // Current coordinates of the camera
 	public static int width = Window.defaultWidth, height = Window.defaultHeight;
 	public static float zoom = 1;
-	private static final float MinZoom = 0.44f, MaxZoom = 2.75f;
+	private static final float MinZoom = 0.375f, MaxZoom = 2.75f;
+	private static final int ZoomSpeed = 8; // Lower = faster
 	private static Coordinate lastMousePos = new Coordinate();
 	private static Coordinate lastClickPos = null;
 	private static boolean placing;
@@ -107,12 +108,12 @@ public class Camera {
 	public static void scroll(float scrollAmount) {
 		float oldZoom = zoom;
 		
-		zoom += scrollAmount / 7;
+		zoom += scrollAmount / ZoomSpeed;
 		zoom = Math.min(MaxZoom, Math.max(MinZoom, zoom));
 		
 		float sign = Math.signum(zoom - oldZoom);
 		x = Math.round(x * (oldZoom / zoom) + (sign * 64f) / zoom); // 64f makes sense as it is the tile sprite width
-		y = Math.round(y * (oldZoom / zoom) + (sign * 36f) / zoom); // 36f does not make any sense at all
+		y = Math.round(y * (oldZoom / zoom) + (sign * 36f) / zoom); // 36f does not make any sense at all (but it works)
 		
 		checkMouseOverTile(lastMousePos.x, lastMousePos.y);
 		drawCursor();
