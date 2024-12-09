@@ -11,35 +11,39 @@ import CampusTycoon.GameLogic.MapUtils;
 
 public class Button extends Component {
 	public int value; // Used to carry information about which button was pressed (i.e. in events)
-	
+
 	public Button(float X, float Y, float Width, float Height) {
 		super(X, Y, Width, Height);
 	}
+
 	public Button(String imagePath, float X, float Y, float Width, float Height) {
 		super(imagePath, X, Y, Width, Height);
 	}
+
 	public Button(List<String> imagePaths, float X, float Y, float Width, float Height) {
 		super(imagePaths, X, Y, Width, Height);
 	}
-	
-	
+
 	protected static void openStartScreen(Boolean isAction) {
 		ScreenUtils.OpenStartScreen();
 		System.out.println("Screen changed to StartScreen");
 	}
+
 	protected static void openGameplayScreen(Boolean isAction) {
 		ScreenUtils.openGameplayScreen();
 		System.out.println("Screen changed to GameplayScreen");
 	}
-	
+
 	protected static void openEventPopup(Boolean isAction) {
 		GameUtils.currentEvent = new Event();
 		System.out.println("Event opened");
 	}
+
 	protected static void closeEventPopup(Boolean isAction) {
 		GameUtils.currentEvent.eventUI.close();
 		System.out.println("Event closed");
 	}
+
 	protected void chooseEventOption(Boolean isAction) {
 		GameUtils.currentEvent.chooseOption(value);
 	}
@@ -48,25 +52,33 @@ public class Button extends Component {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.AccommodationBuilding);
 		printBuildingChange();
 	}
+
 	protected static void toggleStudyBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.StudyBuilding);
 		printBuildingChange();
 	}
+
 	protected static void toggleCafeteriaBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.CafeteriaBuilding);
 		printBuildingChange();
 	}
+
 	protected static void toggleRelaxationBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.RelaxationBuilding);
 		printBuildingChange();
 	}
-	private static void printBuildingChange() {
-		System.out.println(
-			"Toggled building placement mode to: " + GameUtils.map.placing +
-			"\nToggled building placement type to: " + GameUtils.map.placementType);
+
+	protected static void ToggleRestaurantBuilding(Boolean isAction) {
+		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.RestaurantBuilding);
+		printBuildingChange();
 	}
 
-	
+	private static void printBuildingChange() {
+		System.out.println(
+				"Toggled building placement mode to: " + GameUtils.map.placing +
+						"\nToggled building placement type to: " + GameUtils.map.placementType);
+	}
+
 	@Override
 	public void setClickAction(String Action) {
 		Consumer<Boolean> action = a -> none(a);
@@ -78,8 +90,7 @@ public class Button extends Component {
 			case Actions.OpenGameplayScreen:
 				action = a -> openGameplayScreen(a);
 				break;
-				
-				
+
 			// Events
 			case Actions.OpenEventPopup:
 				action = a -> openEventPopup(a);
@@ -87,12 +98,11 @@ public class Button extends Component {
 			case Actions.CloseEventPopup:
 				action = a -> closeEventPopup(a);
 				break;
-				
+
 			case Actions.ChooseEventOption:
 				action = a -> chooseEventOption(a);
 				break;
-				
-			
+
 			// Building toggles
 			case Actions.ToggleAccommodationBuilding:
 				action = a -> toggleAccommodationBuilding(a);
@@ -106,6 +116,8 @@ public class Button extends Component {
 			case Actions.ToggleRelaxationBuilding:
 				action = a -> toggleRelaxationBuilding(a);
 				break;
+			case Actions.ToggleRestaurantBuilding:
+				action = a -> ToggleRestaurantBuilding(a);
 			default:
 				System.out.println("Invalid action passed to button: " + this.toString());
 				break;
