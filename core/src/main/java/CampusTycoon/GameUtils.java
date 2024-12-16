@@ -77,56 +77,56 @@ public class GameUtils {
 	}
 
 	public static void createGameplayUI() {
-		Button buttonAccommodation = new Button("Buildings\\Accommodation.png", -250, 10, 90, 66);
+		Button buttonAccommodation = new Button("Buildings\\Accommodation.png", -500, 10, 90, 66);
 		buttonAccommodation.setClickAction(Actions.ToggleAccommodationBuilding);
 		buttonAccommodation.setAnchor(Anchor.BottomCentre);
 
 		MenuText accommodationCount = new MenuText(
-				String.valueOf(BuildingCounter.getBuildingCount(Accommodation.buildingName)),
-				-260, 110, 2f, 2f);
+				String.valueOf("Housing"),
+				-550, 110, 2f, 2f);
 		accommodationCount.setAnchor(Anchor.BottomCentre);
 		BuildingCounter.UI.add(accommodationCount);
 
-		Button buttonStudy = new Button("Buildings\\Study.png", -150, 10, 90, 66);
+		Button buttonStudy = new Button("Buildings\\Study.png", -300, 10, 90, 66);
 		buttonStudy.setClickAction(Actions.ToggleStudyBuilding);
 		buttonStudy.setAnchor(Anchor.BottomCentre);
 
 		MenuText studyCount = new MenuText(
-				String.valueOf(BuildingCounter.getBuildingCount(Study.buildingName)),
-				-160, 110, 2f, 2f);
+				String.valueOf("Study"),
+				-350, 110, 2f, 2f);
 		studyCount.setAnchor(Anchor.BottomCentre);
 		BuildingCounter.UI.add(studyCount);
 
-		Button buttonCafe = new Button("Buildings\\Cafeteria.png", -50, 10, 90, 66);
+		Button buttonCafe = new Button("Buildings\\Cafeteria.png", -100, 10, 90, 66);
 		buttonCafe.setClickAction(Actions.ToggleCafeteriaBuilding);
 		buttonCafe.setAnchor(Anchor.BottomCentre);
 
 		MenuText cafeCount = new MenuText(
-				String.valueOf(BuildingCounter.getBuildingCount(Cafeteria.buildingName)),
-				-60, 110, 2f, 2f);
+				String.valueOf("Cafe"),
+				-150, 110, 2f, 2f);
 		cafeCount.setAnchor(Anchor.BottomCentre);
 		BuildingCounter.UI.add(cafeCount);
 
-		Button buttonRelax = new Button("Buildings\\Relaxation.png", 50, 10, 90, 66);
+		Button buttonRelax = new Button("Buildings\\Relaxation.png", 100, 10, 90, 66);
 		buttonRelax.setClickAction(Actions.ToggleRelaxationBuilding);
 		buttonRelax.setAnchor(Anchor.BottomCentre);
 
 		MenuText relaxCount = new MenuText(
-				String.valueOf(BuildingCounter.getBuildingCount(Relaxation.buildingName)),
-				40, 110, 2f, 2f);
+				String.valueOf("Park"),
+				50, 110, 2f, 2f);
 		relaxCount.setAnchor(Anchor.BottomCentre);
 		BuildingCounter.UI.add(relaxCount);
 
-		Button buttonRestaurant = new Button("Buildings\\Restaurant.png", 150, 10, 90, 66);
+		Button buttonRestaurant = new Button("Buildings\\Restaurant.png", 300, 10, 90, 66);
 		buttonRestaurant.setClickAction(Actions.ToggleRestaurantBuilding);
 		buttonRestaurant.setAnchor(Anchor.BottomCentre);
 
 		MenuText restaurantCount = new MenuText(
-				String.valueOf(BuildingCounter.getBuildingCount(Restaurant.buildingName)), 140, 110, 2f, 2f);
+				String.valueOf("Restaurant"), 250, 110, 2f, 2f);
 		restaurantCount.setAnchor(Anchor.BottomCentre);
 		BuildingCounter.UI.add(restaurantCount);
 
-		Button buttonPH6 = new Button("Placeholder.png", 250, 10, 90, 66);
+		Button buttonPH6 = new Button("Placeholder.png", 500, 10, 90, 66);
 		buttonPH6.setAnchor(Anchor.BottomCentre);
 
 		Button buttonDollar = new Button("Dollar.png", -300, 0, 70, 66);

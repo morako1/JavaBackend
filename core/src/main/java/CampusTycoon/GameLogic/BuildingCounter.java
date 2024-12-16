@@ -29,20 +29,6 @@ public class BuildingCounter {
 		return buildingCounts[getBuildingCountIndex(building)];
 	}
 
-	public static void updateDisplay() {
-		if (UI.isEmpty()) {
-			return;
-		}
-
-		for (int i = 0; i < buildingCounts.length - 1; i++) {
-			MenuText textDisplay = UI.get(i);
-			textDisplay.text = String.valueOf(buildingCounts[i]);
-			textDisplay.update();
-		}
-		totalCountUI.text = String.valueOf(totalBuildingCount);
-		totalCountUI.update();
-	}
-
 	private static int getBuildingCountIndex(String building) {
 		switch (building) {
 			case Accommodation.buildingName:
@@ -72,12 +58,10 @@ public class BuildingCounter {
 
 	public static void increaseBuildingCounter(int value) {
 		totalBuildingCount += value;
-		updateDisplay();
 	}
 
 	public static void decreaseBuildingCounter(int value) {
 		totalBuildingCount -= value;
-		updateDisplay();
 	}
 
 }
