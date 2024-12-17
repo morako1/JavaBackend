@@ -54,7 +54,8 @@ public class MapUtils {
 					newPos.y + newBuilding.height - 1 >= b.y && newPos.y < b.y + Building.height) {
                 return false;
             }
-            if (!isRunning){
+            //If the game is paused do not allow placement
+            if (!isRunning) {
                 return false;
             }
 

@@ -154,16 +154,16 @@ public class GameUtils {
 //		notif1.setClickAction(Actions.OpenEventPopup);
 //		notif1.setAnchor(Anchor.TopLeft);
 
-		Button notif2 = new Button("Play.png", 0, 80, 80, 80);
-		notif2.setClickAction(Actions.Resume);
-		notif2.setAnchor(Anchor.TopLeft);
+//		Button notif2 = new Button("Play.png", 0, 80, 80, 80);
+//		notif2.setClickAction(Actions.Resume);
+//		notif2.setAnchor(Anchor.TopLeft);
 
 		Button buttonSatisfaction = new Button("Satisfaction.png", 100, 10, 200, 66);
 		buttonSatisfaction.setAnchor(Anchor.TopRight);
 
 		List<Component> UIButtons = Arrays.asList(
 				buttonAccommodation, buttonStudy, buttonCafe, buttonRelax, buttonRestaurant, buttonPH6,
-				notif2,/* notif1,*/ buttonPause, buttonSatisfaction,
+				/*notif2, notif1,*/ buttonPause, buttonSatisfaction,
 				buttonDollar, buttonHouses, buttonPeople);
 
 		// Add all buttons to the drawQueue
@@ -207,16 +207,12 @@ public class GameUtils {
 		// click on it for some reason)
 	}
 
-    public static void createPausePopupUI(){
-        Backdrop pausePopup = new Backdrop("Backdrop.png", 0, 30, 200, 100);
-        pausePopup.setAnchor(Anchor.Centre);
-        Drawer.add(1, pausePopup);
-
-        Button resumeGame = new Button("Play.png", -50, 20, 100, 50);
-        resumeGame.setClickAction(Actions.Resume);
-        resumeGame.setAnchor(Anchor.Centre);
-        Drawer.add(2, resumeGame);
-    }
+//    public static void pauseModeUI(){
+//        Button resumeGame = new Button("Play.png", 100, 0, 80, 80);
+//        resumeGame.setClickAction(Actions.Resume);
+//        resumeGame.setAnchor(Anchor.TopLeft);
+//        Drawer.add(1, resumeGame);
+//    }
 
 	public static void createEventPopupUI(Event event) {
 		Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);

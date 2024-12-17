@@ -4,6 +4,9 @@ import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.UI.Components.MenuText;
 import CampusTycoon.UI.Drawer;
 
+import static CampusTycoon.GameUtils.createGameplayUI;
+
+
 public class Timer{
 	public static MenuText text;
     private static float timeRemaining;
@@ -23,8 +26,8 @@ public class Timer{
     }
 
     public static void pause() {
+        isRunning = !isRunning;
 
-        isRunning = false;
     }
 
     public static void resume() { isRunning = true; }

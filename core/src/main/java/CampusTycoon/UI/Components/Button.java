@@ -14,6 +14,7 @@ import CampusTycoon.GameLogic.Timer;
 import static CampusTycoon.GameLogic.Timer.pause;
 import static CampusTycoon.GameLogic.Timer.resume;
 
+
 public class Button extends Component {
 	public int value; // Used to carry information about which button was pressed (i.e. in events)
 
@@ -52,6 +53,11 @@ public class Button extends Component {
 		GameUtils.currentEvent = new Event();
 		System.out.println("Event opened");
 	}
+
+//    protected static void openPausePopup(Boolean isAction) {
+//        GameUtils.currentEvent = new Event();
+//
+//    }
 
 	protected static void closeEventPopup(Boolean isAction) {
 		GameUtils.currentEvent.eventUI.close();
