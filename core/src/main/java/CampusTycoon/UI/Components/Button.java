@@ -9,6 +9,10 @@ import CampusTycoon.GameUtils;
 import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.MapUtils;
 import com.badlogic.gdx.Gdx;
+import CampusTycoon.GameLogic.Timer;
+
+import static CampusTycoon.GameLogic.Timer.pause;
+import static CampusTycoon.GameLogic.Timer.resume;
 
 public class Button extends Component {
 	public int value; // Used to carry information about which button was pressed (i.e. in events)
@@ -62,6 +66,15 @@ public class Button extends Component {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.AccommodationBuilding);
 		printBuildingChange();
 	}
+
+    protected static void Pause(Boolean isAction){
+        pause();
+
+    }
+
+    protected static void Resume(Boolean isAction){
+        resume();
+    }
 
 	protected static void toggleStudyBuilding(Boolean isAction) {
 		GameUtils.map.toggleBuildingPlacement(MapUtils.Placement.StudyBuilding);
@@ -118,6 +131,13 @@ public class Button extends Component {
 			case Actions.ChooseEventOption:
 				action = a -> chooseEventOption(a);
 				break;
+
+            case Actions.Pause:
+                action = a -> pause();
+                break;
+            case Actions.Resume:
+                action = a -> resume();
+                break;
 
 			// Building toggles
 			case Actions.ToggleAccommodationBuilding:

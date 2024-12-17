@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import CampusTycoon.GameLogic.Buildings.*;
 import CampusTycoon.GameLogic.Tiles.*;
 
+import static CampusTycoon.GameLogic.Timer.isRunning;
+
 public class MapUtils {
 	private Map map;
 
@@ -50,8 +52,13 @@ public class MapUtils {
 			// overlap with an existing building
 			if (newPos.x + newBuilding.width - 1 >= b.x && newPos.x < b.x + Building.width &&
 					newPos.y + newBuilding.height - 1 >= b.y && newPos.y < b.y + Building.height) {
-				return false;
-			}
+                return false;
+            }
+            if (!isRunning){
+                return false;
+            }
+
+
 		}
 		return true;
 	}

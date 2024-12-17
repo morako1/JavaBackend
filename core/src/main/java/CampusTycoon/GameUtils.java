@@ -88,6 +88,11 @@ public class GameUtils {
 		buttonAccommodation.setClickAction(Actions.ToggleAccommodationBuilding);
 		buttonAccommodation.setAnchor(Anchor.BottomCentre);
 
+        Button buttonPause = new Button("Pause.png", 0, 0, 80, 80);
+        buttonPause.setClickAction(Actions.Pause);
+        //buttonPause.setClickAction(Actions.OpenEventPopup);
+        buttonPause.setAnchor(Anchor.TopLeft);
+
 		MenuText accommodationCount = new MenuText(
 				String.valueOf("Housing"),
 				-550, 110, 2f, 2f);
@@ -145,12 +150,12 @@ public class GameUtils {
 		Button buttonPeople = new Button("Person.png", 300, 0, 60, 66);
 		buttonPeople.setAnchor(Anchor.TopCentre);
 
-		Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
-		notif1.setClickAction(Actions.OpenEventPopup);
-		notif1.setAnchor(Anchor.TopLeft);
+//		Button notif1 = new Button("ExclamationMark.png", -12, 0, 100, 80);
+//		notif1.setClickAction(Actions.OpenEventPopup);
+//		notif1.setAnchor(Anchor.TopLeft);
 
-		Button notif2 = new Button("QuestionMark.png", 0, 80, 80, 80);
-		notif2.setClickAction(Actions.OpenEventPopup);
+		Button notif2 = new Button("Play.png", 0, 80, 80, 80);
+		notif2.setClickAction(Actions.Resume);
 		notif2.setAnchor(Anchor.TopLeft);
 
 		Button buttonSatisfaction = new Button("Satisfaction.png", 100, 10, 200, 66);
@@ -158,7 +163,7 @@ public class GameUtils {
 
 		List<Component> UIButtons = Arrays.asList(
 				buttonAccommodation, buttonStudy, buttonCafe, buttonRelax, buttonRestaurant, buttonPH6,
-				notif1, notif2, buttonSatisfaction,
+				notif2,/* notif1,*/ buttonPause, buttonSatisfaction,
 				buttonDollar, buttonHouses, buttonPeople);
 
 		// Add all buttons to the drawQueue
@@ -175,9 +180,9 @@ public class GameUtils {
 		SatisfactionMeter.satisfactionText = satisfactionText;
 		SatisfactionMeter.updateDisplay();
 
-		MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
-		notifText1.setAnchor(Anchor.TopLeft);
-
+//		MenuText notifText1 = new MenuText("Notification 1", 130, 23, 1.5f, 1.5f);
+//		notifText1.setAnchor(Anchor.TopLeft);
+//
 		MenuText notifText2 = new MenuText("Notification 2", 135, 105, 1.5f, 1.5f);
 		notifText2.setAnchor(Anchor.TopLeft);
 
@@ -190,7 +195,7 @@ public class GameUtils {
 		timerText.setAnchor(Anchor.TopRight);
 		Timer.text = timerText;
 
-		List<Component> textElements = Arrays.asList(satisfactionText, notifText1, notifText2, buildingCounterText,
+		List<Component> textElements = Arrays.asList(satisfactionText, /*notifText1,*/ notifText2, buildingCounterText,
 				accommodationCount, studyCount, cafeCount, relaxCount, restaurantCount, timerText);
 
 		// Add all text to the drawQueue
@@ -201,6 +206,17 @@ public class GameUtils {
 		// No need to add text to the InputHandler (unless you really want to be able to
 		// click on it for some reason)
 	}
+
+    public static void createPausePopupUI(){
+        Backdrop pausePopup = new Backdrop("Backdrop.png", 0, 30, 200, 100);
+        pausePopup.setAnchor(Anchor.Centre);
+        Drawer.add(1, pausePopup);
+
+        Button resumeGame = new Button("Play.png", -50, 20, 100, 50);
+        resumeGame.setClickAction(Actions.Resume);
+        resumeGame.setAnchor(Anchor.Centre);
+        Drawer.add(2, resumeGame);
+    }
 
 	public static void createEventPopupUI(Event event) {
 		Backdrop eventScreenBackdrop = new Backdrop("Backdrop.png", 0, 30, 400, 350);

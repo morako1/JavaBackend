@@ -24,8 +24,10 @@ MissingTexture copy.png
 MissingTexture.png
 Neutral.png
 New Game.png
+Pause.png
 Person.png
 Placeholder.png
+Play.png
 QuestionMark.png
 Quit.png
 Reject.png

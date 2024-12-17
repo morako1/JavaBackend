@@ -2,6 +2,7 @@ package CampusTycoon.UI;
 
 import java.util.List;
 import java.util.function.Consumer;
+import CampusTycoon.GameLogic.Timer;
 
 public abstract class Component {
 
@@ -29,6 +30,8 @@ public abstract class Component {
 		public static final String IncreaseSatisfactionScore = "INCREASESATISFACTIONSCORE";
 		public static final String DecreaseSatisfactionSccore = "DECREASESATISFACTIONSCORE";
 
+        public static final String Resume = "RESUME";
+        public static final String Pause = "PAUSE";
 		public static final String ToggleAccommodationBuilding = "TOGGLEACCOMMODATIONBUILDING";
 		public static final String ToggleStudyBuilding = "TOGGLESTUDYBUILDING";
 		public static final String ToggleCafeteriaBuilding = "TOGGLECAFETERIABUILDING";
