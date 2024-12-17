@@ -8,6 +8,7 @@ import CampusTycoon.UI.ScreenUtils;
 import CampusTycoon.GameUtils;
 import CampusTycoon.GameLogic.Event;
 import CampusTycoon.GameLogic.MapUtils;
+import com.badlogic.gdx.Gdx;
 
 public class Button extends Component {
 	public int value; // Used to carry information about which button was pressed (i.e. in events)
@@ -28,6 +29,10 @@ public class Button extends Component {
 		ScreenUtils.OpenStartScreen();
 		System.out.println("Screen changed to StartScreen");
 	}
+
+    protected static void quitGame(Boolean isAction) {
+        Gdx.app.exit();
+    }
 
 	protected static void openGameplayScreen(Boolean isAction) {
 		ScreenUtils.openGameplayScreen();
@@ -97,6 +102,9 @@ public class Button extends Component {
 				break;
             case Actions.OpenLeaderboardScreen:
                 action = a -> openLeaderboardScreen(a);
+                break;
+            case Actions.QuitGame:
+                action = a -> quitGame(a);
                 break;
 
 			// Events

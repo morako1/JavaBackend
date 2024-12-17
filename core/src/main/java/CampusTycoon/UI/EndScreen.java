@@ -21,7 +21,7 @@ public class EndScreen implements Screen{
 
         @Override
         public void render(float delta) {
-            ScreenUtils.clear(Color.BLUE);
+            ScreenUtils.clear(Color.WHITE);
             Drawer.drawAll();
         }
 

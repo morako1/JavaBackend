@@ -16,12 +16,12 @@ public class LeaderboardScreen implements Screen{
 
     @Override
     public void show() {
-        GameUtils.createEndScreenUI();
+        GameUtils.leaderboardUI();
     }
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLUE);
+        ScreenUtils.clear(Color.WHITE);
         Drawer.drawAll();
     }
 

@@ -50,6 +50,9 @@ public class GameUtils {
 	}
 
 	public static void createStartMenuUI() {
+        Button gameLogo = new Button("StartscreenLogo.png", 0, 220, 300, 100);
+        gameLogo.setAnchor(Anchor.Centre);
+
 		Button buttonNewGame = new Button("New Game.png", 0, 90, 262, 66);
 		buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
 		buttonNewGame.setAnchor(Anchor.Centre);
@@ -58,13 +61,16 @@ public class GameUtils {
         buttonLeaderboard.setClickAction(Actions.OpenLeaderboardScreen);
 		buttonLeaderboard.setAnchor(Anchor.Centre);
 
-		Button buttonSettings = new Button("Settings.png", 0, -50, 262, 66);
-		buttonSettings.setAnchor(Anchor.Centre);
+		Button buttonQuit = new Button("Quit.png", 0, -50, 262, 66);
+        buttonQuit.setClickAction(Actions.QuitGame);
+		buttonQuit.setAnchor(Anchor.Centre);
 
 		List<Component> startScreenButtonList = Arrays.asList(
+                gameLogo,
 				buttonNewGame,
 				buttonLeaderboard,
-				buttonSettings);
+                buttonQuit
+        );
 
 		// Add all buttons to the drawQueue
 		for (Component button : startScreenButtonList) {
@@ -243,15 +249,19 @@ public class GameUtils {
 	}
 
 	public static void createEndScreenUI() {
-		Button buttonMainMenu = new Button("Main Menu.png", 0, 90, 262, 66);
+        Button buttonSaveScore = new Button("Save Score.png", 0, 90, 262, 66);
+        buttonSaveScore.setAnchor(Anchor.Centre);
+
+		Button buttonMainMenu = new Button("Main Menu.png", 0, 20, 262, 66);
 		buttonMainMenu.setClickAction(Actions.OpenStartScreen);
 		buttonMainMenu.setAnchor(Anchor.Centre);
 
-		Button buttonNewGame = new Button("New Game.png", 0, 20, 262, 66);
+		Button buttonNewGame = new Button("New Game.png", 0, -50, 262, 66);
 		buttonNewGame.setClickAction(Actions.OpenGameplayScreen);
 		buttonNewGame.setAnchor(Anchor.Centre);
 
 		List<Component> endScreenButtonList = Arrays.asList(
+                buttonSaveScore,
 				buttonMainMenu,
 				buttonNewGame);
 
@@ -266,16 +276,17 @@ public class GameUtils {
 		InputHandler.add(endScreenButtonList);
 	}
     public static void leaderboardUI() {
-        Button buttonMainMenu = new Button("Main Menu.png", 0, 90, 262, 66);
+        Button buttonMainMenu = new Button("Main Menu.png", 0, -300, 262, 66);
         buttonMainMenu.setClickAction(Actions.OpenStartScreen);
         buttonMainMenu.setAnchor(Anchor.Centre);
 
-        MenuText leaderboardText = new MenuText(String.valueOf("getleaderboard"), 0, 90, 2f, 2f);
+        Button leaderboardTitle = new Button(("Leaderboard.png"), 0, 320, 262, 66);
+        leaderboardTitle.setAnchor(Anchor.Centre);
 
 
 
         List<Component> endScreenButtonList = Arrays.asList(
-            leaderboardText,
+            leaderboardTitle,
             buttonMainMenu
         );
 

@@ -21,7 +21,7 @@ public class StartScreen implements Screen{
 
         @Override
         public void render(float delta) {
-            ScreenUtils.clear(Color.GREEN);
+            ScreenUtils.clear(Color.WHITE);
             Drawer.drawAll();
         }
 

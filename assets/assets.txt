@@ -27,9 +27,12 @@ New Game.png
 Person.png
 Placeholder.png
 QuestionMark.png
+Quit.png
 Reject.png
 Satisfaction.png
+Save Score.png
 Settings.png
+StartscreenLogo.png
 TestButton.png
 Tiles/Grass.png
 Tiles/Lake.png
