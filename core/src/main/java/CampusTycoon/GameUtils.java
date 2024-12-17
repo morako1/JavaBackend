@@ -55,6 +55,7 @@ public class GameUtils {
 		buttonNewGame.setAnchor(Anchor.Centre);
 
 		Button buttonLeaderboard = new Button("Leaderboard.png", 0, 20, 262, 66);
+        buttonLeaderboard.setClickAction(Actions.OpenLeaderboardScreen);
 		buttonLeaderboard.setAnchor(Anchor.Centre);
 
 		Button buttonSettings = new Button("Settings.png", 0, -50, 262, 66);
@@ -264,4 +265,29 @@ public class GameUtils {
 		// (Allows buttons to be clicked and things to actually happen)
 		InputHandler.add(endScreenButtonList);
 	}
+    public static void leaderboardUI() {
+        Button buttonMainMenu = new Button("Main Menu.png", 0, 90, 262, 66);
+        buttonMainMenu.setClickAction(Actions.OpenStartScreen);
+        buttonMainMenu.setAnchor(Anchor.Centre);
+
+        MenuText leaderboardText = new MenuText(String.valueOf("getleaderboard"), 0, 90, 2f, 2f);
+
+
+
+        List<Component> endScreenButtonList = Arrays.asList(
+            leaderboardText,
+            buttonMainMenu
+        );
+
+        // Add all buttons to the drawQueue
+        for (Component button : endScreenButtonList) {
+            // All added to layer '1' (generally on top of most other UI elements)
+            Drawer.add(1, button);
+        }
+
+        // Add all buttons to the InputHandler to allow for interaction handling
+        // (Allows buttons to be clicked and things to actually happen)
+        InputHandler.add(endScreenButtonList);
+    }
 }
+
