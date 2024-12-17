@@ -18,34 +18,34 @@ public class EndScreen implements Screen{
         public void show() {
 			GameUtils.createEndScreenUI();
         }
-    
+
         @Override
         public void render(float delta) {
-            ScreenUtils.clear(Color.BLACK);
+            ScreenUtils.clear(Color.BLUE);
             Drawer.drawAll();
         }
-        
+
         @Override
         public void resize(int width, int height) {
             Window.updateResolution(width, height);
             Drawer.updateAll();
         }
-    
+
         @Override
         public void pause() {
         }
-    
+
         @Override
         public void resume() {
         }
-    
+
         @Override
         public void hide() {
             // This method is called when another screen replaces this one.
 			Drawer.clear();
 			InputHandler.clear();
         }
-    
+
         @Override
         public void dispose() {
             // Destroy screen's assets here.
